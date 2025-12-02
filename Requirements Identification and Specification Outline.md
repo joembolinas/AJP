@@ -25,7 +25,8 @@ This outline will help structure the documentation for identifying requirements 
 
         - succesfully deploy a github page that display academic content
         - scalable, can add conent or update every end of term from any repository
-2. **Project Scope**
+2. **Project Scope
+   TODO: CONTINUE**
 
    - **In Scope**:
      - **What features and functionalities are included in the project?**
