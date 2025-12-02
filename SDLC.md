@@ -1,14 +1,11 @@
 i will go through some phases of the software development life cycle (SDLC).
 
-
-### Analysis
+### Phase 1: Analysis
 
 - The project's goals, scope, budget, and timeline are
   defined.
-
 - Key stakeholders collaborate to create a project plan in
   defining the requirements.
-
 - Detailed requirements are
   gathered from stakeholders,users, and domain experts.
 
@@ -23,7 +20,6 @@ components, data flow, user
 interfaces, and more.
 May also involve creating
 prototypes or mockups.
-
 
 PHASE 3
 Development
