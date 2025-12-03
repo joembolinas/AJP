@@ -105,7 +105,7 @@ content/
    ```
 
 > [!TIP]
-> Check the `spec/AGENTS.md` file for a quick reference of all system requirements, constraints, and guidelines.
+> Check the `docs/AGENTS.md` file for a quick reference of all system requirements, constraints, and guidelines.
 
 ## Project Status
 

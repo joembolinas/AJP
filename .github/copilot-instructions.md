@@ -8,12 +8,11 @@ This is the **Academic Journey Portfolio (AJP)** project - a GitHub Pages portfo
 
 ### Project Files Reference
 
-| File                                        | Description                            |
-| ------------------------------------------- | -------------------------------------- |
-| [`README.md`](../README.md)                 | Overall project context and overview   |
-| [`SDLC.md`](../SDLC.md)                     | Development lifecycle and phases       |
-| [`spec/Project_Specification.md`](../spec/Project_Specification.md) | Complete system specification |
-| [`spec/AGENTS.md`](../spec/AGENTS.md)       | Agent reference guide with requirements |
+| File                                                               | Description                             |
+| ------------------------------------------------------------------ | --------------------------------------- |
+| [`README.md`](../README.md)                                         | Overall project context and overview    |
+| [`docs/Project_Specification.md`](../spec/Project_Specification.md) | Complete system specification           |
+| [`docs/AGENTS.md`](../spec/AGENTS.md)                               | Agent reference guide with requirements |
 
 ---
 
@@ -63,7 +62,7 @@ Use the mentor agent for:
 - No confirmation needed for `.github\prompt\commit.prompt.md`
 - Always ask for clarification when encountering unclear or conflicting information
 - It's always better to confirm than to guess
-- Follow requirements defined in `spec/AGENTS.md` (REQ, SCL, SEC, CON, GUD, PAT, AC)
+- Follow requirements defined in `docs/AGENTS.md` (REQ, SCL, SEC, CON, GUD, PAT, AC)
 
 ### Commit Reminder
 

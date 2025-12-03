@@ -17,7 +17,7 @@ can able to help me the copilot to improve my gaps and other areas that need dev
 
 ---
 
-i applied AGENTS.md the `spec/` folder , These files guide the AI Copilot to automatically update the reference files whenever changes are detected.
+i applied AGENTS.md the `docs/` folder , These files guide the AI Copilot to automatically update the reference files whenever changes are detected.
 
 TODO: ai agents to help development of this project
 
@@ -27,8 +27,6 @@ TODO  : AI TOOLKIT I NEED
 [ ] GIT BRANCH STRATEGIES
 
 now i confirm the specs-arch is done for and honestly in  the future theres a chance a to revised this base on the situation
-
-
 
 ### Create Project Specification Document
 
@@ -44,5 +42,26 @@ now i confirm the specs-arch is done for and honestly in  the future theres a ch
 
 > **⏰ When i do this?**
 > As the first documentation step after project initialization.
+
+---
+
+
+
+### Break Down into Epics (Product Perspective)
+
+> **📝 What is this?**
+> An "epic" is a large body of work that can be broken down into smaller pieces. Think of it as a major feature or capability of your system.  Breaking your project into epics makes it manageable.
+
+> **🎯 Why is this important?**
 >
+> - Makes large projects less overwhelming
+> - Helps prioritize what to build first
+> - Enables parallel work streams
+> - Provides natural milestones for progress tracking
+
+> **⏰ When to do this?**
+> After completing your specification document.
+
+> **👤 Perspective:**
+> This prompt approaches epics from a **Product Manager's** viewpoint - focusing on user value and business outcomes rather than technical implementation.
 >

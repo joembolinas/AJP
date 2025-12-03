@@ -18,7 +18,7 @@ date: 2025-12-04
 
 | Phase | Name | Status |
 |-------|------|--------|
-| Phase 1 | Analysis & Documentation | Ì¥Ñ In Progress |
+| Phase 1 | Analysis & Documentation | ÔøΩÔøΩÔøΩ In Progress |
 | Phase 2 | Design & Architecture | ‚è≥ Pending |
 | Phase 3 | Development | ‚è≥ Pending |
 | Phase 4 | Testing | ‚è≥ Pending |
@@ -27,15 +27,15 @@ date: 2025-12-04
 
 ## Phase 1: Analysis & Documentation
 
-**Status**: Ì¥Ñ In Progress
+**Status**: ÔøΩÔøΩÔøΩ In Progress
 
 Project initialization and requirements gathering phase.
 
 ### Deliverables
 
 - [x] Project goals, scope, and timeline definition
-- [x] Project Specification Document (`spec/Project_Specification.md`)
-- [x] Agent Reference Guide (`spec/AGENTS.md`)
+- [x] Project Specification Document (`docs/Project_Specification.md`)
+- [x] Agent Reference Guide (`docs/AGENTS.md`)
 - [x] Custom instructions for AI-assisted development
 - [ ] Content source inventory and structure analysis
 - [ ] Stakeholder requirements validation

@@ -13,7 +13,6 @@ ai_note: Assisted by AI (GitHub Copilot)
 summary: System architecture and specification for a static, component-based academic portfolio on GitHub Pages.
 date: 2025-12-04
 ---
-
 ## Introduction
 
 This specification defines the comprehensive system architecture for the Academic Journey Portfolio, a scalable web-based platform designed to document and showcase academic learning, skills development, and growth over time through GitHub Pages. The system transforms raw academic content from multiple sources into a structured, component-based web presentation optimized for continuous content additions and term-based updates.
@@ -296,6 +295,7 @@ jobs:
 ### Performance Testing
 
 - **Approach**: Automated Lighthouse audits on every deployment
+  TODO NOTE: not required can remove in future
 - **Benchmarks**: Track performance metrics over time
 - **Alerts**: Notify on performance regression > 5 points
 - **Load Testing**: Not applicable (static site, GitHub Pages handles scaling)
@@ -604,6 +604,5 @@ T4-AY2025/
 - Payment processing, subscriptions, or monetization
 - Collection of sensitive personal data beyond minimal contact info displayed by the owner
 - Complex analytics requiring cookies or tracking beyond basic privacy-friendly page analytics (if any)
-
 
 1.1 | updated | **Last Updated**: Dec 04 2025 - 00:00
