@@ -8,9 +8,10 @@ This file provides context and guidelines for GitHub Copilot when working on thi
 
 ### File Index
 
-| File name                  | Description             |
-| -------------------------- | ----------------------- |
-| [README.md](D:\AJP\README.md) | Overall Project context |
+| File name                                                                               | Description             |
+| --------------------------------------------------------------------------------------- | ----------------------- |
+| [README.md](D:\AJP\README.md)                                                              | Overall Project context |
+| [spec-architecture-portfolio-system.md](D:\AJP\spec\spec-architecture-portfolio-system.md) |                         |
 
 ### General Guidelines
 
@@ -19,10 +20,9 @@ This file provides context and guidelines for GitHub Copilot when working on thi
 - It's always better to confirm than to guess
 - always put footnote all files: "{Version} | {file status} | {**Last Updated**:MMM DD YYYY - HH:SS"
 
-
 ### ALWAYS REMEBER
 
-commit is the only one log of all activities so always suggest git commit and provide message every end task or generate conventional commit messages. It provides instructions, examples, and formatting guidelines to help users write standardized, descriptive commit messages in accordance with the Conventional Commits specification if i forgot to use this `commit.prompt` 
+commit is the only one log of all activities so always suggest git commit and provide message every end task or generate conventional commit messages. It provides instructions, examples, and formatting guidelines to help users write standardized, descriptive commit messages in accordance with the Conventional Commits specification if i forgot to use this `commit.prompt`
 
 ### Environment Awareness for Commits
 
@@ -35,6 +35,7 @@ When generating commit messages, always include context about the environment an
 - **Commit Body**: Use the body section for detailed explanations when changes span multiple areas or require additional context
 
 Example commit with full context:
+
 ```
 feat(docs): add sample table format and environment awareness guidelines
 
@@ -142,3 +143,4 @@ The following features are planned for future implementation:
 1. Table format enhancements
 2. Obsidian link format support
 3. Backlink functionality
+```
