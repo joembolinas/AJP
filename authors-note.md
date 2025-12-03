@@ -20,3 +20,8 @@ can able to help me the copilot to improve my gaps and other areas that need dev
 i applied AGENTS.md the `spec/` folder , These files guide the AI Copilot to automatically update the reference files whenever changes are detected.
 
 TODO: ai agents to help development of this project
+
+NOTE:
+
+TODO  : AI TOOLKIT I NEED
+[ ] GIT BRANCH STRATEGIES

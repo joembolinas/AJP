@@ -247,6 +247,7 @@ jobs:
 - **Performance**: Lighthouse CI in GitHub Actions
 - **Accessibility**: axe-core or Pa11y for automated checks
 - **Link Validation**: html-proofer or broken-link-checker
+- AI agent tetsing: usign ANTIGRAVITY by google
 
 ### Test Data Management
 
@@ -335,12 +336,15 @@ jobs:
 
 - **SVC-001**: Google Lighthouse - Performance and accessibility auditing. Required for automated quality monitoring. SLA: Best-effort availability (free service).
 - **SVC-002**: CDN (via GitHub Pages) - Content delivery network for asset distribution. Required for optimal performance globally.
+- **SVC-003**: Google Antigravity - AI browser testing tool. 
 
 ### Infrastructure Dependencies
 
 - **INF-001**: Git - Distributed version control system. Required version ≥2.x for all contributors and automation.
 - **INF-002**: Node.js - JavaScript runtime for build tools and testing frameworks. Required version ≥18.x LTS for consistent tooling.
 - **INF-003**: VS Code - Development environment. Required for AI-assisted development with Copilot integration.
+
+// TODO FIX: AI update AGENTS.MD for new specs added 12-04-2025 INF-003
 
 ### Data Dependencies
 
