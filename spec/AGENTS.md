@@ -160,7 +160,7 @@ This file provides quick reference tables for all specifications defined in `spe
 
 ---
 
-**Reference**: See [spec-architecture-portfolio-system.md](./spec-architecture-portfolio-system.md) for complete details and context.
+**Reference**: See [spec-architecture-portfolio-system.md](./Project_Specification.md) for complete details and context.
 
 **Link**: 
 

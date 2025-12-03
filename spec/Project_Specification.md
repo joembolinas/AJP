@@ -1,11 +1,19 @@
 ---
-title: Academic Journey Portfolio - System Architecture Specification
-version: 1.0
+title: Academic Journey Portfolio - Project Specification Document
+version: 1.1
 date_created: 2025-12-03
-last_updated: 2025-12-03
+last_updated: 2025-12-04
 owner: Portfolio Owner
+source: ''
+author: Portfolio Owner
+post_slug: project-specification
+categories: [spec, architecture]
 tags: [architecture, design, infrastructure, github-pages, static-site]
+ai_note: Assisted by AI (GitHub Copilot)
+summary: System architecture and specification for a static, component-based academic portfolio on GitHub Pages.
+date: 2025-12-04
 ---
+
 ## Introduction
 
 This specification defines the comprehensive system architecture for the Academic Journey Portfolio, a scalable web-based platform designed to document and showcase academic learning, skills development, and growth over time through GitHub Pages. The system transforms raw academic content from multiple sources into a structured, component-based web presentation optimized for continuous content additions and term-based updates.
@@ -71,6 +79,15 @@ This specification defines the architectural requirements, constraints, and inte
 - **SEC-003**: System MUST use secure HTTPS deployment via GitHub Pages
 - **SEC-004**: System MUST sanitize all user-provided content before rendering
 - **SEC-005**: System MUST implement Content Security Policy (CSP) headers where possible
+
+### Scalability Requirements
+
+- **SCL-001**: System MUST scale to at least 1,000 content files (markdown with assets) without manual configuration changes.
+- **SCL-002**: Full build and deployment pipeline MUST complete within ≤10 minutes on GitHub Actions for 1,000 content files.
+- **SCL-003**: Client-side navigation and filtering MUST remain responsive (under 100ms interaction latency on average hardware) through pagination, lazy loading, or virtualized lists.
+- **SCL-004**: Static assets MUST be cacheable with immutable file hashes to leverage CDN edge caching for high-traffic scenarios.
+- **SCL-005**: Site architecture MUST support incremental term-based growth without re-architecting navigation or content structure.
+- **SCL-006**: Image/media handling MUST support progressive loading and responsive images for large galleries (e.g., `srcset`, modern formats).
 
 ### Constraints
 
@@ -336,7 +353,7 @@ jobs:
 
 - **SVC-001**: Google Lighthouse - Performance and accessibility auditing. Required for automated quality monitoring. SLA: Best-effort availability (free service).
 - **SVC-002**: CDN (via GitHub Pages) - Content delivery network for asset distribution. Required for optimal performance globally.
-- **SVC-003**: Google Antigravity - AI browser testing tool. 
+- **SVC-003**: Google Antigravity - AI browser testing tool.
 
 ### Infrastructure Dependencies
 
@@ -539,3 +556,54 @@ T4-AY2025/
 - [GitHub Actions Documentation](https://docs.github.com/en/actions) - CI/CD automation
 - [Markdown Guide](https://www.markdownguide.org/) - Markdown syntax reference
 - [YAML Specification](https://yaml.org/spec/1.2/spec.html) - YAML format documentation
+
+## 12. Target Users & Personas
+
+### Primary Persona: Portfolio Owner (Student)
+
+- Goals: Publish academic work per term; present skills and growth; maintain a professional public presence.
+- Key Tasks: Add/update content; organize by term/category; ensure accessibility and link integrity.
+
+### Secondary Persona: Recruiter/Employer
+
+- Goals: Quickly assess candidate’s skills, projects, and impact; navigate by skill or category.
+- Key Tasks: Browse highlights; filter by skills/terms; access project details and artifacts.
+
+### Secondary Persona: Instructor/Peer Reviewer
+
+- Goals: Verify artifacts and reflect on progress; check compliance with guidelines.
+- Key Tasks: Navigate to term/course artifacts; validate links and accessibility; review reflections.
+
+### General Visitor
+
+- Goals: Understand background and achievements at a glance.
+- Key Tasks: Read overview pages; open featured projects; view achievements.
+
+## 13. User Stories & Use Cases
+
+- As a Portfolio Owner, I want to add new term content so that my portfolio reflects my latest work.
+- As a Portfolio Owner, I want automatic link and metadata validation so that broken or incomplete entries are caught before publish.
+- As a Recruiter, I want to filter projects by skills so that I can quickly find relevant experience.
+- As a Recruiter, I want fast-loading pages with clear summaries so that I can evaluate the portfolio efficiently.
+- As an Instructor, I want chronological term navigation so that I can trace progression over time.
+- As a Visitor, I want expandable content cards so that I can skim then drill into details only when needed.
+- As a Maintainer, I want CI to build and deploy on push so that updates are published reliably without manual steps.
+
+### Representative Use Cases
+
+1. Add a new term (T4-AY2025) with projects, assignments, and reflections; CI validates, builds, and deploys automatically.
+2. Recruiter filters by “database” skill and opens top three projects; pages load under the defined performance budget.
+3. Instructor verifies a reflection post has required front matter and accessible structure; validation passes before merge.
+
+## 14. Out of Scope
+
+- User authentication, roles, or personalized dashboards
+- Server-side rendering or custom backend services/databases
+- Commenting systems or user-generated content submission portals
+- Real-time features (chat, live collaboration)
+- Payment processing, subscriptions, or monetization
+- Collection of sensitive personal data beyond minimal contact info displayed by the owner
+- Complex analytics requiring cookies or tracking beyond basic privacy-friendly page analytics (if any)
+
+
+1.1 | updated | **Last Updated**: Dec 04 2025 - 00:00
