@@ -1,5 +1,7 @@
 # GitHub Copilot Custom Instructions for AJP
 
+SEE HERE THE CONTEXT OF MY PROMPT: `docs/Project_Specification.md`
+
 ## Project Context
 
 This is the **Academic Journey Portfolio (AJP)** project - a GitHub Pages portfolio system for documenting academic learning and growth.
