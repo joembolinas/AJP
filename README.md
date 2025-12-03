@@ -19,7 +19,7 @@
 
 ## Overview
 
-The Academic Journey Portfolio is a simple, scalable web platform designed to document and present academic work, reflections, and personal development throughout your educational journey. Starting with Term 3 (AY2025), this portfolio serves as a comprehensive showcase for teachers, admissions committees, and future employers.
+The Academic Journey Portfolio is a simple, scalable web platform designed to systematically document and present my academic work, reflections, and professional development throughout my educational journey. Starting with Term 3 (AY2025), this portfolio provides a comprehensive digital showcase of my learning progress, achievements, and competencies.
 
 **Live Site**: [https://joembolinas.github.io](https://joembolinas.github.io)
 
@@ -27,7 +27,7 @@ The Academic Journey Portfolio is a simple, scalable web platform designed to do
 
 ## Project Vision
 
-An academic journey portfolio is a collection of a student's work that documents their learning, skills, and growth over time. It includes academic projects, reflections, and extracurricular activities to showcase progress, achievements, and personal development to others, such as teachers, admissions committees, or future employers.
+An academic journey portfolio is a collection of a student's work that documents their learning, skills, and growth over time. It includes academic projects, reflections, and extracurricular activities to showcase progress, achievements, and personal development
 
 ### Benefits
 
@@ -125,9 +125,9 @@ An academic journey portfolio is a collection of a student's work that documents
 
 ### Input Management
 
-- Stakeholder feedback gathered through GitHub issues
 - Content updates managed through pull requests
 - Regular review cycles at term completion
+- TODO: for future development the visitor feedback gathered through GitHub issues
 
 ## Technical Architecture
 
@@ -216,7 +216,6 @@ An academic journey portfolio is a collection of a student's work that documents
 
 **Performance:**
 
-- Page load time < 3 seconds
 - Responsive design for mobile and desktop
 - Optimized asset delivery
 
@@ -275,13 +274,13 @@ An academic journey portfolio is a collection of a student's work that documents
 
 ### Potential Risks
 
-| Risk | Impact | Probability | Mitigation Strategy |
-|------|--------|-------------|---------------------|
-| Content source structure changes | High | Medium | Flexible extraction scripts, documented content format |
-| GitHub Pages service changes | High | Low | Alternative static hosting backup plan |
-| Content privacy concerns | High | Medium | Content review process, compliance checks |
-| Scalability limitations | Medium | Medium | Modular architecture, performance monitoring |
-| Maintenance burden | Medium | High | Automated workflows, clear documentation |
+| Risk                             | Impact | Probability | Mitigation Strategy                                    |
+| -------------------------------- | ------ | ----------- | ------------------------------------------------------ |
+| Content source structure changes | High   | Medium      | Flexible extraction scripts, documented content format |
+| GitHub Pages service changes     | High   | Low         | Alternative static hosting backup plan                 |
+| Content privacy concerns         | High   | Medium      | Content review process, compliance checks              |
+| Scalability limitations          | Medium | Medium      | Modular architecture, performance monitoring           |
+| Maintenance burden               | Medium | High        | Automated workflows, clear documentation               |
 
 ### Risk Management
 
@@ -305,42 +304,13 @@ An academic journey portfolio is a collection of a student's work that documents
 
 ## Getting Started
 
-### Prerequisites
-
-- Git installed and configured
-- GitHub account with access to deployment repository
-- VS Code with GitHub Copilot (recommended)
-- Node.js (if using build tools)
-
-### Initial Setup
-
-```bash
-# Clone this repository
-git clone https://github.com/joembolinas/AJP.git
-cd AJP
-
-# Configure deployment repository
-git remote add pages https://github.com/joembolinas/joembolinas.github.io.git
-
-# Review project structure
-cat SDLC.md
-```
-
-### Contributing
-
-1. Create a feature branch for each term or major update
-2. Follow the established content structure
-3. Submit pull requests for review
-4. Address feedback before merging
-
 ### Documentation
 
 - See `SDLC.md` for detailed development lifecycle information
-- Check `.github/instructions/` for contribution guidelines
 - Review prompt files for AI-assisted development patterns
 
 ---
 
-**Last Updated**: December 3, 2025
+**Last Updated**: December 3, 2025 22:15
 **Current Phase**: Phase 1 - Documentation
-**Next Milestone**: Phase 2 - Structure Development
+**Next Milestone**:

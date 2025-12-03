@@ -1,7 +1,8 @@
-
 # Software Development Life Cycle (SDLC)
 
 ## Phase 1: Analysis
+
+Project Initialization | Documenting |
 
 - The project's goals, scope, and timeline are defined.
 - Key stakeholders collaborate to create a project plan in defining the requirements.
