@@ -144,3 +144,6 @@ The following features are planned for future implementation:
 2. Obsidian link format support
 3. Backlink functionality
 ```
+
+
+---

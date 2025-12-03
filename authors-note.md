@@ -14,3 +14,9 @@ since i have the initial context on README
 it easy to improve the document neeeded for on going process of this project
 
 can able to help me the copilot to improve my gaps and other areas that need development.
+
+---
+
+i applied AGENTS.md the `spec/` folder , These files guide the AI Copilot to automatically update the reference files whenever changes are detected.
+
+TODO: ai agents to help development of this project

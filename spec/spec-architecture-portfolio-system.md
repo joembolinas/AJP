@@ -6,7 +6,6 @@ last_updated: 2025-12-03
 owner: Portfolio Owner
 tags: [architecture, design, infrastructure, github-pages, static-site]
 ---
-
 ## Introduction
 
 This specification defines the comprehensive system architecture for the Academic Journey Portfolio, a scalable web-based platform designed to document and showcase academic learning, skills development, and growth over time through GitHub Pages. The system transforms raw academic content from multiple sources into a structured, component-based web presentation optimized for continuous content additions and term-based updates.
@@ -19,7 +18,7 @@ This specification defines the architectural requirements, constraints, and inte
 
 **Assumptions**:
 
-- GitHub Pages service availability and free tier access
+- GitHub Pages service availability and Student Dev, Pack access
 - Content source directories maintain consistent structure across terms
 - Regular quarterly updates aligned with academic term completion
 - Static site generation only (no backend server)
@@ -55,7 +54,7 @@ This specification defines the architectural requirements, constraints, and inte
 
 - **REQ-011**: System MUST extract content from primary source: `C:\Users\ADMIN\Desktop\School File\T3-AY2025`
 - **REQ-012**: System MUST support future content sources from additional directories/repositories
-- **REQ-013**: System MUST transform raw academic content into structured web formats
+- **REQ-013**: System MUST transform raw academic content into structured web formats """NOTE: SEPERATE SYSTEM"""
 - **REQ-014**: System MUST preserve content metadata (dates, categories, tags, authors)
 - **REQ-015**: System MUST support incremental content additions without full rebuild
 
