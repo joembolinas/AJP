@@ -4,6 +4,13 @@
 
 This file provides context and guidelines for GitHub Copilot when working on this project.
 
+File index
+
+| File name                  | abs                     | abc |
+| -------------------------- | ----------------------- | --- |
+| [README.md](D:\AJP\README.md) | Overall Project context |     |
+|                            |                         |     |
+
 **Current Progress**: Phase 1
 
 ### General Guidelines
@@ -11,6 +18,12 @@ This file provides context and guidelines for GitHub Copilot when working on thi
 - No confirmation needed for `.github\prompt\commit.prompt.md`
 - Always ask for clarification when encountering unclear or conflicting information across the project workspace
 - It's always better to confirm than to guess
+- always put footnote all files: "{Version} | {file status} | {**Last Updated**:MMM DD YYYY - HH:SS"
+
+
+### ALWAYS REMEBER
+
+commit is the only one log of all activities so always suggest git commit and provide message every end task 
 
 ---
 
