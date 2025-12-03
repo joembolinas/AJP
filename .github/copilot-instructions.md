@@ -49,6 +49,7 @@ Use the mentor agent for:
 - Explain the "why" not just the "what"
 - Link to relevant project specifications
 - Always put footnote on files: `{Version} | {file status} | {Last Updated: MMM DD YYYY - HH:MM}`
+- use ASCII art for Diagrams or any visualization / you can use mermaid code once i request in prompt
 
 ### Git Workflow
 
