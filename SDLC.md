@@ -9,36 +9,35 @@ ai_note: Assisted by AI (GitHub Copilot)
 summary: Development lifecycle phases for the Academic Journey Portfolio project.
 date: 2025-12-04
 ---
-
 # Software Development Life Cycle (SDLC)
 
 > Development phases for the Academic Journey Portfolio (AJP) - a GitHub Pages portfolio system for documenting academic learning and growth.
 
 ## Overview
 
-| Phase | Name | Status |
-|-------|------|--------|
+| Phase   | Name                     | Status             |
+| ------- | ------------------------ | ------------------ |
 | Phase 1 | Analysis & Documentation | ��� In Progress |
-| Phase 2 | Design & Architecture | ⏳ Pending |
-| Phase 3 | Development | ⏳ Pending |
-| Phase 4 | Testing | ⏳ Pending |
-| Phase 5 | Deployment | ⏳ Pending |
-| Phase 6 | Maintenance | ⏳ Pending |
+| Phase 2 | Design & Architecture    | ⏳ Pending         |
+| Phase 3 | Development              | ⏳ Pending         |
+| Phase 4 | Testing                  | ⏳ Pending         |
+| Phase 5 | Deployment               | ⏳ Pending         |
+| Phase 6 | Maintenance              | ⏳ Pending         |
 
 ## Phase 1: Analysis & Documentation
 
 **Status**: ��� In Progress
 
-Project initialization and requirements gathering phase.
+- Project initialization and requirements gathering phase.
 
 ### Deliverables
 
-- [x] Project goals, scope, and timeline definition
-- [x] Project Specification Document (`docs/Project_Specification.md`)
-- [x] Agent Reference Guide (`docs/AGENTS.md`)
-- [x] Custom instructions for AI-assisted development
-- [ ] Content source inventory and structure analysis
-- [ ] Stakeholder requirements validation
+- [X] Project goals, scope, and timeline definition
+- [X] Project Specification Document (`docs/Project_Specification.md`)
+- [X] Agent Reference Guide (`docs/AGENTS.md`)
+- [X] Custom instructions for AI-assisted development
+- [X] Content source inventory and structure analysis
+- [X] Stakeholder requirements validation
 
 ### Key Outputs
 
@@ -47,7 +46,27 @@ Project initialization and requirements gathering phase.
 - Scalability requirements (SCL-001 to SCL-006)
 - Constraints and guidelines documentation
 
+---
+
+
+
 ## Phase 2: Design & Architecture
+
+## Requirements Traceability Matrix
+
+| Epic   | Key Requirements Covered                                                       |
+| ------ | ------------------------------------------------------------------------------ |
+| Epic 1 | CON-001 to CON-007, PAT-001 to PAT-005, GUD-001 to GUD-006, INF-001 to INF-003 |
+| Epic 2 | VAL-001 to VAL-010, FR-007, FR-008, FR-013                                     |
+| Epic 3 | FR-001, FR-010, FR-011, FR-012, FR-013, FR-014                                 |
+| Epic 4 | FR-003, FR-004, NFR-001, NFR-004, PAT-005, VAL-011 to VAL-015                  |
+| Epic 5 | FR-005, FR-006, NFR-012, GUD-006                                               |
+| Epic 6 | FR-002, OBJ-001, OBJ-002, AC-001 to AC-003                                     |
+| Epic 7 | FR-009, OBJ-004, VAL-021 to VAL-025, PLT-001, NFR-011                          |
+| Epic 8 | Section 7 (Test Automation), VAL-016 to VAL-020                                |
+| Epic 9 | OBJ-006, NFR-010, NFR-014, Section 16                                          |
+
+---
 
 **Status**: ⏳ Pending
 

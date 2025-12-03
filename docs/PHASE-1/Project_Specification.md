@@ -605,10 +605,10 @@ T4-AY2025/
 
 ### Internal Documentation
 
-- [README.md](../README.md) - Project overview and goals
-- [SDLC.md](../SDLC.md) - Software development lifecycle phases
-- [.github/copilot-instructions.md](../.github/copilot-instructions.md) - AI-assisted development guidelines
-- [.github/instructions/markdown.instructions.md](../.github/instructions/markdown.instructions.md) - Markdown content standards
+- [README.md](../../README.md) - Project overview and goals
+- [SDLC.md](../../SDLC.md) - Software development lifecycle phases
+- [.github/copilot-instructions.md](../../.github/copilot-instructions.md) - AI-assisted development guidelines
+- [.github/instructions/markdown.instructions.md](../../.github/instructions/markdown.instructions.md) - Markdown content standards
 
 ### External Resources
 
