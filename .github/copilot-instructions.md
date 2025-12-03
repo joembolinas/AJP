@@ -1,63 +1,108 @@
-no confirmation needed for `.github\prompt\commit.prompt.md`
+# GitHub Copilot Instructions
 
-see this file for the context of the project 
+## Project Context
 
-Current progress: Phase 1
+This file provides context and guidelines for GitHub Copilot when working on this project.
 
-If you encounter any unclear or conflicting information across the project workspace, please ask me for clarification instead of making assumptions. It’s always better to confirm than to guess.
+**Current Progress**: Phase 1
 
-## Markdown Content Rules
+### General Guidelines
 
-The following markdown content rules are enforced in the validators:
-
-1. **Headings**: Use appropriate heading levels (H2, H3, etc.) to structure your content. Do not use an H1 heading, as this will be generated based on the title.
-2. **Lists**: Use bullet points or numbered lists for lists. Ensure proper indentation and spacing.
-3. **Code Blocks**: Use fenced code blocks for code snippets. Specify the language for syntax highlighting.
-4. **Links**: Use proper markdown syntax for links. Ensure that links are valid and accessible.
-5. **Images**: Use proper markdown syntax for images. Include alt text for accessibility.
-6. **Tables**: Use markdown tables for tabular data. Ensure proper formatting and alignment.
-7. **Line Length**: Limit line length to 400 characters for readability.
-8. **Whitespace**: Use appropriate whitespace to separate sections and improve readability.
-9. **Front Matter**: Include YAML front matter at the beginning of the file with required metadata fields.
-
-## Formatting and Structure
-
-Follow these guidelines for formatting and structuring your markdown content:
-
-- **Headings**: Use `##` for H2 and `###` for H3. Ensure that headings are used in a hierarchical manner. Recommend restructuring if content includes H4, and more strongly recommend for H5.
-- **Lists**: Use `-` for bullet points and `1.` for numbered lists. Indent nested lists with two spaces.
-- **Code Blocks**: Use triple backticks (`) to create fenced code blocks. Specify the language after the opening backticks for syntax highlighting (e.g., `csharp).
-- **Links**: Use `[link text](URL)` for links. Ensure that the link text is descriptive and the URL is valid.
-- **Images**: Use `![alt text](image URL)` for images. Include a brief description of the image in the alt text.
-- **Tables**: Use `|` to create tables. Ensure that columns are properly aligned and headers are included.
-- **Line Length**: Break lines at 80 characters to improve readability. Use soft line breaks for long paragraphs.
-- **Whitespace**: Use blank lines to separate sections and improve readability. Avoid excessive whitespace.
-
-## Validation Requirements
-
-Ensure compliance with the following validation requirements:
-
-- **Front Matter**: Include the following fields in the YAML front matter:
-
-  - `title`: The title of the post.
-  - `source: {leave blank}`
-  - `author`: The primary author of the post.
-  - `post_slug`: The URL slug for the post.
-  - `categories`: The categories for the post. These categories must be from the list in /categories.txt.
-  - `tags`: The tags for the post.
-  - `ai_note`: Indicate if AI was used in the creation of the post.
-  - `summary`: A brief summary of the post. Recommend a summary based on the content when possible.
-  - `date`: The publication date of the post.
-- **Content Rules**: Ensure that the content follows the markdown content rules specified above.
-- **Formatting**: Ensure that the content is properly formatted and structured according to the guidelines.
-- **Validation**: Run the validation tools to check for compliance with the rules and guidelines.
+- No confirmation needed for `.github\prompt\commit.prompt.md`
+- Always ask for clarification when encountering unclear or conflicting information across the project workspace
+- It's always better to confirm than to guess
 
 ---
 
-ignore all below:
+## Markdown Documentation Standards
 
-Future: enhancement/additional:
+This project enforces strict markdown standards for all documentation and content files.
 
-1. Table format
-2. obsidian link format
-3. backlink
+### Content Rules
+
+1. **Headings**: Use appropriate heading levels (H2, H3, etc.) to structure content. Do not use H1 headings, as these will be generated based on the title.
+2. **Lists**: Use bullet points or numbered lists with proper indentation and spacing.
+3. **Code Blocks**: Use fenced code blocks for code snippets with language specification for syntax highlighting.
+4. **Links**: Use proper markdown syntax. Ensure links are valid and accessible.
+5. **Images**: Use proper markdown syntax with alt text for accessibility.
+6. **Tables**: Use markdown tables for tabular data with proper formatting and alignment.
+7. **Line Length**: Limit line length to 400 characters for readability.
+8. **Whitespace**: Use appropriate whitespace to separate sections and improve readability.
+9. **Front Matter**: Include YAML front matter at the beginning of files with required metadata fields.
+
+### Formatting Guidelines
+
+#### Headings
+
+- Use `##` for H2 and `###` for H3
+- Maintain hierarchical structure
+- Recommend restructuring if content includes H4
+- Strongly recommend restructuring for H5 or deeper
+
+#### Lists
+
+- Use `-` for bullet points
+- Use `1.` for numbered lists
+- Indent nested lists with two spaces
+
+#### Code Blocks
+
+- Use triple backticks (```) to create fenced code blocks
+- Specify language after opening backticks for syntax highlighting (e.g., ```csharp)
+
+#### Links
+
+- Format: `[link text](URL)`
+- Ensure link text is descriptive
+- Verify URLs are valid
+
+#### Images
+
+- Format: `![alt text](image URL)`
+- Include brief description in alt text
+
+#### Tables
+
+- Use `|` to create tables
+- Ensure columns are properly aligned
+- Include headers
+
+#### Line Length
+
+- Break lines at 80 characters to improve readability
+- Use soft line breaks for long paragraphs
+
+#### Whitespace
+
+- Use blank lines to separate sections
+- Avoid excessive whitespace
+
+### Front Matter Requirements
+
+All markdown files must include YAML front matter with the following fields:
+
+- `title`: The title of the post
+- `source`: Leave blank
+- `author`: The primary author of the post
+- `post_slug`: The URL slug for the post
+- `categories`: Categories for the post (must be from `/categories.txt`)
+- `tags`: Tags for the post
+- `ai_note`: Indicate if AI was used in the creation of the post
+- `summary`: A brief summary of the post (recommend based on content when possible)
+- `date`: The publication date of the post
+
+### Validation
+
+- Ensure content follows the markdown content rules specified above
+- Verify proper formatting and structure according to guidelines
+- Run validation tools to check for compliance with rules and guidelines
+
+---
+
+## Future Enhancements
+
+The following features are planned for future implementation:
+
+1. Table format enhancements
+2. Obsidian link format support
+3. Backlink functionality
