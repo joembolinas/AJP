@@ -1,316 +1,160 @@
-# Academic Journey Portfolio
+---
+title: Academic Journey Portfolio
+source: ''
+author: Portfolio Owner
+post_slug: readme
+categories: [docs, portfolio]
+tags: [portfolio, academic, github-pages, static-site]
+ai_note: Assisted by AI (GitHub Copilot)
+summary: Main README for the Academic Journey Portfolio - a scalable, component-based portfolio system for academic content.
+date: 2025-12-04
+---
 
-> A scalable web-based portfolio system to document and showcase academic learning, skills development, and growth over time through GitHub Pages.
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-blue?style=flat-square&logo=github)](https://joembolinas.github.io)
+[![Current Phase](https://img.shields.io/badge/Phase-1%20Documentation-orange?style=flat-square)](./SDLC.md)
+[![Term](https://img.shields.io/badge/Term-T3--AY2025-green?style=flat-square)](https://joembolinas.github.io)
 
-## Table of Contents
+> A scalable, component-based portfolio system to document and showcase academic learning, skills development, and growth through GitHub Pages.
 
-- [Overview](#overview)
-- [Project Vision](#project-vision)
-- [Portfolio Components](#portfolio-components)
-- [Project Goals](#project-goals)
-- [Project Scope](#project-scope)
-- [Stakeholders](#stakeholders)
-- [Technical Architecture](#technical-architecture)
-- [Development Phases](#development-phases)
-- [Requirements](#requirements)
-- [Constraints and Assumptions](#constraints-and-assumptions)
-- [Risks](#risks)
-- [Getting Started](#getting-started)
+[Overview](#overview) • [Features](#features) • [Architecture](#architecture) • [Getting Started](#getting-started) • [Project Status](#project-status)
 
 ## Overview
 
-The Academic Journey Portfolio is a simple, scalable web platform designed to systematically document and present my academic work, reflections, and professional development throughout my educational journey. Starting with Term 3 (AY2025), this portfolio provides a comprehensive digital showcase of my learning progress, achievements, and competencies.
+The Academic Journey Portfolio (AJP) is a static web platform designed to systematically document and present academic work, reflections, and professional development throughout an educational journey. Built with a content-first approach, it transforms raw academic materials into a structured, navigable web experience.
 
 **Live Site**: [https://joembolinas.github.io](https://joembolinas.github.io)
 
-**Current Term**: Term 3 - AY2025
+### Why Build This?
 
-## Project Vision
-
-An academic journey portfolio is a collection of a student's work that documents their learning, skills, and growth over time. It includes academic projects, reflections, and extracurricular activities to showcase progress, achievements, and personal development
-
-### Benefits
-
-- **Showcases Growth**: Provides a narrative of development, showing how skills and knowledge have evolved over time
-- **Encourages Self-Reflection**: Reviewing your portfolio allows you to see what strategies work best and how you've improved
-- **Promotes Ownership**: Taking an active role in education by curating work and articulating learning meaningfully
-- **Demonstrates Preparedness**: Offers a complete picture of potential beyond grades for college or graduate school applications
+- **Showcases Growth**: Provides a narrative of development, demonstrating how skills and knowledge evolve over time
+- **Encourages Self-Reflection**: Reviewing work helps identify what strategies work best and tracks improvement
+- **Demonstrates Preparedness**: Offers a complete picture beyond grades for admissions committees and potential employers
 - **Builds Essential Skills**: Improves time management, self-assessment, and digital citizenship
 
-## Portfolio Components
+## Features
 
-### What to Include
+- **Multi-Source Content Import** — Pull academic content from multiple repositories and directories
+- **Term-Based Organization** — Content organized chronologically by academic term
+- **Component-Based Architecture** — Modular, reusable UI components for content display
+- **Expandable Content Elements** — Interactive components for detailed exploration
+- **Category & Skill Filtering** — Browse content by category, skill, or project type
+- **Automated Deployment** — CI/CD via GitHub Actions for seamless updates
+- **Accessibility Compliant** — WCAG 2.1 standards with minimum Lighthouse score targets
 
-- **Academic Work**: Papers, projects, presentations, case studies, and assignments demonstrating learning
-- **Reflections**: Written pieces or videos discussing growth, challenges, and lessons learned
-- **Extracurriculars**: Involvement in sports, clubs, internships, or activities showing well-rounded development
-- **Achievements**: Awards, certificates, and honors received
-- **Goals**: Statements of future aspirations and objectives
-- **Personal Interests**: Creative or personal work such as artwork, videos, or recommendations
-- **Technical Learning**: Practical experience with tools and platforms, including:
-  - GitHub fundamentals (repositories, commits, staging, push)
-  - Collaboration workflows (issues, pull requests, branching strategies)
-  - GitHub products (Actions, Codespaces, Pages, MCP)
-  - Development tools (VS Code, GitHub Copilot)
+## Architecture
 
-## Project Goals
-
-### Primary Objectives
-
-1. Build a simple GitHub Pages site for Academic Journey Portfolio starting with Term 3
-2. Create a scalable system to accommodate future terms
-3. Transform raw academic content into structured, web-friendly formats
-
-### Stakeholder Alignment
-
-- **Content Development**: Transform content from various directories/repositories into structured web design
-- **Structured Presentation**: Organize content by sections with components that display information clearly
-- **Chronological Organization**: Present content using chronological order, skills categorization, or project grouping
-- **Interactive Elements**: Enable expandable/clickable components for detailed content exploration
-- **Scalability**: Support content addition and updates at the end of each term from any repository
-
-### Success Criteria
-
-- ✅ Successfully deploy a GitHub Page displaying academic content
-- ✅ Scalable architecture allowing content additions/updates every term from any repository
-- ✅ Structured, navigable interface for content presentation
-
-## Project Scope
-
-### In Scope
-
-**Features and Functionalities:**
-
-- Easy content addition from various repositories each term
-- Expandable content elements for detailed information
-- Transform raw content into structured web design
-- Component-based architecture for modular content display
-
-**Deliverables:**
-
-- **Phase 1**: Documentation and planning
-- **Phase 2**: Project structure and architecture
-- **Phase 3**: Configuration, setup, prompts, and Term 3 content extraction
-- **Phase 4**: Content integration and component development
-- **Phase 5**: Testing, deployment, and documentation
-
-### Out of Scope
-
-**Excluded Features:**
-
-- Custom UI design (HTML/CSS frameworks may be revised if needed)
-- Complex interactive features beyond basic expandable elements
-- Backend database systems
-- User authentication systems
-
-**Limitations:**
-
-- Preference for minimal manual HTML/CSS coding
-- Constraint to GitHub Pages deployment capabilities
-
-## Stakeholders
-
-### Key Stakeholders
-
-#### User (Portfolio Owner)
-
-- **Role**: Content creator and maintainer
-- **Responsibilities**: Update content at the end of each term, curate academic work, maintain portfolio accuracy
-
-#### Visitor (Audience)
-
-- **Role**: Portfolio viewer
-- **Responsibilities**: Browse content, assess academic progress, explore projects and achievements
-- **Audience Types**: Teachers, admissions committees, potential employers, peers
-
-### Input Management
-
-- Content updates managed through pull requests
-- Regular review cycles at term completion
-- TODO: for future development the visitor feedback gathered through GitHub issues
-
-## Technical Architecture
+```text
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│  Content        │────▶│  Transformation  │────▶│  GitHub Pages   │
+│  Sources        │     │  Pipeline        │     │  Deployment     │
+└─────────────────┘     └──────────────────┘     └─────────────────┘
+     T3-AY2025               Components              Static Site
+     Future Terms            Metadata                 HTTPS
+```
 
 ### Tech Stack
 
-**Development Tools:**
+| Category | Technology |
+|----------|------------|
+| Hosting | GitHub Pages (Static) |
+| Version Control | Git + GitHub |
+| CI/CD | GitHub Actions |
+| Development | VS Code + GitHub Copilot |
+| Architecture | JAMstack (JavaScript, APIs, Markup) |
 
-- **AI-Assisted Development**: GitHub Copilot with custom instructions, agent.md, and prompt.md configurations
-- **Version Control**: Git and GitHub
-- **Automation**: GitHub Actions for CI/CD workflows
-- **Deployment**: GitHub Pages
-- **Development Environment**: VS Code with MCP integration
+### Content Structure
 
-**Content Source:**
+```text
+content/
+├── projects/           # Academic projects and case studies
+├── reflections/        # Learning reflections and insights
+├── assignments/        # Course assignments and submissions
+└── achievements/       # Awards, certificates, and honors
+```
 
-- Primary: `C:\Users\ADMIN\Desktop\School File\T3-AY2025`
-- Future terms from additional directories/repositories
-
-**Deployment Target:**
-
-- Repository: `https://github.com/joembolinas/joembolinas.github.io`
-
-### Development Workflow
-
-1. Content extraction from term directories
-2. Structured data transformation
-3. Component-based presentation layer
-4. Automated deployment via GitHub Actions
-5. Continuous integration through pull requests and issues
-
-## Development Phases
-
-### Phase 1: Documentation
-
-- Project requirements gathering
-- Architecture planning
-- Technical specifications
-
-### Phase 2: Structure
-
-- Repository setup
-- Directory organization
-- Component architecture design
-
-### Phase 3: Configuration & Content Extraction
-
-- Development environment setup
-- Prompt engineering for content transformation
-- Term 3 content extraction and processing
-
-### Phase 4: Integration
-
-- Component development
-- Content integration
-- Feature implementation
-
-### Phase 5: Deployment
-
-- Testing and quality assurance
-- Production deployment
-- Documentation finalization
-
-## Requirements
-
-### Functional Requirements
-
-**Content Management:**
-
-- System must support content import from multiple repositories
-- Content must be organizable by term, skill, and project type
-- Components must support expandable/collapsible functionality
-
-**Navigation:**
-
-- Users must be able to browse content chronologically
-- Content must be filterable by category or skill
-- Each content item must link to detailed information
-
-**Validation:**
-
-- Content structure validation through automated checks
-- Link verification for all references
-- Accessibility compliance testing
-
-### Non-Functional Requirements
-
-**Performance:**
-
-- Responsive design for mobile and desktop
-- Optimized asset delivery
-
-**Security:**
-
-- Compliance with school posting regulations
-- No sensitive personal information exposure
-- Secure GitHub Pages deployment
-
-**Usability:**
-
-- Intuitive navigation structure
-- Clear content organization
-- Accessible to all user types
-
-**Measurement:**
-
-- Google Lighthouse scores for performance monitoring
-- GitHub Pages analytics for visitor tracking
-- User feedback through GitHub issues
-
-## Constraints and Assumptions
-
-### Constraints
-
-**Resources:**
-
-- Limited to GitHub Pages free tier capabilities
-- No backend server or database
-- Static site generation only
-
-**Technology:**
-
-- Must comply with GitHub Pages supported frameworks
-- Limited to client-side JavaScript for interactivity
-
-**Compliance:**
-
-- Must adhere to school rules regarding content posting
-- Privacy considerations for academic work sharing
-
-### Assumptions
-
-**Environment:**
-
-- GitHub Pages remains available and free
-- Content source directories maintain consistent structure
-- Regular term-end updates (approximately quarterly)
-
-**Impact:**
-
-- Assumption changes may require architecture modifications
-- Content source changes may need transformation script updates
-
-## Risks
-
-### Potential Risks
-
-| Risk                             | Impact | Probability | Mitigation Strategy                                    |
-| -------------------------------- | ------ | ----------- | ------------------------------------------------------ |
-| Content source structure changes | High   | Medium      | Flexible extraction scripts, documented content format |
-| GitHub Pages service changes     | High   | Low         | Alternative static hosting backup plan                 |
-| Content privacy concerns         | High   | Medium      | Content review process, compliance checks              |
-| Scalability limitations          | Medium | Medium      | Modular architecture, performance monitoring           |
-| Maintenance burden               | Medium | High        | Automated workflows, clear documentation               |
-
-### Risk Management
-
-**Identification:**
-
-- Regular architecture reviews
-- Monitoring GitHub Pages updates
-- Stakeholder feedback collection
-
-**Assessment:**
-
-- Impact and probability evaluation
-- Risk priority matrix
-- Regular risk register updates
-
-**Mitigation:**
-
-- Preventive measures in architecture
-- Contingency plans for critical risks
-- Regular backup and version control
+> [!NOTE]
+> The system supports content from multiple source directories and scales to 1,000+ content files without configuration changes.
 
 ## Getting Started
 
-### Documentation
+### Prerequisites
 
-- See `SDLC.md` for detailed development lifecycle information
-- Review prompt files for AI-assisted development patterns
+- Git and GitHub account
+- Node.js LTS (for local development)
+- VS Code with GitHub Copilot (recommended)
+
+### Quick Start
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/joembolinas/joembolinas.github.io.git
+   cd joembolinas.github.io
+   ```
+
+2. **Review the specification**
+
+   ```bash
+   cat spec/Project_Specification.md
+   ```
+
+3. **Understand the development phases**
+
+   ```bash
+   cat SDLC.md
+   ```
+
+> [!TIP]
+> Check the `spec/AGENTS.md` file for a quick reference of all system requirements, constraints, and guidelines.
+
+## Project Status
+
+| Phase | Description | Status |
+|-------|-------------|--------|
+| Phase 1 | Documentation & Planning | 🔄 In Progress |
+| Phase 2 | Project Structure & Architecture | ⏳ Pending |
+| Phase 3 | Configuration & Content Extraction | ⏳ Pending |
+| Phase 4 | Content Integration & Components | ⏳ Pending |
+| Phase 5 | Testing & Deployment | ⏳ Pending |
+
+### Development Roadmap
+
+- [x] Project initialization and requirements gathering
+- [x] Architecture planning and technical specification
+- [ ] Repository structure and component architecture
+- [ ] Content extraction pipeline
+- [ ] Component development
+- [ ] Production deployment
+
+## Portfolio Components
+
+The portfolio showcases various types of academic content:
+
+| Component | Description |
+|-----------|-------------|
+| **Academic Work** | Papers, projects, presentations, and case studies |
+| **Reflections** | Written pieces discussing growth, challenges, and lessons |
+| **Extracurriculars** | Sports, clubs, internships, and activities |
+| **Achievements** | Awards, certificates, and honors |
+| **Technical Learning** | GitHub, VS Code, and development tool experience |
+
+## Performance Targets
+
+| Metric | Target |
+|--------|--------|
+| Performance | ≥ 90 |
+| Accessibility | ≥ 95 |
+| Best Practices | ≥ 90 |
+| SEO | ≥ 90 |
+
+Scores measured via Google Lighthouse.
+
+## Resources
+
+- [Project Specification](./spec/Project_Specification.md) — Detailed system architecture and requirements
+- [Agent Reference Guide](./spec/AGENTS.md) — Quick reference for specifications
+- [SDLC Overview](./SDLC.md) — Development lifecycle phases
 
 ---
 
-**Last Updated**: December 3, 2025 22:15
-**Current Phase**: Phase 1 - Documentation
-**Next Milestone**:
+v1.1 | Active Development | **Last Updated**: Dec 04 2025 - 12:00
