@@ -7,8 +7,13 @@ owner: Portfolio Owner
 epic_id: EPIC-001
 status: In Progress
 author: Portfolio Owner
+source: ''
+post_slug: epic-1-foundation
+categories: [docs, project]
+tags: [planning, documentation, governance]
 ai_note: Assisted by AI (GitHub Copilot)
 summary: Epic PRD for establishing comprehensive documentation, planning artifacts, and architectural decisions for the Academic Journey Portfolio system.
+date: 2025-12-04
 ---
 
 ## 1. Epic Name
@@ -309,4 +314,4 @@ The following items are explicitly **NOT** part of this epic:
 
 ---
 
-v1.0 | Active | **Last Updated**: Dec 04 2025 - 15:00
+v1.0 | Active | Last Updated: Dec 04 2025 - 15:00
