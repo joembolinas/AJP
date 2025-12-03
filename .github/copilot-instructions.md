@@ -1,5 +1,10 @@
 no confirmation needed for `.github\prompt\commit.prompt.md`
 
+see this file for the context of the project 
+
+Current progress: Phase 1
+
+If you encounter any unclear or conflicting information across the project workspace, please ask me for clarification instead of making assumptions. It’s always better to confirm than to guess.
 
 ## Markdown Content Rules
 
