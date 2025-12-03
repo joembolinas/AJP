@@ -1,6 +1,6 @@
 ---
 title: Academic Journey Portfolio - Project Specification Document
-version: 1.1
+version: 1.2
 date_created: 2025-12-03
 last_updated: 2025-12-04
 owner: Portfolio Owner
@@ -19,16 +19,61 @@ This specification defines the comprehensive system architecture for the Academi
 
 ## 1. Purpose & Scope
 
+### 1.1 Purpose
+
 This specification defines the architectural requirements, constraints, and interfaces for building a static portfolio website system that enables systematic documentation and presentation of academic work, reflections, and professional development. The architecture must support content extraction from multiple repositories, transformation into web-friendly formats, and deployment via GitHub Pages.
 
 **Intended Audience**: AI code generation systems, developers, system architects, maintainers
 
 **Assumptions**:
 
-- GitHub Pages service availability and Student Dev, Pack access
+- GitHub Pages service availability and Student Dev Pack access
 - Content source directories maintain consistent structure across terms
 - Regular quarterly updates aligned with academic term completion
 - Static site generation only (no backend server)
+
+### 1.2 Objectives
+
+The key objectives of implementing the AJP system are as follows:
+
+| Obj. ID | Objective | Measurable Goal |
+|---------|-----------|----------------|
+| OBJ-001 | Document academic growth | Capture 100% of term-based academic work in structured format |
+| OBJ-002 | Showcase skills development | Present skills with filterable categories and progression tracking |
+| OBJ-003 | Enable professional presentation | Achieve portfolio accessibility for recruiters and employers |
+| OBJ-004 | Automate content publishing | Deploy updates within 5 minutes of content push via CI/CD |
+| OBJ-005 | Maintain accessibility standards | Meet WCAG 2.1 AA compliance with ≥95 Lighthouse accessibility score |
+| OBJ-006 | Support scalable growth | Handle 1,000+ content files without architectural changes |
+| OBJ-007 | Minimize manual effort | Reduce HTML/CSS coding through component reuse and automation |
+
+### 1.3 Project Scope
+
+The Academic Journey Portfolio system is composed of the following key features and functionalities:
+
+**In Scope:**
+
+- Multi-source content import from repositories and local directories
+- Term-based content organization (T1-AY2025, T2-AY2025, etc.)
+- Component-based UI architecture with reusable elements
+- Expandable/collapsible content cards for detailed exploration
+- Category and skill-based content filtering
+- Chronological content browsing and navigation
+- Automated content validation (front matter, links, structure)
+- GitHub Pages deployment with CI/CD automation
+- Responsive design for mobile and desktop viewports
+- WCAG 2.1 accessibility compliance
+- Performance optimization (Lighthouse scores ≥90)
+- Static site generation with JAMstack architecture
+
+**Out of Scope:**
+
+- User authentication, roles, or personalized dashboards
+- Server-side rendering or custom backend services/databases
+- Commenting systems or user-generated content submission portals
+- Real-time features (chat, live collaboration)
+- Payment processing, subscriptions, or monetization
+- Collection of sensitive personal data beyond minimal contact info displayed by the owner
+- Complex analytics requiring cookies or tracking beyond basic privacy-friendly page analytics (if any)
 
 ## 2. Definitions
 
@@ -42,80 +87,99 @@ This specification defines the architectural requirements, constraints, and inte
 - **Content Source**: Directory or repository containing raw academic materials
 - **Deployment Target**: GitHub repository hosting the live portfolio site
 
-## 3. Requirements, Constraints & Guidelines
+## 3. Requirements
 
-### System Requirements
+### 3.1 Functional Requirements
 
-- **REQ-001**: System MUST support content import from multiple repositories and directories
-- **REQ-002**: System MUST organize content by term, skill category, and project type
-- **REQ-003**: System MUST provide component-based architecture for modular content display
-- **REQ-004**: System MUST support expandable/collapsible UI components
-- **REQ-005**: System MUST enable chronological content browsing
-- **REQ-006**: System MUST support content filtering by category and skill
-- **REQ-007**: System MUST provide automated content structure validation
-- **REQ-008**: System MUST verify all internal and external links
-- **REQ-009**: System MUST comply with web accessibility standards (WCAG 2.1)
-- **REQ-010**: System MUST deploy via GitHub Pages automation
+Functional requirements define what the system must do.
 
-### Content Management Requirements
+| Req. ID | Name | Requirement Description |
+|---------|------|------------------------|
+| FR-001 | Multi-Source Import | System MUST support content import from multiple repositories and directories |
+| FR-002 | Content Organization | System MUST organize content by term, skill category, and project type |
+| FR-003 | Component Architecture | System MUST provide component-based architecture for modular content display |
+| FR-004 | Expandable Components | System MUST support expandable/collapsible UI components |
+| FR-005 | Chronological Browsing | System MUST enable chronological content browsing |
+| FR-006 | Content Filtering | System MUST support content filtering by category and skill |
+| FR-007 | Structure Validation | System MUST provide automated content structure validation |
+| FR-008 | Link Verification | System MUST verify all internal and external links |
+| FR-009 | Automated Deployment | System MUST deploy via GitHub Pages automation |
+| FR-010 | Content Extraction | System MUST extract content from primary source: `C:\Users\ADMIN\Desktop\School File\T3-AY2025` |
+| FR-011 | Future Sources | System MUST support future content sources from additional directories/repositories |
+| FR-012 | Content Transformation | System MUST transform raw academic content into structured web formats *(NOTE: Separate system)* |
+| FR-013 | Metadata Preservation | System MUST preserve content metadata (dates, categories, tags, authors) |
+| FR-014 | Incremental Updates | System MUST support incremental content additions without full rebuild |
 
-- **REQ-011**: System MUST extract content from primary source: `C:\Users\ADMIN\Desktop\School File\T3-AY2025`
-- **REQ-012**: System MUST support future content sources from additional directories/repositories
-- **REQ-013**: System MUST transform raw academic content into structured web formats """NOTE: SEPERATE SYSTEM"""
-- **REQ-014**: System MUST preserve content metadata (dates, categories, tags, authors)
-- **REQ-015**: System MUST support incremental content additions without full rebuild
+### 3.2 Non-Functional Requirements
 
-### Performance Requirements
+Non-functional requirements define how the system must perform.
 
-- **REQ-016**: System MUST provide responsive design for mobile and desktop viewports
-- **REQ-017**: System MUST optimize asset delivery (images, scripts, styles)
-- **REQ-018**: System MUST achieve minimum Google Lighthouse scores: Performance ≥90, Accessibility ≥95, Best Practices ≥90, SEO ≥90
+#### Performance Requirements
 
-### Security Requirements
+| Req. ID | Name | Requirement Description |
+|---------|------|------------------------|
+| NFR-001 | Responsive Design | System MUST provide responsive design for mobile and desktop viewports |
+| NFR-002 | Asset Optimization | System MUST optimize asset delivery (images, scripts, styles) |
+| NFR-003 | Lighthouse Scores | System MUST achieve minimum Google Lighthouse scores: Performance ≥90, Accessibility ≥95, Best Practices ≥90, SEO ≥90 |
+| NFR-004 | Accessibility | System MUST comply with web accessibility standards (WCAG 2.1) |
 
-- **SEC-001**: System MUST comply with school posting regulations
-- **SEC-002**: System MUST NOT expose sensitive personal information
-- **SEC-003**: System MUST use secure HTTPS deployment via GitHub Pages
-- **SEC-004**: System MUST sanitize all user-provided content before rendering
-- **SEC-005**: System MUST implement Content Security Policy (CSP) headers where possible
+#### Security Requirements
 
-### Scalability Requirements
+| Req. ID | Name | Requirement Description |
+|---------|------|------------------------|
+| NFR-005 | Content Compliance | System MUST comply with school posting regulations |
+| NFR-006 | Data Privacy | System MUST NOT expose sensitive personal information |
+| NFR-007 | HTTPS Deployment | System MUST use secure HTTPS deployment via GitHub Pages |
+| NFR-008 | Content Sanitization | System MUST sanitize all user-provided content before rendering |
+| NFR-009 | CSP Headers | System MUST implement Content Security Policy (CSP) headers where possible |
 
-- **SCL-001**: System MUST scale to at least 1,000 content files (markdown with assets) without manual configuration changes.
-- **SCL-002**: Full build and deployment pipeline MUST complete within ≤10 minutes on GitHub Actions for 1,000 content files.
-- **SCL-003**: Client-side navigation and filtering MUST remain responsive (under 100ms interaction latency on average hardware) through pagination, lazy loading, or virtualized lists.
-- **SCL-004**: Static assets MUST be cacheable with immutable file hashes to leverage CDN edge caching for high-traffic scenarios.
-- **SCL-005**: Site architecture MUST support incremental term-based growth without re-architecting navigation or content structure.
-- **SCL-006**: Image/media handling MUST support progressive loading and responsive images for large galleries (e.g., `srcset`, modern formats).
+#### Scalability Requirements
+
+| Req. ID | Name | Requirement Description |
+|---------|------|------------------------|
+| NFR-010 | Content Capacity | System MUST scale to at least 1,000 content files (markdown with assets) without manual configuration changes |
+| NFR-011 | Build Performance | Full build and deployment pipeline MUST complete within ≤10 minutes on GitHub Actions for 1,000 content files |
+| NFR-012 | UI Responsiveness | Client-side navigation and filtering MUST remain responsive (under 100ms interaction latency) through pagination, lazy loading, or virtualized lists |
+| NFR-013 | CDN Caching | Static assets MUST be cacheable with immutable file hashes to leverage CDN edge caching |
+| NFR-014 | Term-Based Growth | Site architecture MUST support incremental term-based growth without re-architecting navigation or content structure |
+| NFR-015 | Progressive Media | Image/media handling MUST support progressive loading and responsive images (e.g., `srcset`, modern formats) |
+
+## 4. Constraints & Guidelines
 
 ### Constraints
 
-- **CON-001**: System is limited to GitHub Pages free tier capabilities
-- **CON-002**: System MUST NOT require backend server or database
-- **CON-003**: System MUST use static site generation only
-- **CON-004**: System MUST comply with GitHub Pages supported frameworks
-- **CON-005**: System is limited to client-side JavaScript for interactivity
-- **CON-006**: System MUST minimize manual HTML/CSS coding requirement
-- **CON-007**: System MUST NOT implement custom user authentication
+| ID | Constraint |
+|----|------------|
+| CON-001 | System is limited to GitHub Pages free tier capabilities |
+| CON-002 | System MUST NOT require backend server or database |
+| CON-003 | System MUST use static site generation only |
+| CON-004 | System MUST comply with GitHub Pages supported frameworks |
+| CON-005 | System is limited to client-side JavaScript for interactivity |
+| CON-006 | System MUST minimize manual HTML/CSS coding requirement |
+| CON-007 | System MUST NOT implement custom user authentication |
 
 ### Guidelines
 
-- **GUD-001**: Prefer AI-assisted development using GitHub Copilot with custom instructions
-- **GUD-002**: Use component-based architecture for maintainability
-- **GUD-003**: Implement automated workflows to minimize manual intervention
-- **GUD-004**: Document all content transformation processes
-- **GUD-005**: Follow semantic HTML5 markup patterns
-- **GUD-006**: Implement progressive enhancement for JavaScript features
+| ID | Guideline |
+|----|----------|
+| GUD-001 | Prefer AI-assisted development using GitHub Copilot with custom instructions |
+| GUD-002 | Use component-based architecture for maintainability |
+| GUD-003 | Implement automated workflows to minimize manual intervention |
+| GUD-004 | Document all content transformation processes |
+| GUD-005 | Follow semantic HTML5 markup patterns |
+| GUD-006 | Implement progressive enhancement for JavaScript features |
 
 ### Architectural Patterns
 
-- **PAT-001**: Use JAMstack architecture (JavaScript, APIs, Markup)
-- **PAT-002**: Implement content-first design approach
-- **PAT-003**: Follow separation of concerns (content, presentation, behavior)
-- **PAT-004**: Use declarative configuration over imperative code
-- **PAT-005**: Implement atomic design methodology for components
+| ID | Pattern |
+|----|--------|
+| PAT-001 | Use JAMstack architecture (JavaScript, APIs, Markup) |
+| PAT-002 | Implement content-first design approach |
+| PAT-003 | Follow separation of concerns (content, presentation, behavior) |
+| PAT-004 | Use declarative configuration over imperative code |
+| PAT-005 | Implement atomic design methodology for components |
 
-## 4. Interfaces & Data Contracts
+## 5. Interfaces & Data Contracts
 
 ### Content Source Interface
 
@@ -232,7 +296,7 @@ jobs:
 }
 ```
 
-## 5. Acceptance Criteria
+## 6. Acceptance Criteria
 
 - **AC-001**: Given a content source directory with valid markdown files, When the content extraction process runs, Then all files with correct front matter are successfully imported and transformed into web components
 - **AC-002**: Given term-based content organization, When a user navigates the portfolio, Then content is grouped by term with clear chronological ordering
@@ -245,7 +309,7 @@ jobs:
 - **AC-009**: Given content from multiple repositories, When content is added from a new repository, Then the system successfully imports and displays the content without manual configuration changes
 - **AC-010**: Given performance requirements, When tested with Google Lighthouse, Then all core metrics meet or exceed minimum thresholds
 
-## 6. Test Automation Strategy
+## 7. Test Automation Strategy
 
 ### Test Levels
 
@@ -300,7 +364,7 @@ jobs:
 - **Alerts**: Notify on performance regression > 5 points
 - **Load Testing**: Not applicable (static site, GitHub Pages handles scaling)
 
-## 7. Rationale & Context
+## 8. Rationale & Context
 
 ### Architectural Decisions
 
@@ -342,7 +406,7 @@ jobs:
 
 **Metadata-Driven**: Enables flexible filtering and categorization, supports automated content processing, facilitates content discovery.
 
-## 8. Dependencies & External Integrations
+## 9. Dependencies & External Integrations
 
 ### External Systems
 
@@ -380,7 +444,7 @@ jobs:
 - **COM-002**: WCAG 2.1 Level AA - Web accessibility standards. Impact: Design and development must follow accessibility guidelines.
 - **COM-003**: GitHub Terms of Service - Platform usage policies. Impact: Content must comply with GitHub acceptable use policies.
 
-## 9. Examples & Edge Cases
+## 10. Examples & Edge Cases
 
 ### Content Transformation Example
 
@@ -495,7 +559,7 @@ T4-AY2025/
 
 **Expected Behavior**: Term section created but displays "No content available for this term" message, navigation includes term for future additions.
 
-## 10. Validation Criteria
+## 11. Validation Criteria
 
 ### Build Validation
 
@@ -537,7 +601,7 @@ T4-AY2025/
 - **VAL-024**: All pages MUST return HTTP 200 status
 - **VAL-025**: No console errors on any page
 
-## 11. Related Specifications / Further Reading
+## 12. Related Specifications / Further Reading
 
 ### Internal Documentation
 
@@ -557,7 +621,7 @@ T4-AY2025/
 - [Markdown Guide](https://www.markdownguide.org/) - Markdown syntax reference
 - [YAML Specification](https://yaml.org/spec/1.2/spec.html) - YAML format documentation
 
-## 12. Target Users & Personas
+## 13. Target Users & Personas
 
 ### Primary Persona: Portfolio Owner (Student)
 
@@ -579,7 +643,7 @@ T4-AY2025/
 - Goals: Understand background and achievements at a glance.
 - Key Tasks: Read overview pages; open featured projects; view achievements.
 
-## 13. User Stories & Use Cases
+## 14. User Stories & Use Cases
 
 - As a Portfolio Owner, I want to add new term content so that my portfolio reflects my latest work.
 - As a Portfolio Owner, I want automatic link and metadata validation so that broken or incomplete entries are caught before publish.
@@ -595,14 +659,6 @@ T4-AY2025/
 2. Recruiter filters by “database” skill and opens top three projects; pages load under the defined performance budget.
 3. Instructor verifies a reflection post has required front matter and accessible structure; validation passes before merge.
 
-## 14. Out of Scope
+---
 
-- User authentication, roles, or personalized dashboards
-- Server-side rendering or custom backend services/databases
-- Commenting systems or user-generated content submission portals
-- Real-time features (chat, live collaboration)
-- Payment processing, subscriptions, or monetization
-- Collection of sensitive personal data beyond minimal contact info displayed by the owner
-- Complex analytics requiring cookies or tracking beyond basic privacy-friendly page analytics (if any)
-
-1.1 | updated | **Last Updated**: Dec 04 2025 - 00:00
+1.2 | updated | **Last Updated**: Dec 04 2025 - 14:30

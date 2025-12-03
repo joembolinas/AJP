@@ -10,7 +10,6 @@ author: Portfolio Owner
 ai_note: Assisted by AI (GitHub Copilot)
 summary: High-level technical architecture specification for the Documentation & Planning Foundation epic of the Academic Journey Portfolio system.
 ---
-
 ## 1. Epic Architecture Overview
 
 Phase 1 establishes the **documentation foundation** for the Academic Journey Portfolio (AJP) system. Unlike traditional development epics, this phase focuses on creating the specification artifacts, development standards, and AI-assisted development infrastructure that will guide all subsequent implementation phases.
@@ -26,111 +25,86 @@ Phase 1 establishes the **documentation foundation** for the Academic Journey Po
 
 ---
 
+    
+
 ## 2. System Architecture Diagram
 
-```mermaid
-flowchart TB
-    subgraph UserLayer["👤 User Layer"]
-        DEV["Portfolio Owner<br/>(Developer)"]
-        AI["GitHub Copilot<br/>(AI Assistant)"]
-        FUTURE["Future Maintainer"]
-    end
-
-    subgraph DocumentationLayer["📚 Documentation Layer"]
-        subgraph CoreDocs["Core Specifications"]
-            SPEC["Project_Specification.md<br/>(Source of Truth)"]
-            AGENTS["AGENTS.md<br/>(Quick Reference)"]
-            SDLC["SDLC.md<br/>(Phase Tracking)"]
-        end
-        
-        subgraph AIInfra["AI Development Infrastructure"]
-            COPILOT[".github/copilot-instructions.md"]
-            PROMPTS[".github/prompt/*.md<br/>(Prompt Templates)"]
-            INSTRUCTIONS[".github/instructions/*.md<br/>(Context Files)"]
-        end
-        
-        subgraph EpicDocs["Epic Documentation"]
-            EPIC["docs/phase-1-documentation/<br/>epic.md"]
-            ARCH["docs/phase-1-documentation/<br/>arch.md"]
-        end
-    end
-
-    subgraph ValidationLayer["✅ Validation Layer"]
-        FRONTMATTER["Front Matter Schema<br/>Validation"]
-        LINKS["Internal Link<br/>Verification"]
-        STANDARDS["Markdown Standards<br/>Compliance"]
-    end
-
-    subgraph StorageLayer["💾 Storage Layer"]
-        GIT["Git Repository<br/>(Version Control)"]
-        GITHUB["GitHub<br/>(Remote Hosting)"]
-    end
-
-    subgraph FutureIntegration["🔮 Future Phase Integration"]
-        PHASE2["Phase 2: Project Structure"]
-        PHASE3["Phase 3: Content Pipeline"]
-        PHASE4["Phase 4: Components"]
-        PHASE5["Phase 5: Deployment"]
-    end
-
-    %% User interactions
-    DEV -->|"Reads/Updates"| CoreDocs
-    DEV -->|"Uses"| AIInfra
-    AI -->|"Reads Context"| COPILOT
-    AI -->|"Uses Templates"| PROMPTS
-    AI -->|"Follows Standards"| INSTRUCTIONS
-    FUTURE -->|"References"| SPEC
-    FUTURE -->|"Quick Lookup"| AGENTS
-
-    %% Document relationships
-    SPEC -->|"Synced To"| AGENTS
-    SPEC -->|"Defines Phases"| SDLC
-    EPIC -->|"Implements"| ARCH
-    COPILOT -->|"References"| SPEC
-    COPILOT -->|"References"| AGENTS
-
-    %% Validation
-    CoreDocs -->|"Validated By"| FRONTMATTER
-    EpicDocs -->|"Validated By"| FRONTMATTER
-    CoreDocs -->|"Checked By"| LINKS
-    AIInfra -->|"Checked By"| STANDARDS
-
-    %% Storage
-    DocumentationLayer -->|"Committed To"| GIT
-    GIT -->|"Pushed To"| GITHUB
-
-    %% Future phases consume documentation
-    CoreDocs -.->|"Guides"| PHASE2
-    CoreDocs -.->|"Guides"| PHASE3
-    CoreDocs -.->|"Guides"| PHASE4
-    CoreDocs -.->|"Guides"| PHASE5
-
-    %% Styling
-    classDef user fill:#e1f5fe,stroke:#01579b
-    classDef docs fill:#fff3e0,stroke:#e65100
-    classDef ai fill:#f3e5f5,stroke:#7b1fa2
-    classDef validation fill:#e8f5e9,stroke:#2e7d32
-    classDef storage fill:#fce4ec,stroke:#c2185b
-    classDef future fill:#eceff1,stroke:#546e7a,stroke-dasharray: 5 5
-
-    class DEV,FUTURE user
-    class AI ai
-    class SPEC,AGENTS,SDLC,EPIC,ARCH docs
-    class COPILOT,PROMPTS,INSTRUCTIONS ai
-    class FRONTMATTER,LINKS,STANDARDS validation
-    class GIT,GITHUB storage
-    class PHASE2,PHASE3,PHASE4,PHASE5 future
+```text
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              👤 USER LAYER                                      │
+├─────────────────────────┬─────────────────────────┬─────────────────────────────┤
+│   Portfolio Owner       │   GitHub Copilot        │   Future Maintainer         │
+│   (Developer)           │   (AI Assistant)        │                             │
+└───────────┬─────────────┴───────────┬─────────────┴──────────────┬──────────────┘
+            │                         │                            │
+            │ Reads/Updates           │ Reads Context              │ References
+            ▼                         ▼                            ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                          📚 DOCUMENTATION LAYER                                 │
+│  ┌────────────────────────────────────────────────────────────────────────────┐ │
+│  │                         Core Specifications                                │ │
+│  │  ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐           │ │
+│  │  │ Project_Spec.md  │ │   AGENTS.md      │ │    SDLC.md       │           │ │
+│  │  │ (Source of Truth)│ │ (Quick Reference)│ │ (Phase Tracking) │           │ │
+│  │  └────────┬─────────┘ └────────▲─────────┘ └────────▲─────────┘           │ │
+│  │           │ Synced To          │                    │ Defines Phases      │ │
+│  │           └────────────────────┴────────────────────┘                     │ │
+│  └────────────────────────────────────────────────────────────────────────────┘ │
+│  ┌────────────────────────────────────────────────────────────────────────────┐ │
+│  │                      AI Development Infrastructure                         │ │
+│  │  ┌──────────────────────┐ ┌─────────────────┐ ┌─────────────────────────┐ │ │
+│  │  │ copilot-instructions │ │ prompt/*.md     │ │ instructions/*.md       │ │ │
+│  │  │ .md                  │ │ (Prompt         │ │ (Context Files)         │ │ │
+│  │  │                      │ │  Templates)     │ │                         │ │ │
+│  │  └──────────────────────┘ └─────────────────┘ └─────────────────────────┘ │ │
+│  └────────────────────────────────────────────────────────────────────────────┘ │
+│  ┌────────────────────────────────────────────────────────────────────────────┐ │
+│  │                          Epic Documentation                                │ │
+│  │  ┌──────────────────────────────┐ ┌──────────────────────────────┐        │ │
+│  │  │ docs/phase-1-documentation/  │ │ docs/phase-1-documentation/  │        │ │
+│  │  │ epic.md                      │ │ arch.md                      │        │ │
+│  │  └──────────────┬───────────────┘ └───────────────▲──────────────┘        │ │
+│  │                 └─────── Implements ──────────────┘                       │ │
+│  └────────────────────────────────────────────────────────────────────────────┘ │
+└───────────────────────────────────┬─────────────────────────────────────────────┘
+                                    │ Validated By
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                            ✅ VALIDATION LAYER                                  │
+├─────────────────────────┬─────────────────────────┬─────────────────────────────┤
+│  Front Matter Schema    │  Internal Link          │  Markdown Standards         │
+│  Validation             │  Verification           │  Compliance                 │
+└─────────────────────────┴─────────────────────────┴─────────────────────────────┘
+                                    │ Committed To
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                             💾 STORAGE LAYER                                    │
+├─────────────────────────────────────┬───────────────────────────────────────────┤
+│  Git Repository                     │  GitHub                                   │
+│  (Version Control)       ─────────► │  (Remote Hosting)                         │
+└─────────────────────────────────────┴───────────────────────────────────────────┘
+                                    │
+                                    │ Guides (Future)
+                                    ▼
+┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
+│                        🔮 FUTURE PHASE INTEGRATION                              │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐               │
+   │  Phase 2:   │ │  Phase 3:   │ │  Phase 4:   │ │  Phase 5:   │
+│  │  Project    │ │  Content    │ │  Components │ │  Deployment │               │
+   │  Structure  │ │  Pipeline   │ │             │ │             │
+│  └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘               │
+└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
 ```
 
 ### Architecture Component Description
 
-| Layer | Components | Purpose |
-|-------|------------|---------|
-| **User Layer** | Portfolio Owner, GitHub Copilot, Future Maintainer | Consumers of documentation artifacts |
-| **Documentation Layer** | Core Specs, AI Infrastructure, Epic Docs | Structured knowledge base for project |
-| **Validation Layer** | Front Matter, Links, Standards | Quality assurance for documentation |
-| **Storage Layer** | Git, GitHub | Version control and collaboration |
-| **Future Integration** | Phases 2-5 | Downstream consumers of Phase 1 output |
+| Layer                         | Components                                         | Purpose                                |
+| ----------------------------- | -------------------------------------------------- | -------------------------------------- |
+| **User Layer**          | Portfolio Owner, GitHub Copilot, Future Maintainer | Consumers of documentation artifacts   |
+| **Documentation Layer** | Core Specs, AI Infrastructure, Epic Docs           | Structured knowledge base for project  |
+| **Validation Layer**    | Front Matter, Links, Standards                     | Quality assurance for documentation    |
+| **Storage Layer**       | Git, GitHub                                        | Version control and collaboration      |
+| **Future Integration**  | Phases 2-5                                         | Downstream consumers of Phase 1 output |
 
 ---
 
@@ -138,40 +112,40 @@ flowchart TB
 
 ### High-Level Features
 
-| Feature | Description | Related Requirements |
-|---------|-------------|---------------------|
-| **F1: Hierarchical Documentation Structure** | Organized `docs/` folder with phase-based subdirectories | FR-001, FR-002 |
-| **F2: Requirement Traceability** | Unique identifiers (REQ-XXX, SEC-XXX, etc.) with cross-references | FR-006 through FR-011 |
-| **F3: AI Development Context** | Custom instructions and prompt templates for Copilot | FR-015 through FR-018 |
-| **F4: Quick Reference System** | AGENTS.md provides <30-second requirement lookups | FR-012, FR-013, NFR-009 |
-| **F5: Front Matter Schema** | Standardized YAML metadata for all documents | FR-003, NFR-002 |
-| **F6: SDLC Phase Tracking** | Clear phase definitions with status indicators | FR-019 |
-| **F7: Cross-Document Linking** | Relative path references between related documents | FR-004, NFR-004 |
+| Feature                                            | Description                                                       | Related Requirements    |
+| -------------------------------------------------- | ----------------------------------------------------------------- | ----------------------- |
+| **F1: Hierarchical Documentation Structure** | Organized `docs/` folder with phase-based subdirectories        | FR-001, FR-002          |
+| **F2: Requirement Traceability**             | Unique identifiers (REQ-XXX, SEC-XXX, etc.) with cross-references | FR-006 through FR-011   |
+| **F3: AI Development Context**               | Custom instructions and prompt templates for Copilot              | FR-015 through FR-018   |
+| **F4: Quick Reference System**               | AGENTS.md provides <30-second requirement lookups                 | FR-012, FR-013, NFR-009 |
+| **F5: Front Matter Schema**                  | Standardized YAML metadata for all documents                      | FR-003, NFR-002         |
+| **F6: SDLC Phase Tracking**                  | Clear phase definitions with status indicators                    | FR-019                  |
+| **F7: Cross-Document Linking**               | Relative path references between related documents                | FR-004, NFR-004         |
 
 ### Technical Enablers
 
-| Enabler | Description | Implementation |
-|---------|-------------|----------------|
-| **TE1: Markdown with YAML Front Matter** | Structured documents with machine-readable metadata | All `.md` files include front matter |
-| **TE2: GitHub Copilot Custom Instructions** | Project context for AI-assisted development | `.github/copilot-instructions.md` |
-| **TE3: Instruction Files (VS Code)** | Pattern-matched context files for specific file types | `.github/instructions/*.instructions.md` |
-| **TE4: Prompt Template Library** | Reusable prompt patterns for common tasks | `.github/prompt/*.prompt.md` |
-| **TE5: Conventional Commits** | Standardized commit messages for change tracking | `commit.prompt.md` |
-| **TE6: Git Version Control** | Change history and collaboration support | Git repository with main branch |
+| Enabler                                           | Description                                           | Implementation                             |
+| ------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------ |
+| **TE1: Markdown with YAML Front Matter**    | Structured documents with machine-readable metadata   | All `.md` files include front matter     |
+| **TE2: GitHub Copilot Custom Instructions** | Project context for AI-assisted development           | `.github/copilot-instructions.md`        |
+| **TE3: Instruction Files (VS Code)**        | Pattern-matched context files for specific file types | `.github/instructions/*.instructions.md` |
+| **TE4: Prompt Template Library**            | Reusable prompt patterns for common tasks             | `.github/prompt/*.prompt.md`             |
+| **TE5: Conventional Commits**               | Standardized commit messages for change tracking      | `commit.prompt.md`                       |
+| **TE6: Git Version Control**                | Change history and collaboration support              | Git repository with main branch            |
 
 ---
 
 ## 4. Technology Stack
 
-| Category | Technology | Purpose |
-|----------|------------|---------|
-| **Documentation Format** | Markdown + YAML | Human-readable, version-controllable specification format |
-| **Version Control** | Git 2.x+ | Track changes, enable collaboration, maintain history |
-| **Repository Hosting** | GitHub | Remote storage, collaboration, future GitHub Pages deployment |
-| **Development Environment** | VS Code | IDE with Copilot integration and instruction file support |
-| **AI Assistance** | GitHub Copilot | AI-assisted code and documentation generation |
-| **Diagram Rendering** | Mermaid | Architecture diagrams embedded in Markdown |
-| **Validation (Future)** | Node.js scripts | Front matter validation, link checking |
+| Category                          | Technology      | Purpose                                                       |
+| --------------------------------- | --------------- | ------------------------------------------------------------- |
+| **Documentation Format**    | Markdown + YAML | Human-readable, version-controllable specification format     |
+| **Version Control**         | Git 2.x+        | Track changes, enable collaboration, maintain history         |
+| **Repository Hosting**      | GitHub          | Remote storage, collaboration, future GitHub Pages deployment |
+| **Development Environment** | VS Code         | IDE with Copilot integration and instruction file support     |
+| **AI Assistance**           | GitHub Copilot  | AI-assisted code and documentation generation                 |
+| **Diagram Rendering**       | Mermaid         | Architecture diagrams embedded in Markdown                    |
+| **Validation (Future)**     | Node.js scripts | Front matter validation, link checking                        |
 
 ### Technology Rationale
 
@@ -188,13 +162,13 @@ flowchart TB
 
 ### Justification
 
-| Value Dimension | Impact | Rationale |
-|-----------------|--------|-----------|
-| **Risk Mitigation** | High | Clear specifications prevent costly rework in Phases 2-5 |
-| **Velocity Multiplier** | High | AI-assisted development is 2-3x more effective with proper context |
-| **Quality Foundation** | High | Well-defined acceptance criteria ensure consistent deliverables |
-| **Scope Protection** | Medium | Explicit out-of-scope items prevent feature creep |
-| **Knowledge Preservation** | High | Documentation survives beyond active development sessions |
+| Value Dimension                  | Impact | Rationale                                                          |
+| -------------------------------- | ------ | ------------------------------------------------------------------ |
+| **Risk Mitigation**        | High   | Clear specifications prevent costly rework in Phases 2-5           |
+| **Velocity Multiplier**    | High   | AI-assisted development is 2-3x more effective with proper context |
+| **Quality Foundation**     | High   | Well-defined acceptance criteria ensure consistent deliverables    |
+| **Scope Protection**       | Medium | Explicit out-of-scope items prevent feature creep                  |
+| **Knowledge Preservation** | High   | Documentation survives beyond active development sessions          |
 
 ### Cost of Skipping
 
@@ -221,24 +195,24 @@ All subsequent phases depend on Phase 1 documentation:
 
 ### Sizing Rationale
 
-| Factor | Assessment |
-|--------|------------|
-| **Scope** | Documentation-only; no code implementation |
-| **Complexity** | Low; follows established Markdown standards |
-| **Dependencies** | None; foundational epic with no blockers |
-| **Unknowns** | Minimal; documentation patterns are well-defined |
-| **Team Size** | Single contributor (Portfolio Owner) |
-| **Effort** | ~8-16 hours of focused documentation work |
+| Factor                 | Assessment                                       |
+| ---------------------- | ------------------------------------------------ |
+| **Scope**        | Documentation-only; no code implementation       |
+| **Complexity**   | Low; follows established Markdown standards      |
+| **Dependencies** | None; foundational epic with no blockers         |
+| **Unknowns**     | Minimal; documentation patterns are well-defined |
+| **Team Size**    | Single contributor (Portfolio Owner)             |
+| **Effort**       | ~8-16 hours of focused documentation work        |
 
 ### Comparison to Future Phases
 
-| Phase | Epic | Estimated Size |
-|-------|------|----------------|
-| Phase 1 | Documentation & Planning Foundation | **S** |
-| Phase 2 | Project Structure & Architecture | M |
-| Phase 3 | Content Extraction Pipeline | L |
-| Phase 4 | Component Development | L-XL |
-| Phase 5 | Testing & Deployment | M |
+| Phase   | Epic                                | Estimated Size |
+| ------- | ----------------------------------- | -------------- |
+| Phase 1 | Documentation & Planning Foundation | **S**    |
+| Phase 2 | Project Structure & Architecture    | M              |
+| Phase 3 | Content Extraction Pipeline         | L              |
+| Phase 4 | Component Development               | L-XL           |
+| Phase 5 | Testing & Deployment                | M              |
 
 ---
 
@@ -278,18 +252,18 @@ graph LR
 
 ## Appendix B: Phase 1 Deliverables Mapping
 
-| Deliverable | Status | Technical Enabler | Validation Criteria |
-|-------------|--------|-------------------|---------------------|
-| Project_Specification.md | ✅ Complete | TE1 | Front matter valid, VAL-001 |
-| AGENTS.md | ✅ Complete | TE1 | Synced with spec, NFR-009 |
-| SDLC.md | ✅ Complete | TE1 | Status indicators present |
-| copilot-instructions.md | ✅ Complete | TE2 | References spec correctly |
-| markdown.instructions.md | ✅ Complete | TE3 | Pattern matching works |
-| commit.prompt.md | ✅ Complete | TE4, TE5 | Conventional format |
-| Epic PRD (epic.md) | ✅ Complete | TE1 | All sections complete |
-| Architecture Spec (arch.md) | ✅ Complete | TE1 | Mermaid renders correctly |
-| Content Standards Guide | ⏳ Pending | TE1 | Front matter validation rules |
-| Prompt Template Library | ⏳ Pending | TE4 | Common patterns documented |
+| Deliverable                 | Status      | Technical Enabler | Validation Criteria           |
+| --------------------------- | ----------- | ----------------- | ----------------------------- |
+| Project_Specification.md    | ✅ Complete | TE1               | Front matter valid, VAL-001   |
+| AGENTS.md                   | ✅ Complete | TE1               | Synced with spec, NFR-009     |
+| SDLC.md                     | ✅ Complete | TE1               | Status indicators present     |
+| copilot-instructions.md     | ✅ Complete | TE2               | References spec correctly     |
+| markdown.instructions.md    | ✅ Complete | TE3               | Pattern matching works        |
+| commit.prompt.md            | ✅ Complete | TE4, TE5          | Conventional format           |
+| Epic PRD (epic.md)          | ✅ Complete | TE1               | All sections complete         |
+| Architecture Spec (arch.md) | ✅ Complete | TE1               | Mermaid renders correctly     |
+| Content Standards Guide     | ⏳ Pending  | TE1               | Front matter validation rules |
+| Prompt Template Library     | ⏳ Pending  | TE4               | Common patterns documented    |
 
 ---
 
