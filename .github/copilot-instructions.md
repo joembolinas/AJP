@@ -11,6 +11,13 @@ File index
 | [README.md](D:\AJP\README.md) | Overall Project context |     |
 |                            |                         |     |
 
+**Sample Table Format:**
+
+| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| Data 1   | Data 2   | Data 3   |
+| Data 4   | Data 5   | Data 6   |
+
 **Current Progress**: Phase 1
 
 ### General Guidelines
@@ -23,7 +30,31 @@ File index
 
 ### ALWAYS REMEBER
 
-commit is the only one log of all activities so always suggest git commit and provide message every end task 
+commit is the only one log of all activities so always suggest git commit and provide message every end task or generate conventional commit messages. It provides instructions, examples, and formatting guidelines to help users write standardized, descriptive commit messages in accordance with the Conventional Commits specification if i forgot to use this `commit.prompt` 
+
+### Environment Awareness for Commits
+
+When generating commit messages, always include context about the environment and changes:
+
+- **Repository Context**: Include branch name, repository state, and any relevant context from the workspace
+- **Change Scope**: Clearly identify which files, directories, or components are affected
+- **Environment State**: Note if changes affect configuration, dependencies, or development environment
+- **Related Files**: Reference related files or components that may be impacted by the changes
+- **Commit Body**: Use the body section for detailed explanations when changes span multiple areas or require additional context
+
+Example commit with full context:
+```
+feat(docs): add sample table format and environment awareness guidelines
+
+- Added sample table format under Project Context section
+- Integrated environment awareness instructions for commit messages
+- Updated file to include commit context best practices
+
+Affects: .github/copilot-instructions.md
+Branch: main
+Environment: Documentation updates 
+
+
 
 ---
 
