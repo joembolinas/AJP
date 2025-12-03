@@ -1,25 +1,74 @@
-# GitHub Copilot Instructions
+# GitHub Copilot Custom Instructions for AJP
 
 ## Project Context
 
-This file provides context and guidelines for GitHub Copilot when working on this project.
+This is the **Academic Journey Portfolio (AJP)** project - a GitHub Pages portfolio system for documenting academic learning and growth.
 
-**Current Progress**: Phase 1
+**Current Progress**: Phase 1 (Documentation)
 
-### File Index
+### Project Files Reference
 
-| File name                                                                               | Description             |
-| --------------------------------------------------------------------------------------- | ----------------------- |
-| [README.md](D:\AJP\README.md)                                                              | Overall Project context |
-| [spec-architecture-portfolio-system.md](D:\AJP\spec\spec-architecture-portfolio-system.md) |                         |
+| File                                        | Description                            |
+| ------------------------------------------- | -------------------------------------- |
+| [`README.md`](../README.md)                 | Overall project context and overview   |
+| [`SDLC.md`](../SDLC.md)                     | Development lifecycle and phases       |
+| [`spec/Project_Specification.md`](../spec/Project_Specification.md) | Complete system specification |
+| [`spec/AGENTS.md`](../spec/AGENTS.md)       | Agent reference guide with requirements |
 
-### General Guidelines
+---
+
+## Available Agents
+
+### @mentor
+
+Use the mentor agent for:
+
+- Learning new concepts
+- Understanding project architecture
+- Getting guided help with debugging
+- Code review with educational feedback
+
+**Invoke with**: "As my mentor, help me understand..."
+
+---
+
+## Development Standards
+
+### Code Style
+
+- Use semantic HTML5 elements
+- Follow BEM naming convention for CSS
+- Write accessible, WCAG 2.1 compliant code
+- Include meaningful comments for learning
+- Implement progressive enhancement for JavaScript features
+
+### Documentation
+
+- All functions should have JSDoc comments
+- Explain the "why" not just the "what"
+- Link to relevant project specifications
+- Always put footnote on files: `{Version} | {file status} | {Last Updated: MMM DD YYYY - HH:MM}`
+
+### Git Workflow
+
+- Write descriptive commit messages
+- Reference issues in commits
+- Use conventional commit format
+- Commit is the primary log of all activities
+
+---
+
+## General Guidelines
 
 - No confirmation needed for `.github\prompt\commit.prompt.md`
-- Always ask for clarification when encountering unclear or conflicting information across the project workspace
+- Always ask for clarification when encountering unclear or conflicting information
 - It's always better to confirm than to guess
-- always put footnote all files: "{Version} | {file status} | {**Last Updated**:MMM DD YYYY - HH:SS"
+- Follow requirements defined in `spec/AGENTS.md` (REQ, SCL, SEC, CON, GUD, PAT, AC)
 
-### ALWAYS REMEBER
+### Commit Reminder
 
-commit is the only one log of all activities so always suggest git commit and provide message every end task or generate conventional commit messages. It provides instructions, examples, and formatting guidelines to help users write standardized, descriptive commit messages in accordance with the Conventional Commits specification if i forgot to use this `commit.prompt`
+Always suggest git commit and provide a message at the end of each task. Generate conventional commit messages following the Conventional Commits specification. Use `commit.prompt` for detailed guidance.
+
+---
+
+*v1.1.0 | Active | Last Updated: Dec 04 2025 - 14:30*
