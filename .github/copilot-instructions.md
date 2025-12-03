@@ -4,21 +4,13 @@
 
 This file provides context and guidelines for GitHub Copilot when working on this project.
 
-File index
-
-| File name                  | abs                     | abc |
-| -------------------------- | ----------------------- | --- |
-| [README.md](D:\AJP\README.md) | Overall Project context |     |
-|                            |                         |     |
-
-**Sample Table Format:**
-
-| Column 1 | Column 2 | Column 3 |
-| -------- | -------- | -------- |
-| Data 1   | Data 2   | Data 3   |
-| Data 4   | Data 5   | Data 6   |
-
 **Current Progress**: Phase 1
+
+### File Index
+
+| File name                  | Description             |
+| -------------------------- | ----------------------- |
+| [README.md](D:\AJP\README.md) | Overall Project context |
 
 ### General Guidelines
 
