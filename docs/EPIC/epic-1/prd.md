@@ -1,60 +1,139 @@
 ---
-agent: 'agent'
-description: 'Prompt for creating Product Requirements Documents (PRDs) for new features, based on an Epic.'
+title: "Feature PRD: Foundation & Project Infrastructure"
+version: 1.0
+date_created: 2025-12-04
+last_updated: 2025-12-04
+owner: Portfolio Owner
+source: ''
+author: Portfolio Owner
+post_slug: epic-1-foundation-prd
+categories: [docs, infrastructure]
+tags: [tooling, scaffolding, governance]
+ai_note: Assisted by AI (GitHub Copilot)
+summary: Product requirements covering repository scaffolding, tooling setup, and governance workflows for Epic 1.
+date: 2025-12-04
+epic_id: EPIC-001
+status: In Progress
 ---
-# Feature PRD Prompt
 
-## Goal
+## 1. Feature Name
 
-Act as an expert Product Manager for a large-scale SaaS platform. Your primary responsibility is to take a high-level feature or enabler from an Epic and create a detailed Product Requirements Document (PRD). This PRD will serve as the single source of truth for the engineering team and will be used to generate a comprehensive technical specification.
+Foundation & Project Infrastructure Enablement
 
-Review the user's request for a new feature and the parent Epic, and generate a thorough PRD. If you don't have enough information, ask clarifying questions to ensure all aspects of the feature are well-defined.
+---
 
-## Output Format
+## 2. Epic Link
 
-The output should be a complete PRD in Markdown format, saved to `/docs/{feature-name}/prd.md`.
+- `[EPIC-001 PRD](./epic.md)`
+- `[EPIC-001 Architecture](./arch.md)`
+- `[Phase 2 Blueprint](../PHASE-2/Project_Architecture_Blueprint.md)`
 
-### PRD Structure
+---
 
-#### 1. Feature Name
+## 3. Goal
 
-- A clear, concise, and descriptive name for the feature.
+### Problem
 
-#### 2. Epic
+The Academic Journey Portfolio cannot begin implementation until the repository structure, tooling, and governance workflows exist. Currently there is no standardized directory layout, build pipeline, or automation guidelines, leading to inconsistent contributions, unstable local setups, and poor AI-assisted outputs.
 
-- Link to the parent Epic PRD and Architecture documents.
+### Solution
 
-#### 3. Goal
+Deliver a turnkey foundation that includes Node.js tooling, static site generator bootstrapping, atomic design scaffolding, configuration baselines, and Copilot guidance. The foundation must be reproducible through documented scripts so that any contributor can obtain a working environment within minutes.
 
-- **Problem:** Describe the user problem or business need this feature addresses (3-5 sentences).
-- **Solution:** Explain how this feature solves the problem.
-- **Impact:** What are the expected outcomes or metrics to be improved (e.g., user engagement, conversion rate, etc.)?
+### Impact
 
-#### 4. User Personas
+| Metric | Target | Measurement |
+|--------|--------|-------------|
+| Environment setup time | <30 minutes | Time to run bootstrap script |
+| Lint/build pass rate | 100% on clean repo | CI validation |
+| Repository compliance | 0 structural deviations | Folder audit |
+| AI prompt success rate | 90% prompts need no re-run | Sample prompt review |
 
-- Describe the target user(s) for this feature.
+---
 
-#### 5. User Stories
+## 4. User Personas
 
-- Write user stories in the format: "As a `<user persona>`, I want to `<perform an action>` so that I can `<achieve a benefit>`."
-- Cover the primary paths and edge cases.
+- **Portfolio Owner (Primary)**: Needs a predictable local dev setup, reproducible commands, and clear guardrails when coding solo.
+- **AI Pair (GitHub Copilot)**: Requires explicit instructions, directory conventions, and code style references for quality suggestions.
+- **Future Contributor (Secondary)**: Depends on contribution guidelines, scripts, and consistent tooling versions for onboarding.
 
-#### 6. Requirements
+---
 
-- **Functional Requirements:** A detailed, bulleted list of what the system must do. Be specific and unambiguous.
-- **Non-Functional Requirements:** A bulleted list of constraints and quality attributes (e.g., performance, security, accessibility, data privacy).
+## 5. User Stories
 
-#### 7. Acceptance Criteria
+- As the portfolio owner, I want to run a single setup command so that I can install all dependencies without manual steps.
+- As an AI assistant, I want codified naming conventions and templates so that my generated components align with project expectations.
+- As a contributor, I want lint, format, and test npm scripts so that I can verify my work locally before opening a PR.
+- As a maintainer, I want default branch protections and commit guidelines so that project history remains clean and auditable.
 
-- For each user story or major requirement, provide a set of acceptance criteria.
-- Use a clear format, such as a checklist or Given/When/Then. This will be used to validate that the feature is complete and correct.
+---
 
-#### 8. Out of Scope
+## 6. Requirements
 
-- Clearly list what is _not_ included in this feature to avoid scope creep.
+### Functional Requirements
 
-## Context Template
+- Provide repository bootstrap script that creates `content/`, `components/`, `scripts/`, `_data/`, and `docs/` directories with placeholders.
+- Configure Node.js (>=18 LTS) toolchain with `npm install`, `npm run dev`, `npm run build`, and `npm run validate` commands.
+- Initialize Eleventy (preferred) or Astro with base layouts, partials, and data directories per PAT-005.
+- Add linting/formatting config: ESLint, Stylelint, Prettier, EditorConfig, and markdownlint with project-specific rules.
+- Document Copilot usage guidelines plus prompt templates within `.github/copilot-instructions.md` and `commit.prompt.md`.
+- Establish conventional commit enforcement via Husky hook or lint-staged integration.
+- Provide CONTRIBUTING draft focusing on branching, reviews, and issue templates.
 
-- **Epic:** [Link to the parent Epic documents]
-- **Feature Idea:** [A high-level description of the feature request from the user]
-- **Target Users:** [Optional: Any initial thoughts on who this is for]
+### Non-Functional Requirements
+
+- Bootstrap script must be idempotent and rerunnable without errors.
+- All tooling must support Windows + WSL with no path-specific issues.
+- Repository must support at least 1,000 markdown files without structural changes.
+- Configuration files must be documented inline for future maintainers.
+
+---
+
+## 7. Acceptance Criteria
+
+- `npm install` completes without manual intervention on Windows and macOS.
+- `npm run build` renders default layout with placeholder content and no warnings.
+- CI lint workflow passes using the baselined configurations.
+- Documentation clarifies folder purposes and references relevant requirements IDs (CON-001...CON-007, PAT-001...PAT-005).
+- Copilot custom instructions validated by generating a sample atom component that meets BEM and accessibility guidance.
+
+---
+
+## 8. Dependencies
+
+| Dependency | Type | Notes |
+|------------|------|-------|
+| Git + GitHub access | External | Needed for repo creation and branch protections |
+| Node.js 18+ | Tooling | Required runtime for Eleventy/Astro |
+| Markdown standards | Process | `.github/instructions/markdown.instructions.md` referenced by generators |
+
+---
+
+## 9. Release Plan
+
+1. Author repository structure RFC and confirm directories (Day 0).
+2. Implement tooling bootstrap script plus package.json scaffolding (Day 1).
+3. Configure linting/formatting plus CI validation job (Day 2).
+4. Add component scaffolds and base layout placeholders (Day 3).
+5. Finalize documentation (README updates, CONTRIBUTING draft, Copilot instructions) (Day 4).
+
+---
+
+## 10. Out of Scope
+
+- Content ingestion or parsing logic (deferred to Epic 3).
+- Finalized component styling (handled by Epic 4).
+- Production deployment configurations (handled by Epic 7).
+- Test automation frameworks beyond lint/format checks (Epic 8).
+
+---
+
+## 11. Open Questions & Assumptions
+
+- Assumes Eleventy will be selected; Astro fallback requires extra adapter work.
+- Need confirmation on whether Nx/Turborepo needed in Phase 2 or later.
+- Pending decision on automated dependency updates (Renovate vs Dependabot).
+
+---
+
+v1.0 | Active | Last Updated: Dec 04 2025 - 16:00
