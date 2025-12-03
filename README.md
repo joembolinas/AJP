@@ -2,10 +2,9 @@
 
 I WANT TO BUILD SIMPLE WEBPAGE `ACADEMIC JOURNEY PORTFOLIO`
 
-> **An academic journey portfolio is  a collection of a student's work that documents their learning, skills, and growth over time=. It can include academic projects, reflections, and extracurricular activities to showcase progress, achievements, and personal development to others, such as teachers, admissions committees, or future employers. These portfolios can be physical or digital and help the student reflect on their own learning process, while also serving as a tool for self-assessment and goal setting.**
+> **An academic journey portfolio is  a collection of a student's work that documents their learning, skills, and growth over time. It can include academic projects, reflections, and extracurricular activities to showcase progress, achievements, and personal development to others, such as teachers, admissions committees, or future employers. These portfolios can be physical or digital and help the student reflect on their own learning process, while also serving as a tool for self-assessment and goal setting.**
 >
 > What to include
->
 >
 > * **Academic work** **: Papers, projects, presentations, case studies, and other assignments that demonstrate learning.**
 > * **Reflections** **: Written pieces or videos where you discuss your growth, challenges, and what you learned from specific tasks or experiences.**
@@ -13,6 +12,8 @@ I WANT TO BUILD SIMPLE WEBPAGE `ACADEMIC JOURNEY PORTFOLIO`
 > * **Achievements** **: Awards, certificates, and honors you have received.**
 > * **Goals** **: Statements of what you hope to achieve in the future.**
 > * **Personal interests** **: Other creative or personal work, such as artwork, videos, or recommendations, to add a personal touch.**
+> * personal learning experience: i learn to use github and how i ue this on my work and how use on my actuals cases like , cretaing repo, initializing repo, commit, stages,  push, creating issue, pull request, branching strategies and other guthub products, github actions, codespaces, MCP, copilotgithub pages
+> * 
 >
 > Benefits of an academic portfolio
 >
@@ -21,9 +22,6 @@ I WANT TO BUILD SIMPLE WEBPAGE `ACADEMIC JOURNEY PORTFOLIO`
 > * **Promotes ownership** **: By curating your own work, you take an active role in your education and learn to articulate your learning in meaningful ways.**
 > * **Demonstrates preparedness** **: For college or graduate school applications, it can offer a more complete picture of your potential beyond grades.**
 > * **Builds essential skills** **: Creating and maintaining a portfolio can improve skills like time management, self-assessment, and digital citizenship.**
-
-
-
 
 the portfolio deploy in github pages in this  repo `https://github.com/joembolinas/joembolinas.github.io`
 
