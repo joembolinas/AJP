@@ -1,0 +1,16 @@
+spec
+architecture
+docs
+guidance
+portfolio
+academic
+reflection
+project
+assignment
+achievement
+infrastructure
+testing
+ci
+accessibility
+performance
+security

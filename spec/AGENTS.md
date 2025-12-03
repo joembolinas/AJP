@@ -1,6 +1,18 @@
-# Agent Reference Guide
+---
+title: AJP Agent Reference Guide
+source: ''
+author: Portfolio Owner
+post_slug: agents-reference
+categories: [docs, spec]
+tags: [agents, requirements, reference]
+ai_note: Assisted by AI (GitHub Copilot)
+summary: Quick reference tables synced with the main project specification.
+date: 2025-12-04
+---
 
-This file provides quick reference tables for all specifications defined in `spec-architecture-portfolio-system.md`, which serves as the single source of truth for the Academic Journey Portfolio system architecture.
+## Agent Reference Guide
+
+This file provides quick reference tables for all specifications defined in `Project_Specification.md`, which serves as the single source of truth for the Academic Journey Portfolio system architecture.
 
 ## System Requirements (REQ)
 
@@ -24,6 +36,17 @@ This file provides quick reference tables for all specifications defined in `spe
 | REQ-016 | System MUST provide responsive design for mobile and desktop viewports                                                    |
 | REQ-017 | System MUST optimize asset delivery (images, scripts, styles)                                                             |
 | REQ-018 | System MUST achieve minimum Google Lighthouse scores: Performance ≥90, Accessibility ≥95, Best Practices ≥90, SEO ≥90 |
+
+## Scalability Requirements (SCL)
+
+| ID      | Description                                                                                                                                          |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SCL-001 | System MUST scale to at least 1,000 content files (markdown with assets) without manual configuration changes                                       |
+| SCL-002 | Full build and deployment pipeline MUST complete within ≤10 minutes on GitHub Actions for 1,000 content files                                       |
+| SCL-003 | Client-side navigation and filtering MUST remain responsive (< 100ms interaction latency) via pagination, lazy loading, or virtualization           |
+| SCL-004 | Static assets MUST be cacheable with immutable file hashes to leverage CDN edge caching for high-traffic scenarios                                  |
+| SCL-005 | Site architecture MUST support incremental term-based growth without re-architecting navigation or content structure                                |
+| SCL-006 | Image/media handling MUST support progressive loading and responsive images (e.g., srcset, modern formats) for large galleries and heavy assets     |
 
 ## Security Requirements (SEC)
 
@@ -159,9 +182,6 @@ This file provides quick reference tables for all specifications defined in `spe
 | VAL-025 | Deployment Validation    | No console errors on any page                                              |
 
 ---
+**Reference**: See [Project_Specification.md](./Project_Specification.md) for complete details and context.
 
-**Reference**: See [spec-architecture-portfolio-system.md](./Project_Specification.md) for complete details and context.
-
-**Link**: 
-
-**Last Updated**: December 3, 2025
+1.1 | updated | **Last Updated**: Dec 04 2025 - 00:05
