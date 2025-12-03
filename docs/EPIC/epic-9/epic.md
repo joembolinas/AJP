@@ -1,57 +1,141 @@
 ---
-agent: 'agent'
-description: 'Prompt for creating an Epic Product Requirements Document (PRD) for a new epic. This PRD will be used as input for generating a technical architecture specification.'
+title: "Epic PRD: Phase 5 - Scalability & Documentation"
+version: 1.0
+date_created: 2025-12-04
+last_updated: 2025-12-04
+owner: Portfolio Owner
+epic_id: EPIC-009
+status: Planned
+source: ''
+author: Portfolio Owner
+post_slug: epic-9-scalability
+categories: [docs, project]
+tags: [documentation, scalability, ops]
+ai_note: Assisted by AI (GitHub Copilot)
+summary: Epic PRD for future-term onboarding, maintainability, and documentation improvements for the Academic Journey Portfolio.
+date: 2025-12-04
 ---
-# Epic Product Requirements Document (PRD) Prompt
 
-## Goal
+## 1. Epic Name
 
-Act as an expert Product Manager for a large-scale SaaS platform. Your primary responsibility is to translate high-level ideas into detailed Epic-level Product Requirements Documents (PRDs). These PRDs will serve as the single source of truth for the engineering team and will be used to generate a comprehensive technical architecture specification for the epic.
+Scalability & Documentation
 
-Review the user's request for a new epic and generate a thorough PRD. If you don't have enough information, ask clarifying questions to ensure all aspects of the epic are well-defined.
+---
 
-## Output Format
+## 2. Goal
 
-The output should be a complete Epic PRD in Markdown format, saved to `/docs/{epic-name}/epic.md`.
+### Problem
 
-### PRD Structure
+Without clear runbooks, templates, and scaling guidance, future terms cannot be added efficiently, and maintainers may forget operational steps, risking regressions.
 
-#### 1. Epic Name
+### Solution
 
-- A clear, concise, and descriptive name for the epic.
+Create comprehensive documentation (term addition guide, content templates, runbooks, ADR updates) and implement scalability enhancements (performance tips, config knobs) to support 1,000+ files.
 
-#### 2. Goal
+### Impact
 
-- **Problem:** Describe the user problem or business need this epic addresses (3-5 sentences).
-- **Solution:** Explain how this epic solves the problem at a high level.
-- **Impact:** What are the expected outcomes or metrics to be improved (e.g., user engagement, conversion rate, revenue)?
+| Metric | Target | Measurement |
+|--------|--------|-------------|
+| Term onboarding time | ≤2 hours per term | Maintainer survey |
+| Documentation coverage | 100% core processes documented | Doc checklist |
+| Performance readiness | Build supports 1k files <10 min | CI dry run |
+| ADR currency | 100% architecture decisions logged | Repo audit |
 
-#### 3. User Personas
+---
 
-- Describe the target user(s) for this epic.
+## 3. Personas
 
-#### 4. High-Level User Journeys
+- **Future maintainer**: Needs clear instructions for adding terms.
+- **Portfolio owner**: Wants assurance site scales as academic journey grows.
+- **Reviewer**: Needs reference to verify compliance steps were followed.
 
-- Describe the key user journeys and workflows enabled by this epic.
+---
 
-#### 5. Business Requirements
+## 4. Journeys
 
-- **Functional Requirements:** A detailed, bulleted list of what the epic must deliver from a business perspective.
-- **Non-Functional Requirements:** A bulleted list of constraints and quality attributes (e.g., performance, security, accessibility, data privacy).
+1. Maintainer follows term addition guide to ingest T4 data without code edits.
+2. Owner references performance guide to optimize build when file count doubles.
+3. Reviewer audits documentation to confirm accessibility policies remain in place.
 
-#### 6. Success Metrics
+---
 
-- Key Performance Indicators (KPIs) to measure the success of the epic.
+## 5. Business Requirements
 
-#### 7. Out of Scope
+### Functional
 
-- Clearly list what is _not_ included in this epic to avoid scope creep.
+- FR-SCAL-001: Document term onboarding process with CLI commands, validation steps, and QA checklist.
+- FR-SCAL-002: Provide Markdown templates for each content type (project, reflection, achievement, assignment, extracurricular).
+- FR-SCAL-003: Update architecture blueprint and ADRs to reflect final stack.
+- FR-SCAL-004: Publish operations runbook covering deployment, rollback, secrets, and monitoring.
+- FR-SCAL-005: Provide performance guide (caching, lazy-loading, image policies).
 
-#### 8. Business Value
+### Non-Functional
 
-- Estimate the business value (e.g., High, Medium, Low) with a brief justification.
+- NFR-SCAL-001: Documentation written in plain language, accessible to new contributors.
+- NFR-SCAL-002: All docs versioned with front matter and metadata.
+- NFR-SCAL-003: Examples rely solely on repository tooling (no external dependencies).
 
-## Context Template
+---
 
-- **Epic Idea:** [A high-level description of the epic from the user]
-- **Target Users:** [Optional: Any initial thoughts on who this is for]
+## 6. Success Metrics
+
+| KPI | Target |
+|-----|--------|
+| Doc completeness checklist | 100% |
+| Build scaling test | 1k files build <10 min |
+| Issue resolution time for doc-related questions | <1 day |
+
+---
+
+## 7. Out of Scope
+
+| Item | Reason |
+|------|--------|
+| Localization of docs | English only for now |
+| Automated doc generation | Manual curation preferred |
+| Analytics instrumentation | Future phase |
+
+---
+
+## 8. Business Value
+
+Medium. Documentation and scalability work ensure longevity, reduce onboarding friction, and satisfy academic governance requirements.
+
+---
+
+## 9. Dependencies
+
+| Dependency | Notes |
+|------------|-------|
+| All previous epics | Provide final architecture + processes to document |
+| CI/CD insights | Data for performance guide |
+
+---
+
+## 10. Risks & Mitigation
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| Docs fall out of date | Medium | High | Assign doc owner, add doc review to release checklist |
+| Templates mismatch schema | Low | Medium | Auto-generate templates from JSON Schema |
+| Scaling assumptions inaccurate | Medium | Medium | Perform load test with synthetic files |
+
+---
+
+## 11. Acceptance Criteria
+
+- AC-EPIC-009-01: Term addition guide validated by running T3 re-import dry run.
+- AC-EPIC-009-02: Templates exist for all content types with front matter placeholders.
+- AC-EPIC-009-03: Architecture blueprint (`docs/PHASE-2/Project_Architecture_Blueprint.md`) updated to final state.
+- AC-EPIC-009-04: ADR log includes decisions for tooling, data, deployment.
+
+---
+
+## 12. References
+
+- [Epic Breakdown](../PHASE-2/Epic-breakdown.md#epic-9-scalability--documentation)
+- [Project Specification - Maintenance](../PHASE-1/Project_Specification.md#maintenance)
+
+---
+
+v1.0 | Planned | Last Updated: Dec 04 2025 - 17:38

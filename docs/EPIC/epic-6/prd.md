@@ -1,60 +1,106 @@
 ---
-agent: 'agent'
-description: 'Prompt for creating Product Requirements Documents (PRDs) for new features, based on an Epic.'
+title: "Feature PRD: Content Integration Run"
+version: 1.0
+date_created: 2025-12-04
+last_updated: 2025-12-04
+owner: Portfolio Owner
+feature_id: EPIC-006-F1
+status: Planned
+summary: Details the content ingestion, transformation, and presentation feature delivering real Term 3 artifacts.
+categories: [docs, project]
+tags: [content, integration]
+author: Portfolio Owner
+ai_note: Assisted by AI (GitHub Copilot)
 ---
-# Feature PRD Prompt
 
-## Goal
+## Overview
 
-Act as an expert Product Manager for a large-scale SaaS platform. Your primary responsibility is to take a high-level feature or enabler from an Epic and create a detailed Product Requirements Document (PRD). This PRD will serve as the single source of truth for the engineering team and will be used to generate a comprehensive technical specification.
+This feature takes the validated Term 3 manifest, runs it through the extraction pipeline, enriches the content graph, and binds results to the presentation templates so the site displays authentic academic work.
 
-Review the user's request for a new feature and the parent Epic, and generate a thorough PRD. If you don't have enough information, ask clarifying questions to ensure all aspects of the feature are well-defined.
+---
 
-## Output Format
+## Objectives
 
-The output should be a complete PRD in Markdown format, saved to `/docs/{feature-name}/prd.md`.
+- Populate every component demo with real data from `/content/t3-ay2025`.
+- Ensure metadata (skills, categories, terms) flows through to filters and badges.
+- Provide summary statistics (count per category, skills per term).
+- Prevent publication of redacted or sensitive entries.
 
-### PRD Structure
+---
 
-#### 1. Feature Name
+## Functional Requirements
 
-- A clear, concise, and descriptive name for the feature.
+| ID | Description | Priority |
+|----|-------------|----------|
+| FR-006-01 | Import manifest `content-manifest.json` and verify counts. | Must |
+| FR-006-02 | Map Markdown to HTML + excerpt (first 280 chars) for cards. | Must |
+| FR-006-03 | Generate collections per category and per skill. | Must |
+| FR-006-04 | Produce featured highlights (top 3 items per category). | Should |
+| FR-006-05 | Emit JSON for analytics dashboard (future). | Could |
+| FR-006-06 | Provide manual override for hiding entries via `hidden: true`. | Should |
 
-#### 2. Epic
+---
 
-- Link to the parent Epic PRD and Architecture documents.
+## Non-Functional Requirements
 
-#### 3. Goal
+- NFR-006-01: Build memory footprint < 1 GB when processing 500 files.
+- NFR-006-02: Sanitized HTML using DOMPurify server-side to avoid XSS.
+- NFR-006-03: Provide deterministic slugs (kebab-case) for stable anchors.
 
-- **Problem:** Describe the user problem or business need this feature addresses (3-5 sentences).
-- **Solution:** Explain how this feature solves the problem.
-- **Impact:** What are the expected outcomes or metrics to be improved (e.g., user engagement, conversion rate, etc.)?
+---
 
-#### 4. User Personas
+## User Stories
 
-- Describe the target user(s) for this feature.
+1. As the owner, I can run `npm run content:sync` to import Term 3 and see counts logged.
+2. As a reviewer, I can expand a project card to read sanitized HTML content.
+3. As the owner, I can hide a draft entry with `hidden: true` and the build excludes it.
 
-#### 5. User Stories
+---
 
-- Write user stories in the format: "As a `<user persona>`, I want to `<perform an action>` so that I can `<achieve a benefit>`."
-- Cover the primary paths and edge cases.
+## Acceptance Tests
 
-#### 6. Requirements
+- AT-006-01: Build fails if processed count differs from manifest total.
+- AT-006-02: Random spot check reveals metadata parity for 5 sampled items.
+- AT-006-03: Axe scan passes on pages populated with content.
 
-- **Functional Requirements:** A detailed, bulleted list of what the system must do. Be specific and unambiguous.
-- **Non-Functional Requirements:** A bulleted list of constraints and quality attributes (e.g., performance, security, accessibility, data privacy).
+---
 
-#### 7. Acceptance Criteria
+## Dependencies
 
-- For each user story or major requirement, provide a set of acceptance criteria.
-- Use a clear format, such as a checklist or Given/When/Then. This will be used to validate that the feature is complete and correct.
+| Dependency | Description |
+|------------|-------------|
+| Validation CLI | Ensures source files conform before import |
+| Graph Builder | Supplies relationships for skills/categories |
+| Component Templates | Provide layout for cards and highlights |
 
-#### 8. Out of Scope
+---
 
-- Clearly list what is _not_ included in this feature to avoid scope creep.
+## Release Plan
 
-## Context Template
+1. Run dry-run import with 5 sample files to verify mapping.
+2. Execute full import, review generated JSON + logs.
+3. Wire components and snapshots in Storybook.
+4. Conduct content QA (metadata parity, redactions) with checklist.
+5. Demo to stakeholders, capture feedback, finalize documentation.
 
-- **Epic:** [Link to the parent Epic documents]
-- **Feature Idea:** [A high-level description of the feature request from the user]
-- **Target Users:** [Optional: Any initial thoughts on who this is for]
+---
+
+## Metrics & Monitoring
+
+- Content parity script logs diff summary.
+- Build pipeline artifact `content-report.json` archived per run.
+- Manual QA checklist stored in `docs/reports/content-audit.md`.
+
+---
+
+## Risks
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Markdown with custom HTML breaks sanitization | Medium | Add allowlist + test fixtures |
+| Large images slow builds | Low | Reference CDN assets or resize |
+| Hidden entries still referenced by filters | Medium | Filter utilities skip `hidden` flag |
+
+---
+
+v1.0 | Planned | Last Updated: Dec 04 2025 - 17:05

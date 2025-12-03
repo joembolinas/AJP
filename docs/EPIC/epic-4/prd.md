@@ -1,60 +1,121 @@
 ---
-agent: 'agent'
-description: 'Prompt for creating Product Requirements Documents (PRDs) for new features, based on an Epic.'
+title: "Feature PRD: Component-Based Presentation Layer"
+version: 1.0
+date_created: 2025-12-04
+last_updated: 2025-12-04
+owner: Portfolio Owner
+source: ''
+author: Portfolio Owner
+post_slug: epic-4-presentation-prd
+categories: [docs, spec]
+tags: [components, accessibility, design]
+ai_note: Assisted by AI (GitHub Copilot)
+summary: Product requirements describing the atomic component system, documentation, and accessibility behaviors delivered in Epic 4.
+date: 2025-12-04
+epic_id: EPIC-004
+status: Planned
 ---
-# Feature PRD Prompt
 
-## Goal
+## 1. Feature Name
 
-Act as an expert Product Manager for a large-scale SaaS platform. Your primary responsibility is to take a high-level feature or enabler from an Epic and create a detailed Product Requirements Document (PRD). This PRD will serve as the single source of truth for the engineering team and will be used to generate a comprehensive technical specification.
+Atomic Component Library & Templates
 
-Review the user's request for a new feature and the parent Epic, and generate a thorough PRD. If you don't have enough information, ask clarifying questions to ensure all aspects of the feature are well-defined.
+---
 
-## Output Format
+## 2. Epic Link
 
-The output should be a complete PRD in Markdown format, saved to `/docs/{feature-name}/prd.md`.
+- `[EPIC-004 PRD](./epic.md)`
+- `[EPIC-004 Architecture](./arch.md)`
+- `[Epic Breakdown](../PHASE-2/Epic-breakdown.md)`
 
-### PRD Structure
+---
 
-#### 1. Feature Name
+## 3. Goal
 
-- A clear, concise, and descriptive name for the feature.
+Build a reusable, accessible set of UI components (atoms → templates) that presents all portfolio content consistently across devices and supports future growth without restyling each page.
 
-#### 2. Epic
+---
 
-- Link to the parent Epic PRD and Architecture documents.
+## 4. Personas
 
-#### 3. Goal
+- **Visitor**: expects readable layouts, working skip links, and predictable controls.
+- **Owner**: wants drop-in blocks to assemble term pages and hero sections.
+- **AI Assistant**: relies on documented patterns when generating markup.
 
-- **Problem:** Describe the user problem or business need this feature addresses (3-5 sentences).
-- **Solution:** Explain how this feature solves the problem.
-- **Impact:** What are the expected outcomes or metrics to be improved (e.g., user engagement, conversion rate, etc.)?
+---
 
-#### 4. User Personas
+## 5. User Stories
 
-- Describe the target user(s) for this feature.
+- As a visitor, I want to expand a content card and read details with keyboard alone.
+- As the owner, I want to add a new reflection entry and have metadata styled automatically.
+- As a designer, I want documentation showing available modifiers so I can keep visuals consistent.
+- As QA, I want to run Lighthouse/axe and receive zero critical violations.
 
-#### 5. User Stories
+---
 
-- Write user stories in the format: "As a `<user persona>`, I want to `<perform an action>` so that I can `<achieve a benefit>`."
-- Cover the primary paths and edge cases.
+## 6. Requirements
 
-#### 6. Requirements
+### Functional
 
-- **Functional Requirements:** A detailed, bulleted list of what the system must do. Be specific and unambiguous.
-- **Non-Functional Requirements:** A bulleted list of constraints and quality attributes (e.g., performance, security, accessibility, data privacy).
+1. Provide tokens for spacing, typography, and color stored in `styles/_tokens.scss` or JSON.
+2. Implement atoms: headings, tags, date badge, status chip, CTA button, icon list.
+3. Implement molecules: content card header, metadata stack, accordion toggle, filter pill.
+4. Implement organisms/templates: term section grid, two-column layout, hero banner, filter side panel shell.
+5. Document all components inside `/docs/components/README.md` with usage instructions and accessibility notes.
+6. Supply Storybook (or Eleventy component preview) entries for each component.
 
-#### 7. Acceptance Criteria
+### Non-Functional
 
-- For each user story or major requirement, provide a set of acceptance criteria.
-- Use a clear format, such as a checklist or Given/When/Then. This will be used to validate that the feature is complete and correct.
+1. CSS adheres to BEM naming and is linted via Stylelint.
+2. Components load critical CSS inline, deferring enhancements to separate files.
+3. Provide progressive enhancement: default markup works without JavaScript.
+4. Add automated axe tests per component via Storybook testing or Jest + axe.
 
-#### 8. Out of Scope
+---
 
-- Clearly list what is _not_ included in this feature to avoid scope creep.
+## 7. Acceptance Criteria
 
-## Context Template
+- All interactive components pass keyboard navigation tests (Tab, Shift+Tab, Enter, Space, Escape as applicable).
+- Color palette meets WCAG AA contrast for text and UI components.
+- Responsive preview for 320px, 768px, 1024px, and 1440px breakpoints shows no clipped content.
+- Component documentation includes props/slots, states, dependencies, and requirement references.
 
-- **Epic:** [Link to the parent Epic documents]
-- **Feature Idea:** [A high-level description of the feature request from the user]
-- **Target Users:** [Optional: Any initial thoughts on who this is for]
+---
+
+## 8. Dependencies
+
+| Dependency | Notes |
+|------------|-------|
+| Design tokens defined in spec | Provide reference for colors/spacing |
+| Linting configs (Epic 1) | Ensure consistent CSS/JS formatting |
+| Validation/accessibility rules (Epic 2) | Provide acceptance thresholds |
+
+---
+
+## 9. Release Plan
+
+1. Finalize tokens + CSS tooling.
+2. Build atoms with tests + docs.
+3. Combine atoms into molecules (cards, metadata, expanders).
+4. Assemble organisms/templates and wire to sample data.
+5. Run accessibility + responsive validation; publish docs.
+
+---
+
+## 10. Out of Scope
+
+- Client-side filtering logic (Epic 5 will attach functionality).
+- Component theming or dark mode.
+- Animation library beyond simple CSS transitions.
+
+---
+
+## 11. Open Questions
+
+- Should we adopt Storybook or Eleventy component preview for documentation?
+- Do we need print-friendly styles now or can this wait?
+- Are there branding assets (logos, mascots) to integrate, or should we keep purely typographic for MVP?
+
+---
+
+v1.0 | Planned | Last Updated: Dec 04 2025 - 16:42

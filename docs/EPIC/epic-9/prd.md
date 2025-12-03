@@ -1,60 +1,87 @@
 ---
-agent: 'agent'
-description: 'Prompt for creating Product Requirements Documents (PRDs) for new features, based on an Epic.'
+title: "Feature PRD: Maintainer Enablement & Scaling"
+version: 1.0
+date_created: 2025-12-04
+last_updated: 2025-12-04
+owner: Portfolio Owner
+feature_id: EPIC-009-F1
+status: Planned
+summary: Feature-level detail for documentation assets, templates, and scaling guides enabling future term onboarding.
+categories: [docs, project]
+tags: [documentation, scalability]
+ai_note: Assisted by AI (GitHub Copilot)
 ---
-# Feature PRD Prompt
 
-## Goal
+## Overview
 
-Act as an expert Product Manager for a large-scale SaaS platform. Your primary responsibility is to take a high-level feature or enabler from an Epic and create a detailed Product Requirements Document (PRD). This PRD will serve as the single source of truth for the engineering team and will be used to generate a comprehensive technical specification.
+This feature delivers the playbooks, templates, and tooling adjustments required for effortless future term onboarding and long-term maintenance.
 
-Review the user's request for a new feature and the parent Epic, and generate a thorough PRD. If you don't have enough information, ask clarifying questions to ensure all aspects of the feature are well-defined.
+---
 
-## Output Format
+## Objectives
 
-The output should be a complete PRD in Markdown format, saved to `/docs/{feature-name}/prd.md`.
+- Document end-to-end procedure for adding Term 4 (and beyond) using existing tooling.
+- Provide Markdown templates with required front matter to reduce validation errors.
+- Update architecture references and ADRs to match implemented stack.
+- Capture performance/scaling recommendations based on CI data.
 
-### PRD Structure
+---
 
-#### 1. Feature Name
+## Functional Requirements
 
-- A clear, concise, and descriptive name for the feature.
+| ID | Description | Priority |
+|----|-------------|----------|
+| FR-009-01 | Create `docs/runbooks/term-onboarding.md` including CLI commands and QA checklist. | Must |
+| FR-009-02 | Add templates under `docs/templates/` for each content type. | Must |
+| FR-009-03 | Update `docs/PHASE-2/Project_Architecture_Blueprint.md` with final diagrams. | Must |
+| FR-009-04 | Document ADRs for key decisions (SSG choice, content pipeline, deployment). | Must |
+| FR-009-05 | Publish `docs/guides/performance.md` with scaling tips + metrics. | Should |
+| FR-009-06 | Provide `docs/runbooks/incident-response.md` outlining rollback + hotfix steps. | Should |
 
-#### 2. Epic
+---
 
-- Link to the parent Epic PRD and Architecture documents.
+## Non-Functional Requirements
 
-#### 3. Goal
+- Docs include metadata front matter and footers per repository standards.
+- Templates rely on ASCII diagrams only.
+- Guides reference authoritative specs (Project_Specification, Epic breakdown).
 
-- **Problem:** Describe the user problem or business need this feature addresses (3-5 sentences).
-- **Solution:** Explain how this feature solves the problem.
-- **Impact:** What are the expected outcomes or metrics to be improved (e.g., user engagement, conversion rate, etc.)?
+---
 
-#### 4. User Personas
+## User Stories
 
-- Describe the target user(s) for this feature.
+1. As a new contributor, I follow the term onboarding guide to ingest Term 4 in under two hours.
+2. As the owner, I use the performance guide to configure caching flags before adding 500 more files.
+3. As a reviewer, I consult ADRs to understand why Eleventy was chosen.
 
-#### 5. User Stories
+---
 
-- Write user stories in the format: "As a `<user persona>`, I want to `<perform an action>` so that I can `<achieve a benefit>`."
-- Cover the primary paths and edge cases.
+## Release Plan
 
-#### 6. Requirements
+1. Interview maintainers to capture tribal knowledge.
+2. Draft term onboarding guide and run a dry run (re-import T3) to validate steps.
+3. Generate Markdown templates based on JSON Schema and link from README.
+4. Update architecture blueprint + ADRs, review with mentors.
+5. Publish performance/runbook docs; add to navigation.
 
-- **Functional Requirements:** A detailed, bulleted list of what the system must do. Be specific and unambiguous.
-- **Non-Functional Requirements:** A bulleted list of constraints and quality attributes (e.g., performance, security, accessibility, data privacy).
+---
 
-#### 7. Acceptance Criteria
+## Metrics & Validation
 
-- For each user story or major requirement, provide a set of acceptance criteria.
-- Use a clear format, such as a checklist or Given/When/Then. This will be used to validate that the feature is complete and correct.
+- Dry-run onboarding log stored in `docs/reports/term-onboarding-log.md`.
+- Link checker ensures new docs cross-reference correctly.
+- Maintainer feedback captured via checklist inside runbook.
 
-#### 8. Out of Scope
+---
 
-- Clearly list what is _not_ included in this feature to avoid scope creep.
+## Risks
 
-## Context Template
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Documentation drift | Medium | Schedule quarterly audits |
+| Template misuse | Medium | Include comments + sample data |
+| Performance assumptions outdated | Low | Update guide after each release |
 
-- **Epic:** [Link to the parent Epic documents]
-- **Feature Idea:** [A high-level description of the feature request from the user]
-- **Target Users:** [Optional: Any initial thoughts on who this is for]
+---
+
+v1.0 | Planned | Last Updated: Dec 04 2025 - 17:38

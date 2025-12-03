@@ -1,60 +1,93 @@
 ---
-agent: 'agent'
-description: 'Prompt for creating Product Requirements Documents (PRDs) for new features, based on an Epic.'
+title: "Feature PRD: Quality Automation Stack"
+version: 1.0
+date_created: 2025-12-04
+last_updated: 2025-12-04
+owner: Portfolio Owner
+feature_id: EPIC-008-F1
+status: Planned
+summary: Feature specification for unit, integration, E2E, accessibility, and visual tests powering the QA strategy.
+categories: [docs, project]
+tags: [testing, qa]
+ai_note: Assisted by AI (GitHub Copilot)
 ---
-# Feature PRD Prompt
 
-## Goal
+## Overview
 
-Act as an expert Product Manager for a large-scale SaaS platform. Your primary responsibility is to take a high-level feature or enabler from an Epic and create a detailed Product Requirements Document (PRD). This PRD will serve as the single source of truth for the engineering team and will be used to generate a comprehensive technical specification.
+Defines the concrete test suites, tooling, and reporting for the AJP project. Focuses on developer ergonomics (fast local runs) and CI enforcement.
 
-Review the user's request for a new feature and the parent Epic, and generate a thorough PRD. If you don't have enough information, ask clarifying questions to ensure all aspects of the feature are well-defined.
+---
 
-## Output Format
+## Objectives
 
-The output should be a complete PRD in Markdown format, saved to `/docs/{feature-name}/prd.md`.
+- Cover core business logic (validators, parsers) with unit tests using Vitest.
+- Simulate pipeline flows via integration tests triggered by `npm run test:pipeline`.
+- Automate user journeys via Playwright.
+- Integrate axe-core and Pa11y for accessibility auditing.
+- Capture visual regressions with Chromatic (Storybook) or Percy snapshots.
 
-### PRD Structure
+---
 
-#### 1. Feature Name
+## Functional Requirements
 
-- A clear, concise, and descriptive name for the feature.
+| ID | Description | Priority |
+|----|-------------|----------|
+| FR-008-01 | Configure Vitest with coverage instrumentation. | Must |
+| FR-008-02 | Implement pipeline integration suite using fixture content. | Must |
+| FR-008-03 | Add Playwright tests for: landing page load, term navigation, filter combination, expand card. | Must |
+| FR-008-04 | Add axe-core checks to Storybook stories + main pages. | Must |
+| FR-008-05 | Add visual snapshot tests for hero, card grid, navigation drawer. | Should |
+| FR-008-06 | Publish consolidated report summarizing pass/fail + metrics. | Should |
 
-#### 2. Epic
+---
 
-- Link to the parent Epic PRD and Architecture documents.
+## Non-Functional Requirements
 
-#### 3. Goal
+- Tests runnable locally via `npm test` and `npm run test:e2e` with documented setup.
+- Deterministic output regardless of timezone/language.
+- Playwright uses `--headed=false` by default with ability to debug via `--headed` flag.
 
-- **Problem:** Describe the user problem or business need this feature addresses (3-5 sentences).
-- **Solution:** Explain how this feature solves the problem.
-- **Impact:** What are the expected outcomes or metrics to be improved (e.g., user engagement, conversion rate, etc.)?
+---
 
-#### 4. User Personas
+## Tooling
 
-- Describe the target user(s) for this feature.
+| Layer | Tool |
+|-------|------|
+| Unit | Vitest + Testing Library |
+| Integration | Vitest/Node + fixture directories |
+| E2E | Playwright (Chromium + WebKit) |
+| Accessibility | axe-core CLI, Pa11y CI |
+| Visual | Chromatic or Percy |
 
-#### 5. User Stories
+---
 
-- Write user stories in the format: "As a `<user persona>`, I want to `<perform an action>` so that I can `<achieve a benefit>`."
-- Cover the primary paths and edge cases.
+## Release Plan
 
-#### 6. Requirements
+1. Scaffold testing configuration + npm scripts.
+2. Write baseline unit tests for validators + utility helpers.
+3. Add integration fixtures replicating Term 3 content.
+4. Create Playwright specs and configure CI runner browsers.
+5. Hook axe/visual tests into CI, finalize reporting docs.
 
-- **Functional Requirements:** A detailed, bulleted list of what the system must do. Be specific and unambiguous.
-- **Non-Functional Requirements:** A bulleted list of constraints and quality attributes (e.g., performance, security, accessibility, data privacy).
+---
 
-#### 7. Acceptance Criteria
+## Metrics & Reporting
 
-- For each user story or major requirement, provide a set of acceptance criteria.
-- Use a clear format, such as a checklist or Given/When/Then. This will be used to validate that the feature is complete and correct.
+- Coverage summary exported to `coverage/coverage-summary.json`.
+- Playwright trace artifacts stored for failed runs.
+- Visual diff approvals documented in PR comments.
+- Weekly QA summary posted in `docs/reports/qa-status.md`.
 
-#### 8. Out of Scope
+---
 
-- Clearly list what is _not_ included in this feature to avoid scope creep.
+## Risks
 
-## Context Template
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Playwright flake due to animations | Medium | Disable animations via CSS or `prefers-reduced-motion` |
+| Visual testing license limits | Low | Choose OSS alternative or local `jest-image-snapshot` |
+| Accessibility tests slow builds | Medium | Run targeted pages + incremental checks |
 
-- **Epic:** [Link to the parent Epic documents]
-- **Feature Idea:** [A high-level description of the feature request from the user]
-- **Target Users:** [Optional: Any initial thoughts on who this is for]
+---
+
+v1.0 | Planned | Last Updated: Dec 04 2025 - 17:28

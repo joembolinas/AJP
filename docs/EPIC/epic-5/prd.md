@@ -1,60 +1,100 @@
 ---
-agent: 'agent'
-description: 'Prompt for creating Product Requirements Documents (PRDs) for new features, based on an Epic.'
+title: "Feature PRD: Navigation & Filtering Experience"
+version: 1.0
+date_created: 2025-12-04
+last_updated: 2025-12-04
+owner: Portfolio Owner
+feature_id: EPIC-005-F1
+status: Planned
+summary: Defines feature-level scope for the navigation timeline, category and skill filters, and URL-state restoration.
+categories: [docs, project]
+tags: [navigation, filtering, ux]
+author: Portfolio Owner
+ai_note: Assisted by AI (GitHub Copilot)
+date: 2025-12-04
 ---
-# Feature PRD Prompt
 
-## Goal
+## Overview
 
-Act as an expert Product Manager for a large-scale SaaS platform. Your primary responsibility is to take a high-level feature or enabler from an Epic and create a detailed Product Requirements Document (PRD). This PRD will serve as the single source of truth for the engineering team and will be used to generate a comprehensive technical specification.
+This feature introduces timeline navigation and multi-dimensional filtering to the Academic Journey Portfolio. It relies on metadata from the content graph to filter up to 200 cards without reloading the page and exposes state via URLs for sharable deep links.
 
-Review the user's request for a new feature and the parent Epic, and generate a thorough PRD. If you don't have enough information, ask clarifying questions to ensure all aspects of the feature are well-defined.
+---
 
-## Output Format
+## Objectives
 
-The output should be a complete PRD in Markdown format, saved to `/docs/{feature-name}/prd.md`.
+- Deliver a responsive navigation menu that highlights active term and exposes keyboard/assistive tech affordances.
+- Enable AND/OR filtering between categories, skills, and term facets.
+- Persist filter state in URL parameters and restore on page load.
+- Provide accessible fallbacks when JavaScript is disabled.
 
-### PRD Structure
+---
 
-#### 1. Feature Name
+## Functional Requirements
 
-- A clear, concise, and descriptive name for the feature.
+| ID | Description | Priority |
+|----|-------------|----------|
+| FR-005-01 | Render horizontal timeline (desktop) and accordion (mobile) with sticky positioning. | Must |
+| FR-005-02 | Display filter drawer with multi-select category chips and skill tags. | Must |
+| FR-005-03 | When a filter toggles, update card visibility instantly and announce via ARIA live region. | Must |
+| FR-005-04 | Persist selected filters and term in URL query params. | Must |
+| FR-005-05 | Provide `Clear filters` button that resets state and focus. | Should |
+| FR-005-06 | Expose `data-filter-*` attributes on cards for future automation. | Should |
+| FR-005-07 | Provide minimal search input (string contains) for card title filtering if time permits. | Could |
 
-#### 2. Epic
+---
 
-- Link to the parent Epic PRD and Architecture documents.
+## Non-Functional Requirements
 
-#### 3. Goal
+- NFR-005-01: Render under 60 ms on cold load using content graph JSON.
+- NFR-005-02: Maintain 60fps transitions by batching DOM writes via requestAnimationFrame.
+- NFR-005-03: Provide SSR-friendly markup to keep filters functional even when JS fails (progressive enhancement).
 
-- **Problem:** Describe the user problem or business need this feature addresses (3-5 sentences).
-- **Solution:** Explain how this feature solves the problem.
-- **Impact:** What are the expected outcomes or metrics to be improved (e.g., user engagement, conversion rate, etc.)?
+---
 
-#### 4. User Personas
+## User Stories
 
-- Describe the target user(s) for this feature.
+1. As a reviewer, I can filter by `achievements` and `leadership` skills, and copy the URL to revisit the same view later.
+2. As the owner, I can preselect `T3-AY2025` via query params when sharing the latest term.
+3. As a low-vision user, I can navigate filters via keyboard + screen reader without confusion.
 
-#### 5. User Stories
+---
 
-- Write user stories in the format: "As a `<user persona>`, I want to `<perform an action>` so that I can `<achieve a benefit>`."
-- Cover the primary paths and edge cases.
+## Dependencies
 
-#### 6. Requirements
+| Item | Description | Owner |
+|------|-------------|-------|
+| Component tokens | Filter chips, badges, timeline component | Epic 4 |
+| Content graph | JSON metadata including term, category, skills | Epic 3 |
+| Validation schema | Ensures metadata completeness | Epic 2 |
 
-- **Functional Requirements:** A detailed, bulleted list of what the system must do. Be specific and unambiguous.
-- **Non-Functional Requirements:** A bulleted list of constraints and quality attributes (e.g., performance, security, accessibility, data privacy).
+---
 
-#### 7. Acceptance Criteria
+## Release Plan
 
-- For each user story or major requirement, provide a set of acceptance criteria.
-- Use a clear format, such as a checklist or Given/When/Then. This will be used to validate that the feature is complete and correct.
+1. Build filter utilities and sample dataset locally.
+2. Implement UI states in Storybook, run accessibility checks.
+3. Integrate into main layout, wire to content graph.
+4. Test URL persistence, progressive enhancement, and fallback rendering.
+5. Update documentation + screencasts.
 
-#### 8. Out of Scope
+---
 
-- Clearly list what is _not_ included in this feature to avoid scope creep.
+## Measurements
 
-## Context Template
+- Lighthouse Accessibility ≥ 95 for pages with filters.
+- 0 console errors/warnings during interaction.
+- 0 regressions in existing epics (verify via visual regression tests).
 
-- **Epic:** [Link to the parent Epic documents]
-- **Feature Idea:** [A high-level description of the feature request from the user]
-- **Target Users:** [Optional: Any initial thoughts on who this is for]
+---
+
+## Risks
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Filter logic duplication between client-side and build-time | Inconsistent results | Share utilities across pipelines |
+| Query param collisions | Broken URLs | Namespace parameters (e.g., `ajpTerm`) |
+| Complexity in focus handling | Accessibility failures | Follow WAI-ARIA Authoring Practices, write unit tests |
+
+---
+
+v1.0 | Planned | Last Updated: Dec 04 2025 - 16:47

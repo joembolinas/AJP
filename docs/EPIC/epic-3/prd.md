@@ -1,60 +1,133 @@
 ---
-agent: 'agent'
-description: 'Prompt for creating Product Requirements Documents (PRDs) for new features, based on an Epic.'
+title: "Feature PRD: Content Extraction & Transformation Pipeline"
+version: 1.0
+date_created: 2025-12-04
+last_updated: 2025-12-04
+owner: Portfolio Owner
+source: ''
+author: Portfolio Owner
+post_slug: epic-3-content-pipeline-prd
+categories: [docs, spec]
+tags: [content, pipeline, automation]
+ai_note: Assisted by AI (GitHub Copilot)
+summary: Product requirements detailing the extraction CLI, normalization routines, and graph builder that power Epic 3.
+date: 2025-12-04
+epic_id: EPIC-003
+status: Planned
 ---
-# Feature PRD Prompt
 
-## Goal
+## 1. Feature Name
 
-Act as an expert Product Manager for a large-scale SaaS platform. Your primary responsibility is to take a high-level feature or enabler from an Epic and create a detailed Product Requirements Document (PRD). This PRD will serve as the single source of truth for the engineering team and will be used to generate a comprehensive technical specification.
+Content Harvest & Transformation Engine
 
-Review the user's request for a new feature and the parent Epic, and generate a thorough PRD. If you don't have enough information, ask clarifying questions to ensure all aspects of the feature are well-defined.
+---
 
-## Output Format
+## 2. Epic Link
 
-The output should be a complete PRD in Markdown format, saved to `/docs/{feature-name}/prd.md`.
+- `[EPIC-003 PRD](./epic.md)`
+- `[EPIC-003 Architecture](./arch.md)`
+- `[Validation Toolkit](../epic-2/epic.md)`
 
-### PRD Structure
+---
 
-#### 1. Feature Name
+## 3. Goal
 
-- A clear, concise, and descriptive name for the feature.
+### Problem
 
-#### 2. Epic
+Content lives across multiple folders with inconsistent metadata, making it tedious to import and dangerous to keep synchronized.
 
-- Link to the parent Epic PRD and Architecture documents.
+### Solution
 
-#### 3. Goal
+Provide a deterministic command-line tool that reads a manifest of sources, validates metadata, transforms markdown into sanitized HTML plus JSON nodes, and emits a relationship graph for downstream consumption.
 
-- **Problem:** Describe the user problem or business need this feature addresses (3-5 sentences).
-- **Solution:** Explain how this feature solves the problem.
-- **Impact:** What are the expected outcomes or metrics to be improved (e.g., user engagement, conversion rate, etc.)?
+### Impact
 
-#### 4. User Personas
+- Zero manual copy/paste between terms.
+- Repeatable extractions that finish in minutes, not hours.
+- Reliable data contracts that unlock component work.
 
-- Describe the target user(s) for this feature.
+---
 
-#### 5. User Stories
+## 4. User Personas
 
-- Write user stories in the format: "As a `<user persona>`, I want to `<perform an action>` so that I can `<achieve a benefit>`."
-- Cover the primary paths and edge cases.
+- **Portfolio Owner**: Runs the CLI locally before committing to verify new content.
+- **Automation Bot**: Executes nightly to detect drift between sources and repo.
+- **Reviewer**: Checks manifest and summary outputs to ensure coverage.
 
-#### 6. Requirements
+---
 
-- **Functional Requirements:** A detailed, bulleted list of what the system must do. Be specific and unambiguous.
-- **Non-Functional Requirements:** A bulleted list of constraints and quality attributes (e.g., performance, security, accessibility, data privacy).
+## 5. User Stories
 
-#### 7. Acceptance Criteria
+- As the owner, I want to point the CLI at a manifest so that I can sync entire terms with one command.
+- As a curator, I want warnings for skipped files so that I can fix metadata quickly.
+- As CI, I want a machine-readable output so that I can compare past runs.
+- As a reviewer, I want stats per term so that I know what changed.
 
-- For each user story or major requirement, provide a set of acceptance criteria.
-- Use a clear format, such as a checklist or Given/When/Then. This will be used to validate that the feature is complete and correct.
+---
 
-#### 8. Out of Scope
+## 6. Requirements
 
-- Clearly list what is _not_ included in this feature to avoid scope creep.
+### Functional
 
-## Context Template
+1. Manifest-driven source discovery with include/exclude globs per entry.
+2. Front matter parser that enriches nodes with normalized term, date, category, and skill arrays.
+3. Markdown-to-HTML conversion with configurable plugins (callouts, tables, code fences).
+4. Content graph builder generating `data/content-graph.json`, `data/term-index.json`, `data/skill-index.json`.
+5. Incremental cache keyed by file checksum to skip unchanged transformations.
+6. Summary report listing imported files, warnings, errors, and runtime metrics.
 
-- **Epic:** [Link to the parent Epic documents]
-- **Feature Idea:** [A high-level description of the feature request from the user]
-- **Target Users:** [Optional: Any initial thoughts on who this is for]
+### Non-Functional
+
+1. CLI completes under 5 minutes for 200 files on laptop hardware.
+2. Works offline aside from optional external metadata lookups.
+3. Provides `--dry-run` mode to preview changes.
+4. Includes 85% unit test coverage for parsers and adapters.
+
+---
+
+## 7. Acceptance Criteria
+
+- Given a manifest with two folders, when the CLI runs, then content from both folders appears in the graph with correct term labels.
+- Given a file missing required front matter, when the CLI runs, then it exits non-zero and logs the offending field.
+- Given unchanged content, when the CLI runs twice, then the second execution skips at least 80% of files.
+- Given `--report reports/pipeline.json`, when the CLI finishes, then that file includes counts for imported, skipped, warning, and error states.
+
+---
+
+## 8. Dependencies
+
+| Dependency | Notes |
+|------------|-------|
+| Validation Toolkit (EPIC-002) | Runs before extraction; CLI should fail if validation fails |
+| Source directories | Access to `C:/Users/ADMIN/Desktop/School File/T3-AY2025` |
+| Node.js runtime | Shared toolchain from Epic 1 |
+
+---
+
+## 9. Release Plan
+
+1. Define manifest schema plus config loader.
+2. Implement parser and sanitizer modules with tests.
+3. Build graph builders and indexes.
+4. Add cache and reporting.
+5. Document CLI usage and integrate with npm scripts/CI.
+
+---
+
+## 10. Out of Scope
+
+- GUI for configuring sources.
+- Automatic pulling from remote repositories (future integration work).
+- Binary/PDF conversion.
+
+---
+
+## 11. Open Questions
+
+- Should we provide optional image optimization during extraction or leave to a later phase?
+- Where should cache files live (`.cache/` vs `%LOCALAPPDATA%`)?
+- Do we need to support zipped archives as sources?
+
+---
+
+v1.0 | Planned | Last Updated: Dec 04 2025 - 16:32

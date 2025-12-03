@@ -1,60 +1,89 @@
 ---
-agent: 'agent'
-description: 'Prompt for creating Product Requirements Documents (PRDs) for new features, based on an Epic.'
+title: "Feature PRD: Automated Build & Deploy"
+version: 1.0
+date_created: 2025-12-04
+last_updated: 2025-12-04
+owner: Portfolio Owner
+feature_id: EPIC-007-F1
+status: Planned
+summary: Feature plan for GitHub Actions workflows covering validation, testing, build, deployment, and preview environments.
+categories: [docs, project]
+tags: [cicd, github-actions]
+ai_note: Assisted by AI (GitHub Copilot)
 ---
-# Feature PRD Prompt
 
-## Goal
+## Overview
 
-Act as an expert Product Manager for a large-scale SaaS platform. Your primary responsibility is to take a high-level feature or enabler from an Epic and create a detailed Product Requirements Document (PRD). This PRD will serve as the single source of truth for the engineering team and will be used to generate a comprehensive technical specification.
+Implements end-to-end automation for the Academic Journey Portfolio using GitHub Actions. Two workflows will exist: `ci.yml` for PRs and `deploy.yml` for main branch deployments.
 
-Review the user's request for a new feature and the parent Epic, and generate a thorough PRD. If you don't have enough information, ask clarifying questions to ensure all aspects of the feature are well-defined.
+---
 
-## Output Format
+## Objectives
 
-The output should be a complete PRD in Markdown format, saved to `/docs/{feature-name}/prd.md`.
+- Run validation, tests, and build on every push/PR.
+- Deploy to GitHub Pages automatically when `main` succeeds.
+- Provide preview deployment URLs on PRs for UX review.
+- Capture artifacts (coverage, content report, Lighthouse) for traceability.
 
-### PRD Structure
+---
 
-#### 1. Feature Name
+## Functional Requirements
 
-- A clear, concise, and descriptive name for the feature.
+| ID | Description | Priority |
+|----|-------------|----------|
+| FR-007-01 | Checkout repo, setup Node 18, cache npm. | Must |
+| FR-007-02 | Run `npm run validate` (schema, links, a11y). | Must |
+| FR-007-03 | Run `npm run test -- --coverage` with ≥80% gate. | Must |
+| FR-007-04 | Build static site via `npm run build`. | Must |
+| FR-007-05 | Upload `dist/` as Pages artifact. | Must |
+| FR-007-06 | Deploy via `actions/deploy-pages@v4`. | Must |
+| FR-007-07 | Run Lighthouse CI against deployed URL. | Should |
+| FR-007-08 | Add PR comment summarizing status + preview link. | Should |
 
-#### 2. Epic
+---
 
-- Link to the parent Epic PRD and Architecture documents.
+## Non-Functional Requirements
 
-#### 3. Goal
+- Pipeline runtime ≤12 minutes under nominal load.
+- Workflows linted via `actionlint` to prevent syntax issues.
+- Sensitive env vars (e.g., GH_TOKEN) stored as GitHub secrets.
 
-- **Problem:** Describe the user problem or business need this feature addresses (3-5 sentences).
-- **Solution:** Explain how this feature solves the problem.
-- **Impact:** What are the expected outcomes or metrics to be improved (e.g., user engagement, conversion rate, etc.)?
+---
 
-#### 4. User Personas
+## User Stories
 
-- Describe the target user(s) for this feature.
+1. As a maintainer, when I open a PR I receive a comment with validation/test results and a preview URL.
+2. As a maintainer, deployment to production requires no manual steps beyond merging to `main`.
+3. As a reviewer, I can access Lighthouse reports from the workflow summary.
 
-#### 5. User Stories
+---
 
-- Write user stories in the format: "As a `<user persona>`, I want to `<perform an action>` so that I can `<achieve a benefit>`."
-- Cover the primary paths and edge cases.
+## Release Plan
 
-#### 6. Requirements
+1. Author workflow yaml files, test locally via `act` (optional).
+2. Create GitHub Pages environment + secrets.
+3. Merge to main with feature flag disabled (dry run).
+4. Enable deployment to production after validation.
+5. Document pipeline in `docs/automation.md` with troubleshooting steps.
 
-- **Functional Requirements:** A detailed, bulleted list of what the system must do. Be specific and unambiguous.
-- **Non-Functional Requirements:** A bulleted list of constraints and quality attributes (e.g., performance, security, accessibility, data privacy).
+---
 
-#### 7. Acceptance Criteria
+## Metrics
 
-- For each user story or major requirement, provide a set of acceptance criteria.
-- Use a clear format, such as a checklist or Given/When/Then. This will be used to validate that the feature is complete and correct.
+- Track workflow duration via GitHub Insights.
+- Alert on failures >2 consecutive runs (manual review).
+- Store coverage reports as build artifacts for 30 days.
 
-#### 8. Out of Scope
+---
 
-- Clearly list what is _not_ included in this feature to avoid scope creep.
+## Risks
 
-## Context Template
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| npm cache corruption | Build failures | Use cache key with lockfile hash |
+| Lighthouse rate limits | Missing report | Schedule job nightly if needed |
+| Preview link missing due to permissions | Reviewer blocked | Use workflow bot token with comment access |
 
-- **Epic:** [Link to the parent Epic documents]
-- **Feature Idea:** [A high-level description of the feature request from the user]
-- **Target Users:** [Optional: Any initial thoughts on who this is for]
+---
+
+v1.0 | Planned | Last Updated: Dec 04 2025 - 17:18
