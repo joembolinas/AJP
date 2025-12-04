@@ -1,4 +1,3 @@
-
 # 🏔️Epic Breakdown for AJP
 
 Based on your comprehensive specification documents, here's a refined epic breakdown that maps directly to your requirements:
@@ -14,7 +13,7 @@ Based on your comprehensive specification documents, here's a refined epic break
 
 ### Description
 
-Establish the repository structure, development environment, tooling configuration, and foundational architecture.  This includes setting up the Node.js toolchain, configuring the static site generator (Eleventy or Astro), and establishing the atomic design component structure.
+Establish the repository structure, development environment, tooling configuration, and foundational architecture.  This includes setting up the toolchain, configuring the static site generator , and establishing the atomic design component structure.
 
 ### User Value
 
@@ -442,14 +441,14 @@ jobs:
           node-version: '18'
       - run: npm ci
       - run: npm run validate  # Front matter, links, a11y
-    
+  
   test:
     needs: validate
     runs-on: ubuntu-latest
     steps:
       - run: npm test
       - run: npm run test:coverage
-    
+  
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -458,7 +457,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
-        
+      
   deploy:
     needs: build
     if: github.ref == 'refs/heads/main'
@@ -469,7 +468,7 @@ jobs:
     steps:
       - uses: actions/deploy-pages@v4
         id: deployment
-      
+    
   lighthouse:
     needs: deploy
     runs-on: ubuntu-latest
