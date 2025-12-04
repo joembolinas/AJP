@@ -9,7 +9,6 @@ ai_note: Assisted by AI (GitHub Copilot)
 summary: Main README for the Academic Journey Portfolio - a scalable, component-based portfolio system for academic content.
 date: 2025-12-04
 ---
-
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-blue?style=flat-square&logo=github)](https://joembolinas.github.io)
 [![Current Phase](https://img.shields.io/badge/Phase-1%20Documentation-orange?style=flat-square)](./SDLC.md)
 [![Term](https://img.shields.io/badge/Term-T3--AY2025-green?style=flat-square)](https://joembolinas.github.io)
@@ -54,13 +53,13 @@ The Academic Journey Portfolio (AJP) is a static web platform designed to system
 
 ### Tech Stack
 
-| Category | Technology |
-|----------|------------|
-| Hosting | GitHub Pages (Static) |
-| Version Control | Git + GitHub |
-| CI/CD | GitHub Actions |
-| Development | VS Code + GitHub Copilot |
-| Architecture | JAMstack (JavaScript, APIs, Markup) |
+| Category        | Technology                          |
+| --------------- | ----------------------------------- |
+| Hosting         | GitHub Pages (Static)               |
+| Version Control | Git + GitHub                        |
+| CI/CD           | GitHub Actions                      |
+| Development     | VS Code + GitHub Copilot            |
+| Architecture    | JAMstack (JavaScript, APIs, Markup) |
 
 ### Content Structure
 
@@ -91,13 +90,11 @@ content/
    git clone https://github.com/joembolinas/joembolinas.github.io.git
    cd joembolinas.github.io
    ```
-
 2. **Review the specification**
 
    ```bash
    cat spec/Project_Specification.md
    ```
-
 3. **Understand the development phases**
 
    ```bash
@@ -109,18 +106,18 @@ content/
 
 ## Project Status
 
-| Phase | Description | Status |
-|-------|-------------|--------|
-| Phase 1 | Documentation & Planning | 🔄 In Progress |
-| Phase 2 | Project Structure & Architecture | ⏳ Pending |
-| Phase 3 | Configuration & Content Extraction | ⏳ Pending |
-| Phase 4 | Content Integration & Components | ⏳ Pending |
-| Phase 5 | Testing & Deployment | ⏳ Pending |
+| Phase   | Description                        | Status         |
+| ------- | ---------------------------------- | -------------- |
+| Phase 1 | Documentation & Planning           | 🔄 In Progress |
+| Phase 2 | Project Structure & Architecture   | ⏳ Pending     |
+| Phase 3 | Configuration & Content Extraction | ⏳ Pending     |
+| Phase 4 | Content Integration & Components   | ⏳ Pending     |
+| Phase 5 | Testing & Deployment               | ⏳ Pending     |
 
 ### Development Roadmap
 
-- [x] Project initialization and requirements gathering
-- [x] Architecture planning and technical specification
+- [X] Project initialization and requirements gathering
+- [X] Architecture planning and technical specification
 - [ ] Repository structure and component architecture
 - [ ] Content extraction pipeline
 - [ ] Component development
@@ -130,22 +127,22 @@ content/
 
 The portfolio showcases various types of academic content:
 
-| Component | Description |
-|-----------|-------------|
-| **Academic Work** | Papers, projects, presentations, and case studies |
-| **Reflections** | Written pieces discussing growth, challenges, and lessons |
-| **Extracurriculars** | Sports, clubs, internships, and activities |
-| **Achievements** | Awards, certificates, and honors |
-| **Technical Learning** | GitHub, VS Code, and development tool experience |
+| Component                    | Description                                               |
+| ---------------------------- | --------------------------------------------------------- |
+| **Academic Work**      | Papers, projects, presentations, and case studies         |
+| **Reflections**        | Written pieces discussing growth, challenges, and lessons |
+| **Extracurriculars**   | Sports, clubs, internships, and activities                |
+| **Achievements**       | Awards, certificates, and honors                          |
+| **Technical Learning** | GitHub, VS Code, and development tool experience          |
 
 ## Performance Targets
 
-| Metric | Target |
-|--------|--------|
-| Performance | ≥ 90 |
-| Accessibility | ≥ 95 |
-| Best Practices | ≥ 90 |
-| SEO | ≥ 90 |
+| Metric         | Target |
+| -------------- | ------ |
+| Performance    | ≥ 90  |
+| Accessibility  | ≥ 95  |
+| Best Practices | ≥ 90  |
+| SEO            | ≥ 90  |
 
 Scores measured via Google Lighthouse.
 
