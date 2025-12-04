@@ -9,10 +9,9 @@ ai_note: Assisted by AI (GitHub Copilot)
 summary: Comprehensive architecture blueprint for the Academic Journey Portfolio derived from Phase 1 specifications.
 date: 2025-12-04
 ---
-
 ## 1. Architecture Detection and Analysis
 
-- **Project type**: Jamstack static site hosted on GitHub Pages with Node.js-based tooling (REQ-001, PAT-001).
+- **Project type**: Jamstack static site hosted on GitHub Pages (REQ-001, PAT-001).
 - **Framework candidates**: Eleventy or Astro for build automation, Markdown content with YAML front matter, minimal vanilla JS for progressive enhancement.
 - **Architecture pattern**: Content-first layered architecture blending atomic design for UI, pipeline pattern for transformation, and CI/CD automation (PAT-002, PAT-005).
 - **Dependency flow**: Content sources feed a transformation pipeline that emits pre-rendered HTML, CSS, and JSON indexes consumed by the GitHub Pages runtime; no server-side execution (CON-002, CON-003).
@@ -261,12 +260,12 @@ registerAdapter('notion', async (config) => {
 
 ## 15. Architectural Decision Records
 
-| Decision | Context | Alternatives | Consequences |
-|----------|---------|--------------|--------------|
-| Static generation on GitHub Pages | Meets CON-001/CON-003, leverages free CDN | Netlify/Vercel, custom server | Zero runtime costs, limited server-side logic |
-| Atomic design component library | Need reusable UI aligned with PAT-005 | Page-level templates only | Higher upfront planning, easier future scaling |
-| Node.js toolchain | Align with Jamstack ecosystem, reuse JS skills | Python static tooling, Ruby Jekyll | Unified language, dependency on npm ecosystem |
-| Progressive enhancement JS | Accessibility + offline-first (NFR-004) | SPA frameworks | Smaller bundles, but more manual wiring |
+| Decision                          | Context                                        | Alternatives                       | Consequences                                   |
+| --------------------------------- | ---------------------------------------------- | ---------------------------------- | ---------------------------------------------- |
+| Static generation on GitHub Pages | Meets CON-001/CON-003, leverages free CDN      | Netlify/Vercel, custom server      | Zero runtime costs, limited server-side logic  |
+| Atomic design component library   | Need reusable UI aligned with PAT-005          | Page-level templates only          | Higher upfront planning, easier future scaling |
+| Node.js toolchain                 | Align with Jamstack ecosystem, reuse JS skills | Python static tooling, Ruby Jekyll | Unified language, dependency on npm ecosystem  |
+| Progressive enhancement JS        | Accessibility + offline-first (NFR-004)        | SPA frameworks                     | Smaller bundles, but more manual wiring        |
 
 ## 16. Architecture Governance
 
