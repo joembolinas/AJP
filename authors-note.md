@@ -19,12 +19,9 @@ can able to help me the copilot to improve my gaps and other areas that need dev
 
 i applied AGENTS.md the `docs/` folder , These files guide the AI Copilot to automatically update the reference files whenever changes are detected.
 
-TODO: ai agents to help development of this project
 
 NOTE:
 
-TODO  : AI TOOLKIT I NEED
-[ ] GIT BRANCH STRATEGIES
 
 now i confirm the specs-arch is done for and honestly in  the future theres a chance a to revised this base on the situation
 
@@ -63,12 +60,7 @@ now i confirm the specs-arch is done for and honestly in  the future theres a ch
 > **👤 Perspective:**
 > This prompt approaches epics from a **Product Manager's** viewpoint - focusing on user value and business outcomes rather than technical implementation.
 
-
-
 ---
-
-
-
 
  Architecture & Design
 
@@ -88,9 +80,6 @@ now i confirm the specs-arch is done for and honestly in  the future theres a ch
 > **⏰ When to do this?**
 > After planning is complete, before writing any application code. This phase typically takes 1-2 days for a medium project.
 
-
-
-
  Architecture Blueprint
 
 > **📝 What is this? **
@@ -105,4 +94,3 @@ now i confirm the specs-arch is done for and honestly in  the future theres a ch
 
 > **⏰ When to do this?**
 > As the first step of the architecture phase.
->
