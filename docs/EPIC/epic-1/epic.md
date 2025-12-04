@@ -1,6 +1,6 @@
 ---
-title: "Epic PRD: Phase 1 - Documentation & Planning Foundation"
-version: 1.0
+title: "Epic PRD: Phase 1 - Foundation & Project Infrastructure"
+version: 1.1
 date_created: 2025-12-04
 last_updated: 2025-12-04
 owner: Portfolio Owner
@@ -15,10 +15,12 @@ ai_note: Assisted by AI (GitHub Copilot)
 summary: Epic PRD for establishing comprehensive documentation, planning artifacts, and architectural decisions for the Academic Journey Portfolio system.
 date: 2025-12-04
 ---
-
 ## 1. Epic Name
 
-Documentation & Planning Foundation for Academic Journey Portfolio
+Epic 1: Foundation & Project Infrastructure
+
+> Establish the repository structure, development environment, tooling configuration, and foundational architecture.  This includes setting up the toolchain, configuring the static site generator , and establishing the atomic design component structure.
+
 
 ---
 
@@ -47,13 +49,13 @@ Establish a complete documentation foundation that serves as the single source o
 
 ### Impact
 
-| Metric | Expected Outcome |
-|--------|------------------|
-| Development Velocity | 30-50% faster feature implementation due to clear specifications |
-| Code Consistency | Reduced rework from AI-generated code matching project standards |
-| Onboarding Time | New contributors (or returning owner) can understand system in <1 hour |
-| Scope Management | Clear out-of-scope definitions prevent feature creep |
-| Decision Traceability | All architectural decisions documented with rationale |
+| Metric                | Expected Outcome                                                       |
+| --------------------- | ---------------------------------------------------------------------- |
+| Development Velocity  | 30-50% faster feature implementation due to clear specifications       |
+| Code Consistency      | Reduced rework from AI-generated code matching project standards       |
+| Onboarding Time       | New contributors (or returning owner) can understand system in <1 hour |
+| Scope Management      | Clear out-of-scope definitions prevent feature creep                   |
+| Decision Traceability | All architectural decisions documented with rationale                  |
 
 ---
 
@@ -132,31 +134,31 @@ Establish a complete documentation foundation that serves as the single source o
 
 #### Specification Documents
 
-- [x] **FR-005**: Define complete system architecture in Project_Specification.md
-- [x] **FR-006**: Document all requirements with unique identifiers (REQ-XXX)
-- [x] **FR-007**: Define security constraints (SEC-XXX)
-- [x] **FR-008**: Define scalability requirements (SCL-XXX)
-- [x] **FR-009**: Document architectural patterns (PAT-XXX)
-- [x] **FR-010**: Define acceptance criteria (AC-XXX)
-- [x] **FR-011**: Document validation criteria (VAL-XXX)
+- [X] **FR-005**: Define complete system architecture in Project_Specification.md
+- [X] **FR-006**: Document all requirements with unique identifiers (REQ-XXX)
+- [X] **FR-007**: Define security constraints (SEC-XXX)
+- [X] **FR-008**: Define scalability requirements (SCL-XXX)
+- [X] **FR-009**: Document architectural patterns (PAT-XXX)
+- [X] **FR-010**: Define acceptance criteria (AC-XXX)
+- [X] **FR-011**: Document validation criteria (VAL-XXX)
 
 #### Reference Materials
 
-- [x] **FR-012**: Create AGENTS.md as quick-reference lookup table
-- [x] **FR-013**: Document all requirement categories in searchable format
+- [X] **FR-012**: Create AGENTS.md as quick-reference lookup table
+- [X] **FR-013**: Document all requirement categories in searchable format
 - [ ] **FR-014**: Include examples for each requirement type
 
 #### AI Development Support
 
-- [x] **FR-015**: Create .github/copilot-instructions.md with project context
-- [x] **FR-016**: Define available agents (@mentor) with usage instructions
-- [x] **FR-017**: Establish code style guidelines for AI-generated code
+- [X] **FR-015**: Create .github/copilot-instructions.md with project context
+- [X] **FR-016**: Define available agents (@mentor) with usage instructions
+- [X] **FR-017**: Establish code style guidelines for AI-generated code
 - [ ] **FR-018**: Create prompt templates for common development tasks
 
 #### Process Documentation
 
-- [x] **FR-019**: Document SDLC phases with status tracking
-- [x] **FR-020**: Define git workflow and commit conventions
+- [X] **FR-019**: Document SDLC phases with status tracking
+- [X] **FR-020**: Define git workflow and commit conventions
 - [ ] **FR-021**: Create contribution guidelines
 - [ ] **FR-022**: Document content transformation processes (GUD-004)
 
@@ -185,14 +187,14 @@ Establish a complete documentation foundation that serves as the single source o
 
 ## 6. Success Metrics
 
-| KPI | Target | Measurement Method |
-|-----|--------|-------------------|
-| Documentation Completeness | 100% of Phase 1 deliverables | Checklist audit |
-| Requirement Coverage | All REQ/SEC/SCL/CON/GUD/PAT/AC documented | AGENTS.md validation |
-| Cross-Reference Accuracy | 0 broken internal links | Link validation script |
-| AI Context Effectiveness | Copilot generates project-compliant code | Manual review of 5 generated samples |
-| Spec Clarity Score | No clarifying questions needed for Phase 2 start | Self-assessment |
-| Front Matter Compliance | 100% of markdown files have valid front matter | Automated validation |
+| KPI                        | Target                                           | Measurement Method                   |
+| -------------------------- | ------------------------------------------------ | ------------------------------------ |
+| Documentation Completeness | 100% of Phase 1 deliverables                     | Checklist audit                      |
+| Requirement Coverage       | All REQ/SEC/SCL/CON/GUD/PAT/AC documented        | AGENTS.md validation                 |
+| Cross-Reference Accuracy   | 0 broken internal links                          | Link validation script               |
+| AI Context Effectiveness   | Copilot generates project-compliant code         | Manual review of 5 generated samples |
+| Spec Clarity Score         | No clarifying questions needed for Phase 2 start | Self-assessment                      |
+| Front Matter Compliance    | 100% of markdown files have valid front matter   | Automated validation                 |
 
 ---
 
@@ -200,15 +202,15 @@ Establish a complete documentation foundation that serves as the single source o
 
 The following items are explicitly **NOT** part of this epic:
 
-| Item | Reason | Future Epic |
-|------|--------|-------------|
-| Repository structure creation | Phase 2 deliverable | Project Structure Epic |
-| Component architecture implementation | Phase 2 deliverable | Component Architecture Epic |
-| Content extraction pipeline | Phase 3 deliverable | Content Pipeline Epic |
-| GitHub Actions workflows | Phase 5 deliverable | CI/CD Epic |
-| Actual portfolio content | Ongoing post-Phase 5 | Content Management |
-| User authentication | Out of project scope | N/A (see Section 14 of spec) |
-| Backend services | Architectural constraint CON-002 | N/A |
+| Item                                  | Reason                           | Future Epic                  |
+| ------------------------------------- | -------------------------------- | ---------------------------- |
+| Repository structure creation         | Phase 2 deliverable              | Project Structure Epic       |
+| Component architecture implementation | Phase 2 deliverable              | Component Architecture Epic  |
+| Content extraction pipeline           | Phase 3 deliverable              | Content Pipeline Epic        |
+| GitHub Actions workflows              | Phase 5 deliverable              | CI/CD Epic                   |
+| Actual portfolio content              | Ongoing post-Phase 5             | Content Management           |
+| User authentication                   | Out of project scope             | N/A (see Section 14 of spec) |
+| Backend services                      | Architectural constraint CON-002 | N/A                          |
 
 ---
 
@@ -238,31 +240,31 @@ The following items are explicitly **NOT** part of this epic:
 
 ### Core Documents
 
-| Deliverable | Status | Location |
-|-------------|--------|----------|
-| Project Specification | ✅ Complete | `docs/Project_Specification.md` |
-| Agent Reference Guide | ✅ Complete | `docs/AGENTS.md` |
-| SDLC Overview | ✅ Complete | `SDLC.md` |
-| Main README | ✅ Complete | `README.md` |
-| Copilot Instructions | ✅ Complete | `.github/copilot-instructions.md` |
+| Deliverable           | Status      | Location                            |
+| --------------------- | ----------- | ----------------------------------- |
+| Project Specification | ✅ Complete | `docs/Project_Specification.md`   |
+| Agent Reference Guide | ✅ Complete | `docs/AGENTS.md`                  |
+| SDLC Overview         | ✅ Complete | `SDLC.md`                         |
+| Main README           | ✅ Complete | `README.md`                       |
+| Copilot Instructions  | ✅ Complete | `.github/copilot-instructions.md` |
 
 ### Supporting Documents
 
-| Deliverable | Status | Location |
-|-------------|--------|----------|
-| Markdown Standards | ✅ Complete | `.github/instructions/markdown.instructions.md` |
-| Commit Prompt Template | ✅ Complete | `commit.prompt.md` |
-| Epic PRD Template | ✅ Complete | `.github/prompt/3-breakdown-epic-pm.prompt.md` |
-| Phase 1 Epic PRD | ✅ Complete | `docs/phase-1-documentation/epic.md` |
+| Deliverable            | Status      | Location                                          |
+| ---------------------- | ----------- | ------------------------------------------------- |
+| Markdown Standards     | ✅ Complete | `.github/instructions/markdown.instructions.md` |
+| Commit Prompt Template | ✅ Complete | `commit.prompt.md`                              |
+| Epic PRD Template      | ✅ Complete | `.github/prompt/3-breakdown-epic-pm.prompt.md`  |
+| Phase 1 Epic PRD       | ✅ Complete | `docs/phase-1-documentation/epic.md`            |
 
 ### Pending Items
 
-| Deliverable | Status | Notes |
-|-------------|--------|-------|
+| Deliverable             | Status     | Notes                                |
+| ----------------------- | ---------- | ------------------------------------ |
 | Content Standards Guide | ⏳ Pending | Define front matter validation rules |
-| Prompt Template Library | ⏳ Pending | Common AI interaction patterns |
-| Decision Log | ⏳ Pending | Track architectural decisions |
-| Glossary | ⏳ Pending | Expand Section 2 definitions |
+| Prompt Template Library | ⏳ Pending | Common AI interaction patterns       |
+| Decision Log            | ⏳ Pending | Track architectural decisions        |
+| Glossary                | ⏳ Pending | Expand Section 2 definitions         |
 
 ---
 
@@ -274,22 +276,22 @@ The following items are explicitly **NOT** part of this epic:
 
 ### External Dependencies
 
-| Dependency | Type | Impact |
-|------------|------|--------|
-| GitHub Repository | Infrastructure | Required for version control |
-| VS Code + Copilot | Tooling | Required for AI-assisted development |
-| Git | Tooling | Required for commit workflow |
+| Dependency        | Type           | Impact                               |
+| ----------------- | -------------- | ------------------------------------ |
+| GitHub Repository | Infrastructure | Required for version control         |
+| VS Code + Copilot | Tooling        | Required for AI-assisted development |
+| Git               | Tooling        | Required for commit workflow         |
 
 ---
 
 ## 11. Risks & Mitigations
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|------------|--------|------------|
-| Over-documentation | Medium | Low | Focus on actionable specs, not theoretical |
-| Documentation drift | Medium | Medium | Update docs alongside code changes |
-| Analysis paralysis | Low | High | Time-box planning; proceed to Phase 2 when 80% complete |
-| Missing edge cases | Medium | Medium | Add edge cases discovered during development |
+| Risk                | Likelihood | Impact | Mitigation                                              |
+| ------------------- | ---------- | ------ | ------------------------------------------------------- |
+| Over-documentation  | Medium     | Low    | Focus on actionable specs, not theoretical              |
+| Documentation drift | Medium     | Medium | Update docs alongside code changes                      |
+| Analysis paralysis  | Low        | High   | Time-box planning; proceed to Phase 2 when 80% complete |
+| Missing edge cases  | Medium     | Medium | Add edge cases discovered during development            |
 
 ---
 
