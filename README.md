@@ -151,7 +151,8 @@ Scores measured via Google Lighthouse.
 - [Project Specification](./spec/Project_Specification.md) — Detailed system architecture and requirements
 - [Agent Reference Guide](./spec/AGENTS.md) — Quick reference for specifications
 - [SDLC Overview](./SDLC.md) — Development lifecycle phases
+- [Contributing Guide](./CONTRIBUTING.md) — Branching strategy and workflow (main = production, develop = integration)
 
 ---
 
-v1.1 | Active Development | **Last Updated**: Dec 04 2025 - 12:00
+v1.1.1 | Active Development | **Last Updated**: Dec 04 2025 - 14:50
