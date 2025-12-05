@@ -6,281 +6,248 @@ post_slug: project-architecture-blueprint
 categories: [architecture, docs]
 tags: [blueprint, jamstack, portfolio, static-site]
 ai_note: Assisted by AI (GitHub Copilot)
-summary: Comprehensive architecture blueprint for the Academic Journey Portfolio derived from Phase 1 specifications.
+summary: Implementation-ready architecture blueprint for the Academic Journey Portfolio Phase 2 deliverable.
 date: 2025-12-04
 ---
+## Architecture Overview & Drivers
 
-## 1. Architecture Detection and Analysis
+The Academic Journey Portfolio (AJP) is a JAMstack static site bound to GitHub Pages limits (CON-001, CON-004) and
+atomic design ambitions (PAT-005). Architecture decisions focus on content-first pipelines, semantic presentation,
+and automated validation so that functional requirements FR-001 to FR-014 can scale to 1,000+ entries without
+architectural rework (NFR-010, NFR-011).
 
-- **Project type**: Jamstack static site hosted on GitHub Pages with Node.js-based tooling (REQ-001, PAT-001).
-- **Framework candidates**: Eleventy or Astro for build automation, Markdown content with YAML front matter, minimal vanilla JS for progressive enhancement.
-- **Architecture pattern**: Content-first layered architecture blending atomic design for UI, pipeline pattern for transformation, and CI/CD automation (PAT-002, PAT-005).
-- **Dependency flow**: Content sources feed a transformation pipeline that emits pre-rendered HTML, CSS, and JSON indexes consumed by the GitHub Pages runtime; no server-side execution (CON-002, CON-003).
-- **Communication mechanisms**: Mostly file-based during build, client-side interactions via DOM events, and optional fetch requests for JSON archives (REQ-005, REQ-006).
+| Business Goal | Requirement IDs | Supporting Layers / Technologies |
+| ------------- | --------------- | -------------------------------- |
+| Capture 100% of academic artifacts per term | FR-001, FR-010, FR-014 | Content + Build layers using Markdown, gray-matter, checksum-based importers |
+| Deliver modular, reusable UI at recruiter quality | FR-003, FR-004, PAT-005 | Presentation layer via Eleventy/Astro components, SCSS/BEM, Vanilla JS controllers |
+| Enforce accessibility and validation by default | NFR-004, VAL-011 to VAL-020, AC-006 | Automation layer with AJV, axe-core, Lighthouse CI, html-proofer |
+| Ship updates within 5 minutes of merge | FR-009, AC-005, VAL-021 | Automation + Delivery layers via GitHub Actions caching, artifact reuse, Pages deploy |
+| Maintain GitHub Pages compliance while enabling future integrations | CON-001 to CON-006, NFR-014 | Development + Delivery layers with Node 18+, Git/GitHub workflows, AI-assisted prompts |
 
-## 2. Architectural Overview
+Drivers:
 
-- **Guiding principles**: Separation of content, presentation, and behavior; single source of truth per requirement; automation-first validation; accessibility by default (REQ-007, NFR-004).
-- **Boundaries**: Content acquisition isolated from UI rendering; reusable component library decoupled from term data; deployment scripts operate only on build outputs.
-- **Hybrid patterns**: Static generation for deterministic pages combined with client-side micro-interactions (expand/collapse, filtering) implemented through progressive enhancement to remain usable without JS (CON-005).
-- **Enforcement**: Directory conventions (`content/`, `components/`, `scripts/`, `_data/`) and lint/validation pipelines guard cross-layer violations (VAL-001 to VAL-006).
+- JAMstack separation (PAT-001) keeps GitHub Pages CDN performant (NFR-003) while progressive enhancement satisfies
+  CON-005 and Accessibility Guidelines (NFR-004).
+- Atomic design and metadata-driven navigation align component growth with content growth, preventing layout rewrites
+  when new terms or skills emerge (NFR-014, FR-011).
 
-## 3. Architecture Visualization
+## Layered System Architecture
 
-### 3.1 High-Level System Topology
+Each layer inherits responsibilities from the Technology Stack Blueprint while referencing Phase 1 requirements.
 
-```text
-+---------------+     +--------------------+     +-----------------+
-| Content       | --> | Transformation      | --> | GitHub Pages    |
-| Sources       |     | Pipeline (Node.js)  |     | CDN + HTTPS     |
-+---------------+     +--------------------+     +-----------------+
-       ^                        |                          |
-       |                        v                          v
-       |                +-----------------+        +---------------+
-       +--------------  | Validation & QA |        | End Users     |
-                         +-----------------+        +---------------+
-```
+| Layer | Purpose | Key Technologies | Responsibilities | Requirements |
+| ----- | ------- | ---------------- | ---------------- | ------------ |
+| Delivery | Serve optimized static assets worldwide | GitHub Pages, HTTPS, CDN edge caching | Cache HTML/JS/CSS, enforce CSP/security headers | NFR-003, NFR-007, SEC series |
+| Presentation | Render accessible UI | HTML5, SCSS (BEM), Vanilla JS (ESM) | Implement atomic templates, ARIA hooks, motion tokens | FR-003 to FR-006, NFR-004, VAL-011 to VAL-015 |
+| Build | Transform and optimize content | Node.js 18+, Eleventy/Astro, esbuild, Sass | Parse markdown, compose layouts, minify assets, emit indexes | FR-002, FR-012, FR-013, NFR-002 |
+| Content | Persist structured academic metadata | Markdown + YAML, JSON schema, checksum manifests | Capture term taxonomy, ensure schema alignment, stage assets | FR-001, FR-010, FR-014, DAT-001 |
+| Automation | Enforce quality and deployments | GitHub Actions, Lighthouse CI, AJV, html-proofer | Lint, test, validate, deploy on merge | FR-007 to FR-009, VAL-001 to VAL-025, AC-005 |
+| Development | Enable efficient authoring | VS Code, GitHub Copilot, npm scripts, docs | Provide scaffolds, prompts, instructions for contributors | GUD-001 to GUD-006, DOC standards |
 
-### 3.2 Component Interaction View
-
-```text
-+-----------------+
-| Content Catalog |
-+-----------------+
-          |
-          v
-+-----------------+     +--------------------+     +----------------------+
-| Parser &        | --> | Component Templates | --> | Static Site Shell    |
-| Metadata Loader |     | (Atomic Design)     |     | (Layouts + Routing)  |
-+-----------------+     +--------------------+     +----------------------+
-                                               \
-                                                \---> Client Enhancers
-```
-
-### 3.3 Data Flow View
+ASCII dependency view (Technology Stack Blueprint naming, user-facing layer at the top):
 
 ```text
-Markdown + Assets --> Front Matter Validator --> Content Graph Builder
-            |                                         |
-            v                                         v
-        Metadata JSON --------------------------> Term/Skill Index
-                                                   |
-                                                   v
-                                         Client Filters & Search
++------------------------------------------------------------------+
+| Delivery: GitHub Pages + HTTPS + CDN Edge (NFR-003, NFR-007)      |
++------------------------------------------------------------------+
+            ^
+            |
++------------------------------------------------------------------+
+| Presentation: HTML5 + SCSS/BEM + Vanilla JS PE (FR-003, NFR-004) |
++------------------------------------------------------------------+
+            ^
+            |
++------------------------------------------------------------------+
+| Build: Node.js 18+, Eleventy/Astro, esbuild, Sass (FR-012)       |
++------------------------------------------------------------------+
+            ^
+            |
++------------------------------------------------------------------+
+| Content: Markdown + YAML FM + JSON Schema (FR-001, FR-013)       |
++------------------------------------------------------------------+
+            ^
+            |
++------------------------------------------------------------------+
+| Automation: GitHub Actions, Lighthouse CI, AJV, Pa11y (VAL-*)    |
++------------------------------------------------------------------+
+            ^
+            |
++------------------------------------------------------------------+
+| Development: VS Code, Git, Copilot prompts (GUD-001 to GUD-006)  |
++------------------------------------------------------------------+
 ```
 
-## 4. Core Architectural Components
+Runtime dependencies flow downward (Development tooling enables Automation, which gates Content → Delivery), while
+feedback flows upward (e.g., Lighthouse alerts Development via Automation reports).
 
-### 4.1 Content Source Manager
+## Content & Build Pipelines
 
-- **Purpose**: Aggregate Markdown from local directories and future repositories (REQ-001, REQ-012).
-- **Structure**: Directory manifests, import adapters, checksum cache for incremental builds (REQ-014).
-- **Interaction**: Emits normalized content graph for downstream parsing; receives configuration from `content.config.{json|yaml}`.
-- **Evolution**: Add adapters for new storage (ZIP, remote repo) without touching parser via adapter interface.
+Content acquisition, validation, transformation, and deployment operate as a deterministic conveyor referencing
+FR-001, FR-010, FR-012, VAL-001 to VAL-025.
 
-### 4.2 Transformation & Validation Pipeline
+ASCII sequence (simplified):
 
-- **Purpose**: Convert Markdown into HTML components, enforce schema, and generate derivative data (REQ-003, REQ-007).
-- **Structure**: Sequential stages (lint -> validate -> transform -> optimize) orchestrated by npm scripts or custom CLI.
-- **Interaction**: Consumes content graph, outputs build artifacts and validation reports consumed by CI (VAL-021).
-- **Evolution**: Pluggable stage registry to insert new validators (e.g., AI-based quality checks) with minimal churn.
-
-### 4.3 Component Library (Atomic Design)
-
-- **Purpose**: Provide reusable UI fragments (atoms: badges, molecules: cards, organisms: term sections) (PAT-005).
-- **Structure**: Templating engine partials with shared data contracts and SCSS modules.
-- **Interaction**: Bound to JSON payloads produced by pipeline; progressive enhancement scripts subscribe to data attributes.
-- **Evolution**: Add new component variations via modifier classes, keep BEM naming consistent (GUD-002).
-
-### 4.4 Client Enhancement Layer
-
-- **Purpose**: Offer filtering, expand/collapse, and accessible interactions while keeping static fallbacks (REQ-004 to REQ-006).
-- **Structure**: ES modules compiled to one small bundle (<50KB) with feature detection gates.
-- **Interaction**: Reads DOM data attributes, publishes custom events for analytics hooks.
-- **Evolution**: New features implemented as opt-in controllers registered through a central initializer.
-
-### 4.5 Deployment & Observability Tooling
-
-- **Purpose**: Automate build, test, deploy, and monitor budgets (REQ-009, REQ-010).
-- **Structure**: GitHub Actions workflow with build/test/deploy jobs, Lighthouse CI, link checker.
-- **Interaction**: Pulls repo, caches node_modules, uploads artifact to Pages, posts status badges.
-- **Evolution**: Additional environments (preview branches) plug into same workflow by parameterizing targets.
-
-## 5. Architectural Layers and Dependencies
-
-1. **Content Layer**: Markdown, assets, metadata schema (DAT-001).
-2. **Build Layer**: Node.js tooling, validators, template renderers (PAT-004).
-3. **Presentation Layer**: Generated HTML/CSS/JS served statically.
-4. **Delivery Layer**: GitHub Pages CDN, HTTPS, caching (NFR-013).
-
-**Rules**:
-
-- Downstream layers only depend on outputs of upstream layers; no Presentation -> Build coupling at runtime.
-- Shared contracts expressed as JSON schema types to prevent circular dependencies.
-- DI pattern through configuration injection at build time; runtime uses data attributes rather than direct imports.
-
-## 6. Data Architecture
-
-- **Domain model**: `Term` aggregates `ContentItem`; each item has `metadata`, `body`, `assets`, linking to `SkillTag` and `Category` taxonomies.
-- **Relationships**: Many-to-many between items and skills, one-to-many between terms and items, derived indexes for categories.
-- **Access patterns**: Build-time repository queries (file globbing), runtime client fetch for optional JSON indexes.
-- **Transformation**: Markdown -> AST -> sanitized HTML -> component props; metadata normalized to ISO 8601 and controlled vocabularies (VAL-007 to VAL-010).
-- **Caching**: Incremental builds store content digests; CDN caches assets with hash-based filenames (NFR-012).
-- **Validation**: JSON Schema + remark/rehype plugins enforce structure and accessible HTML.
-
-## 7. Cross-Cutting Concerns Implementation
-
-- **Authentication & Authorization**: Not required (static site); repo permissions and GitHub Pages controls guard writes (SEC-002).
-- **Error Handling & Resilience**: Pipeline fails fast on schema violations, surfaces actionable diagnostics; client enhancements wrap logic in try/catch with aria-live announcements for degraded states (REQ-015).
-- **Logging & Monitoring**: GitHub Actions logs, Lighthouse trend reports, optional privacy-friendly analytics for runtime event capture.
-- **Validation**: Multi-stage validators (front matter, link checking, accessibility) with machine-readable reports for gating merges (VAL-001 to VAL-019).
-- **Configuration Management**: `.env` for local overrides, `site.config.json` for shared settings, GitHub secrets for tokens; configuration merged via precedence rules (REQ-015).
-
-## 8. Service Communication Patterns
-
-- **Service boundaries**: Content pipeline vs. hosting vs. analytics; integrate via artifacts not live RPC.
-- **Protocols**: HTTPS for GitHub APIs, REST for optional analytics, fetch-based JSON retrieval for client filters.
-- **Sync vs async**: Build pipeline synchronous; runtime enhancements asynchronous but only for non-critical paths.
-- **API versioning**: Data exports versioned through file names (`term-index.v1.json`); breaking changes require new suffix.
-- **Service discovery**: Static configuration; no runtime discovery needed.
-- **Resilience**: Optional JSON fetch guarded by timeout fallback to static experience.
-
-## 9. Technology-Specific Architectural Patterns
-
-### Static Site Stack (Detected)
-
-- Node.js 18+ orchestrates npm scripts, Eleventy/Astro handles templating and data cascade.
-- Layout inheritance ensures consistent chrome; global data files expose site metadata.
-- Shortcodes encapsulate repeated fragments (badges, timeline markers).
-
-#### .NET Architectural Patterns
-
-- Not detected; repository contains no .NET assets. Section reserved for future integrations.
-
-#### Java Architectural Patterns
-
-- Not detected; build and runtime do not rely on JVM technologies.
-
-#### React Architectural Patterns
-
-- Not currently used; client layer sticks to framework-agnostic controllers to meet CON-005.
-
-#### Angular Architectural Patterns
-
-- Not detected; SPA frameworks would breach static hosting constraints.
-
-#### Python Architectural Patterns
-
-- Not detected; pipeline favors Node.js for tooling consistency, though data audits could adopt Python scripts later.
-
-## 10. Implementation Patterns
-
-- **Interface Design**: Define TypeScript-style typedefs (even in JS docs) for `ContentItem`, `TermIndex`, and component props; keep prop bags flattened to avoid deep destructuring.
-- **Service Implementations**: Treat build stages as idempotent services invoked via npm scripts; compose them using a task runner (e.g., `npm-run-all`).
-- **Repository Pattern**: Content repository abstracts file system with methods like `listByTerm(termId)` returning hydrated objects; enables unit testing with in-memory fixtures.
-- **Controller/API Pattern**: Client controllers expose `init(el)` functions that attach behavior to DOM nodes; responses normalized to `Result<T>` objects for consistent error handling.
-- **Domain Model Implementation**: Use value objects for `TermCode`, `SkillTag`, `CategorySlug` to enforce normalization and guard invalid strings.
-
-## 11. Testing Architecture
-
-- **Strategies**: Unit tests for parsers and helpers, integration tests for pipeline, visual regression for templates, accessibility tests (axe-core) (Phase 4 scope).
-- **Boundaries**: Unit (helpers/validators) -> integration (build pipeline) -> system (deployed site) -> smoke (post-deploy health).
-- **Test doubles**: Virtual file systems, stubbed fetch, fixture markdown directories.
-- **Data strategy**: Fixture packs per term with golden outputs; auto-generated snapshots for HTML fragments.
-- **Tooling**: Vitest/Jest, Playwright for E2E, Lighthouse CI, html-proofer for links.
-
-## 12. Deployment Architecture
-
-- **Topology**: Single GitHub repository, main branch triggers build and deploy to Pages; artifact stored in Pages environment.
-- **Environment adaptations**: Preview branches deploy to staging URLs; config toggles (analytics) keyed by environment variables.
-- **Runtime dependencies**: Only static files served via CDN; service workers optional for caching.
-- **Configuration management**: GitHub environment secrets store tokens; `_config` or `site.config` selects environment-specific metadata.
-- **Cloud integration**: Optional third-party analytics loaded via async script respecting CSP (SEC-005).
-
-## 13. Extension and Evolution Patterns
-
-- **Feature addition**: Create content types by extending JSON schema, add templates under appropriate atomic level, map to navigation metadata (GUD-002).
-- **Modification**: Use feature flags (config-based) for risky changes; maintain backwards-compatible data fields and mark deprecations in schema changelog.
-- **Integration**: Wrap external data feeds in adapters that sanitize payloads before merging with content graph; introduce anti-corruption layer to prevent schema pollution.
-
-## 14. Architectural Pattern Examples
-
-### Layer Separation Example
-
-```markdown
----
-title: Capstone Presentation
-date: 2025-11-12
-category: [academic, project]
-skills: [presentation, research]
-term: T3-AY2025
-type: project
----
-Summary paragraph...
+```text
+Content Author -> Import Adapter -> Schema Validator -> Markdown Parser -> Component Builder
+      |                  |                 |                   |                    |
+      v                  v                 v                   v                    v
+  Term folders      Source manifest    AJV reports       Eleventy data        _site artifact
+                                            |                                     |
+                                            v                                     v
+                                      QA dashboards                      GitHub Pages Deploy
 ```
 
-Build step converts this into JSON props consumed by a component template:
+| Stage | Inputs | Actions & Tooling | Outputs | Requirement Links |
+| ----- | ------ | ----------------- | ------- | ----------------- |
+| Ingest | Term directories, repository mirrors | File adapters, checksum cache, `npm run ingest` | Normalized manifest with relative asset paths | FR-001, FR-010, NFR-014 |
+| Validate | Manifest, Markdown | AJV (`lib/validators/front-matter.js`), markdownlint, html-proofer dry runs | Pass/fail report with VAL IDs | FR-007, VAL-001 to VAL-010 |
+| Transform | Validated Markdown, schema-approved metadata | gray-matter, remark/rehype, Eleventy/Astro templates | HTML fragments, JSON indexes, RSS feeds | FR-002, FR-003, NFR-002 |
+| Optimize | HTML/CSS/JS bundles, media assets | esbuild, Sass, Sharp (optional), asset hashing | Minified bundles, responsive images | NFR-001, NFR-002, VAL-016 to VAL-020 |
+| Deploy | `_site` artifact | GitHub Actions Deploy Pages step, cache restore | Live HTTPS site, artifact retention | FR-009, AC-005, VAL-021 to VAL-025 |
 
-```js
-export const contentCard = ({ title, date, categories, body }) => `
-  <article class="content-card" data-term="${categories.term}">
-    <header>
-      <h3>${title}</h3>
-      <time datetime="${dateISO(date)}">${formatDate(date)}</time>
-    </header>
-    ${body}
-  </article>`;
+Verification hooks surface warnings to `docs/PHASE-2/GIT_WORKFLOW.md` as required by AC-001.
+
+## Component & Presentation Architecture
+
+Atomic design hierarchy (PAT-005) ensures FR-003, FR-004, FR-006 and GUD-005 compliance:
+
+- **Atoms**: badges, tags, buttons; accessible focus rings baked in.
+- **Molecules**: `content-card`, `skill-list`, expand toggles with ARIA states (NFR-004, VAL-011-VAL-015).
+- **Organisms**: `term-section`, navigation, filter bar binding molecules via semantic `<section>` wrappers.
+- **Templates**: `home`, `term`, `project-detail` controlling layout flow.
+- **Pages**: static Eleventy outputs per term, category, or highlight.
+
+Sample directory outline (mirrors Technology Stack Blueprint):
+
+```text
+src/
+  components/
+    atoms/badge.njk
+    molecules/content-card.njk
+    organisms/term-section.njk
+  styles/
+    components/_content-card.scss
+  scripts/
+    controllers/filter-controller.js
 ```
 
-### Component Communication Example
+Coding conventions:
 
-```js
-class FilterController {
-  constructor(bus) {
-    this.bus = bus;
-  }
+- Semantic HTML headings never skip levels (VAL-012) and pair with ARIA attributes for icon buttons (VAL-015).
+- BEM naming (`.content-card__header`, `.content-card--featured`) keeps selectors predictable (GUD-002).
+- Progressive enhancement ensures toggles degrade gracefully if JavaScript fails (CON-005).
 
-  init(root) {
-    root.addEventListener('change', event => {
-      this.bus.publish('filter.change', event.target.value);
-    });
+## Data & Metadata Architecture
+
+Front matter schema excerpt (AJV enforced):
+
+```json
+{
+  "$id": "content-schema.json",
+  "required": ["title", "date", "category", "term", "type"],
+  "properties": {
+    "term": { "type": "string", "pattern": "^T[1-4]-AY\\d{4}$" },
+    "skills": { "type": "array", "items": { "type": "string" } }
   }
 }
-
-bus.subscribe('filter.change', value => updateGrid({ value }));
 ```
 
-### Extension Point Example
+| Field | Usage in Components | Validation & Errors |
+| ----- | ------------------- | ------------------- |
+| `title` | Rendered in `content-card` header and `<title>` tags | Missing title blocks build (VAL-001) |
+| `date` | ISO string used for chronological sorting and `<time>` | Regex validation (VAL-007); bad values raise AJV error |
+| `category` | Data attributes for filtering and navigation menus | Must match `categories.txt`; mismatches flagged (VAL-008) |
+| `skills` | Skill badges and filter chips | Optional; duplicates removed during build |
+| `term` | Creates term sections, anchors, navigation | Format `T#-AY####`; invalid codes stop pipeline |
+| `type` | Drives template selection and icons | Enumerated values guard new layout requirements |
 
-```js
-registerAdapter('notion', async (config) => {
-  const rows = await fetchNotionExport(config.token);
-  return rows.map(toContentItem);
-});
-```
+Error reporting: AJV emits JSON, CLI prints summarized table, GitHub Actions uploads artifact for review (VAL-001 to
+VAL-003). Build halts on schema violations; warnings (e.g., large image) tag GitHub issue via workflow automation.
 
-## 15. Architectural Decision Records
+## Cross-Cutting Concerns
 
-| Decision | Context | Alternatives | Consequences |
-|----------|---------|--------------|--------------|
-| Static generation on GitHub Pages | Meets CON-001/CON-003, leverages free CDN | Netlify/Vercel, custom server | Zero runtime costs, limited server-side logic |
-| Atomic design component library | Need reusable UI aligned with PAT-005 | Page-level templates only | Higher upfront planning, easier future scaling |
-| Node.js toolchain | Align with Jamstack ecosystem, reuse JS skills | Python static tooling, Ruby Jekyll | Unified language, dependency on npm ecosystem |
-| Progressive enhancement JS | Accessibility + offline-first (NFR-004) | SPA frameworks | Smaller bundles, but more manual wiring |
+- **Accessibility**: ARIA patterns, focus management, keyboard traps prevention (NFR-004, VAL-011 to VAL-015).
+- **Performance**: 2 MB/page budget (VAL-016) enforced via Lighthouse CI and asset hashing; lazy loading for media
+  satisfies NFR-002 and NFR-015.
+- **Security**: CSP + `Permissions-Policy` headers described in Technology Stack Blueprint; GitHub Pages enforces
+  HTTPS and integrates with AC-005 (NFR-007, SEC series).
+- **Caching**: `Cache-Control` strategies align with NFR-013; hashed filenames keep CDN immutable.
+- **Validation notes**: Every edit must pass markdown lint, schema validation, link checks, Lighthouse budgets, and
+  README instructions before merge, including front matter completeness, heading structure, and ≤400-character lines.
+- **Diagram policy**: Architecture diagrams stay ASCII-only per validator guidance; mermaid or rich-media diagrams
+  require an explicit stakeholder request before inclusion.
 
-## 16. Architecture Governance
+## CI/CD, Testing, and Quality Gates
 
-- **Compliance checks**: Front matter validator, ESLint/stylelint, accessibility lint, link checker.
-- **Automated enforcement**: GitHub Actions gates merges unless validation + tests pass (VAL-021).
-- **Review process**: Architecture-affecting PRs require blueprint reference updates and mention in ADR table.
-- **Documentation practice**: Significant changes documented in `docs/Project_Architecture_Blueprint.md` and summarized in release notes.
+Pipeline (Section 7 of spec) runs lint → validate → unit/integration tests → accessibility/performance audits → deploy.
 
-## 17. Blueprint for New Development
+| Stage | Tools | Purpose | Requirement IDs | Pass / Fail Criteria |
+| ----- | ----- | ------- | --------------- | ------------------- |
+| Lint | ESLint, Stylelint, markdownlint | Enforce coding and doc style | VAL-005, VAL-006 | Zero errors; warnings allowed only if justified |
+| Schema Validation | AJV, custom CLI | Guarantee metadata completeness | VAL-001 to VAL-010 | Any failure blocks build |
+| Unit & Integration Tests | Vitest, fixture FS, snapshot tests | Validate parsers, controllers, build pipeline | Section 7, AC-001 | ≥80% coverage, no failing tests |
+| Accessibility & Performance | axe-core, Pa11y CI, Lighthouse CI | Uphold WCAG + Lighthouse budgets | NFR-003, NFR-004, VAL-011 to VAL-020 | Scores ≥ targets, zero critical axe findings |
+| Link & Deploy | html-proofer, GitHub Actions deploy-pages | Ensure output integrity and ship artifact | FR-009, VAL-021 to VAL-025 | HTTP 200 for all pages; deploy job success |
 
-- **Workflow**: Identify requirement (e.g., REQ-006), update blueprint if architecture changes, implement in feature branch, run validation/test suites, submit PR referencing requirements.
-- **Implementation templates**: Duplicate component scaffolds (`components/molecules/content-card.njk` + `content/examples/*.md`), update schema/test fixtures, register JS controller if needed.
-- **Integration steps**: Wire content config, regenerate indexes, ensure navigation metadata updated, document feature in README or release notes.
-- **Common pitfalls**: Skipping schema update when adding metadata, introducing blocking JS, bypassing accessibility review, forgetting to regenerate indexes leading to stale filters.
-- **Currency**: Regenerate blueprint per phase milestone or after structural change; include timestamp in footnote to track freshness.
+Test alignment matrix:
 
-*v1.0.0 | Draft | Last Updated: Dec 04 2025 - 16:45*
+| Validation Focus | Pipeline Stage | Requirement IDs | Evidence |
+| ---------------- | -------------- | --------------- | -------- |
+| Metadata schema | Schema Validation | VAL-001 to VAL-004, FR-013 | `npm run validate:schema` logs attached to workflow |
+| Accessibility | Accessibility & Performance | NFR-004, AC-006 | axe-core + Pa11y reports stored as artifacts |
+| Performance budgets | Accessibility & Performance | NFR-003, VAL-016 to VAL-020 | Lighthouse CI assertions ≥ 0.9/0.95/0.9/0.9 |
+| Functional completeness | Unit & Integration tests | FR-002 to FR-006, AC-001 to AC-004 | Vitest summary + coverage report |
+| Deployment readiness | Link & Deploy | FR-009, AC-005, VAL-021 to VAL-025 | GitHub Pages deployment log and status badge |
+
+## Extension & Evolution Strategy
+
+- **New terms**: Drop term folders under `content/` following naming convention; schema auto-picks up (NFR-014). No
+  pipeline change required provided metadata conforms to `content-schema.json`.
+- **New components**: Extend atomic directories, register SCSS partial, update `src/scripts/main.js` for behavior. All
+  additions must cite relevant FR/NFR IDs in PR description per `.github/copilot-instructions.md`.
+- **External integrations**: Add adapters in `lib/adapters/`; sanitize payloads to avoid violating CON-002. Document
+  addition in `docs/AGENTS.md` (REQ, CON compliance) before merging.
+- **AI-assisted updates**: Use prompt templates in `.github/prompt/`, capture rationale in ADR log, and link blueprint
+  section to maintain traceability per GUD-001.
+
+## Architectural Decision Log
+
+| ID | Decision | Context & Drivers | Status | Consequences |
+| -- | -------- | ----------------- | ------ | ------------ |
+| ADR-001 | Prefer Eleventy with optional Astro fallback | GitHub Pages support (CON-004) and rapid prototyping | Proposed; finalize in Epic 1 | Minimizes config, but dual-path documentation required |
+| ADR-002 | Enforce atomic design across presentation assets | PAT-005, FR-003 | Accepted | Requires shared design tokens and linting for BEM naming |
+| ADR-003 | Use Vanilla JS progressive enhancement vs SPA | CON-005, NFR-004 | Accepted | Manual state management; JS bundle kept <30 KB |
+| ADR-004 | Centralize validation via AJV + npm scripts | FR-007, VAL-001 | Accepted | Contributors must run `npm run validate` locally |
+| ADR-005 | Store navigation metadata in `_data` JSON files | FR-002, FR-005 | Accepted | Navigation updates require JSON edit + schema check |
+| ADR-006 | Run Lighthouse CI on every merge to main | NFR-003, AC-010 | Accepted | Longer pipeline runtime; ensures budget awareness |
+
+## Risk & Mitigation Register
+
+| Risk | Impact | Likelihood | Mitigation | Owners |
+| ---- | ------ | ---------- | ---------- | ------ |
+| Eleventy vs Astro decision delay | Blocks component scaffolding | Medium | Deliver POC comparing build time + Pages compatibility by Epic 1 retro | Architecture squad |
+| Content schema drift across terms | Broken filters, failed builds | High | Lock schema versioning, require schema PR review, add schema tests | Data maintainers |
+| Performance regression due to media bloat | Lighthouse failure (VAL-016) | Medium | Enforce image compression script + GitHub check | Frontend lead |
+| Accessibility regressions | AC-006 failure, user impact | Medium | Automate Pa11y + manual spot checks; add checklist to PR template | QA lead |
+| GitHub Actions minute limits exceeded | Slower deploys | Low | Cache dependencies, split workflows per branch, monitor usage monthly | DevOps |
+
+## Requirement Coverage Matrix
+
+| Blueprint Section | Requirement IDs | Coverage Status | Notes / Evidence |
+| ----------------- | --------------- | --------------- | ---------------- |
+| Architecture Overview & Drivers | FR-001 to FR-014, NFR-001 to NFR-015, CON series | Covered | Summaries cite IDs and tie to stack map |
+| Layered System Architecture | FR-002 to FR-006, NFR-002 to NFR-004 | Covered | Layer table traces responsibilities to requirements |
+| Content & Build Pipelines | FR-001, FR-007 to FR-010, VAL-001 to VAL-025 | Covered | Pipeline table + ASCII flow references spec Sec. 7 |
+| Component & Presentation Architecture | FR-003 to FR-006, PAT-005, VAL-011 to VAL-015 | Covered | Atomic hierarchy, directory outline, BEM guidance |
+| Data & Metadata Architecture | FR-013, VAL-001 to VAL-010 | Covered | Schema excerpt + field mapping |
+| Cross-Cutting Concerns | NFR-003, NFR-004, SEC-001 to SEC-005, VAL-016 to VAL-020 | Covered | Budgets, CSP, caching documented |
+| CI/CD, Testing, Quality Gates | VAL-001 to VAL-025, AC-001 to AC-010 | Covered | Stage table + alignment matrix |
+| Extension & Evolution Strategy | NFR-014, CON-002, GUD-001 to GUD-006 | Covered | Guidelines reference `.github` instructions |
+| ADR + Risk Registers | CON-001 to CON-006, PAT-001 to PAT-005 | Covered | ADR decisions cite constraints and patterns |
+
+## Next Steps
+
+- Run `npm run validate` locally to confirm schema, lint, and test suites before committing updates to this blueprint.
+- Attach workflow evidence (Lighthouse, Pa11y, AJV logs) to future PRs to maintain traceability with VAL and AC IDs.
+
+{v1.0.0 | Draft | Last Updated: Dec 04 2025 - 21:30}
